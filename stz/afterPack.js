@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
   vi.setFileVersion(n[0] || 1, n[1] || 0, n[2] || 0, n[3] || 0, 1033); vi.setProductVersion(n[0] || 1, n[1] || 0, n[2] || 0, n[3] || 0, 1033);
   vi.setStringValues({ lang: 1033, codepage: 1200 }, {
     FileDescription: 'STZ Расчёт зубьев', ProductName: 'STZ Расчёт зубьев', CompanyName: 'Рафаил Шарапов',
-    OriginalFilename: 'STZ.exe', InternalName: 'STZ', FileVersion: ver, ProductVersion: ver
+    LegalCopyright: '© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru', OriginalFilename: 'STZ.exe', InternalName: 'STZ', FileVersion: ver, ProductVersion: ver
   });
   vi.outputToResourceEntries(res.entries);
   res.outputResource(pe);

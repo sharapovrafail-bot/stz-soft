@@ -96,7 +96,7 @@ table.mt{border-collapse:collapse;margin:8px 0}table.mt td,table.mt th{border:1p
 <div id="tbtn"><button onclick="showTab('calc')">Новый</button><button onclick="document.getElementById('jfile').click()">Открыть…</button><button onclick="saveJob()">Сохранить</button><button onclick="window.print()">Печать</button></div>
 <span class="sp"></span><span class="pill on">ГОСТ</span><span class="pill">версия 1.3.20</span><button class="b s" onclick="quit()">Закрыть</button></header>
 <div id="newjob" style="display:none;background:#1e8e3e;color:#fff;font:700 20px Arial;padding:12px;text-align:center;cursor:pointer"></div>
-<div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ»</div>
+<div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
 <main>
 <!-- ============ РАСЧЁТ ============ -->
@@ -1047,7 +1047,7 @@ $("jfile").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)
  const wrap=document.createElement("div");wrap.id="mainwrap";
  main.parentNode.insertBefore(shell,main);shell.appendChild(side);shell.appendChild(wrap);wrap.appendChild(main);
  side.querySelector("#sNav").appendChild(nav);
- const st=document.createElement("div");st.id="stat";st.innerHTML='<b>Сделано специально по заказу ООО «СпецТехЗаказ»</b><span>Готово · ГОСТ 16532 · ГОСТ 9324 · руководство Станкоимпорт 5К32А</span><span style="margin-left:auto" id="stClock"></span>';document.body.appendChild(st);
+ const st=document.createElement("div");st.id="stat";st.innerHTML='<b>Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru</b><span>Готово · ГОСТ 16532 · ГОСТ 9324 · руководство Станкоимпорт 5К32А</span><span style="margin-left:auto" id="stClock"></span>';document.body.appendChild(st);
  const clk=()=>{$("stClock").textContent=new Date().toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})};clk();setInterval(clk,30000);
 })();
 function renderSide(){const el=$("sJobs");if(!el)return;$("sCnt").textContent=JOBS.length;

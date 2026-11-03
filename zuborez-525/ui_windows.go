@@ -26,7 +26,7 @@ func openWindow(url string) (ok bool) {
 		AutoFocus: true,
 		DataPath:  data,
 		WindowOptions: webview2.WindowOptions{
-			Title:  "Зуборез 525 — наладка станка для конических колёс · версия " + appVersion + " · Сделано по заказу ООО «СпецТехЗаказ»",
+			Title:  "Зуборез 525 — наладка станка для конических колёс · версия " + appVersion + " · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru",
 			Width:  1366,
 			Height: 860,
 			Center: true,

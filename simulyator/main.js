@@ -16,12 +16,14 @@ function openFile(p) {
 function create() {
   win = new BrowserWindow({
     width: 1400, height: 900, minWidth: 900, minHeight: 600,
-    title: 'Симулятор УП Fanuc — версия 9.0',
+    title: 'Симулятор УП Fanuc — версия 9.0 · Рафаил Шарапов · rafail@sharapov-cnc.ru',
     icon: path.join(__dirname, 'app', 'icon.png'),
     backgroundColor: '#e9edf0', show: false, autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, nodeIntegration: false, spellcheck: false, preload: path.join(__dirname, 'preload.js') }
   });
-  Menu.setApplicationMenu(null);
+  // на Mac без меню не работают Cmd+C / Cmd+V / Cmd+Q
+  Menu.setApplicationMenu(process.platform === 'darwin' ? Menu.buildFromTemplate([{ role: 'appMenu' }, { role: 'editMenu' }, { role: 'windowMenu' }]) : null);
+  app.setAboutPanelOptions({ applicationName: 'Симулятор УП Fanuc', applicationVersion: app.getVersion(), copyright: '© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru', credits: 'Автор: Рафаил Шарапов\nrafail@sharapov-cnc.ru' });
   win.webContents.setWindowOpenHandler(({ url }) => { if (/^https?:/.test(url)) shell.openExternal(url); return { action: 'deny' }; });
   win.webContents.on('will-navigate', (e, url) => { if (!url.startsWith('file:')) { e.preventDefault(); if (/^https?:/.test(url)) shell.openExternal(url); } });
   win.on('page-title-updated', e => e.preventDefault());

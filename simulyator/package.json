@@ -3,7 +3,10 @@
   "productName": "Симулятор УП Fanuc",
   "version": "9.0.0",
   "description": "Симулятор управляющих программ Fanuc (KVL 1000, Puma 3050 LM)",
-  "author": "Rafail Sharapov",
+  "author": {
+    "name": "Рафаил Шарапов",
+    "email": "rafail@sharapov-cnc.ru"
+  },
   "main": "main.js",
   "scripts": {
     "win": "electron-builder --win nsis --x64",
@@ -12,7 +15,7 @@
   "build": {
     "appId": "ru.spectehzakaz.simulyator-up-fanuc",
     "productName": "Симулятор УП Fanuc",
-    "copyright": "© 2026 Rafail Sharapov",
+    "copyright": "© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru",
     "files": [
       "main.js",
       "preload.js",

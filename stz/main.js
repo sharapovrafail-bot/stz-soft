@@ -94,8 +94,8 @@ function macOpen(key, exe, title, w, h) {
     win.loadURL(m[0]);
   });
 }
-const macHob = () => macOpen('hob', hobExe(), 'Зубофреза 5К32А — наладка зубофрезерного станка · Сделано по заказу ООО «СпецТехЗаказ»', 1366, 860);
-const macZ525 = () => macOpen('z525', z525Exe(), 'Зуборез 525 — наладка станка для конических колёс · Сделано по заказу ООО «СпецТехЗаказ»', 1366, 860);
+const macHob = () => macOpen('hob', hobExe(), 'Зубофреза 5К32А — наладка зубофрезерного станка · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru', 1366, 860);
+const macZ525 = () => macOpen('z525', z525Exe(), 'Зуборез 525 — наладка станка для конических колёс · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru', 1366, 860);
 app.on('will-quit', () => { for (const p of macProcs) { try { p.kill(); } catch (e) {} } });
 const hobJobsDir = () => path.join(app.getPath('documents'), 'Зубофреза 5К32А', 'Детали');
 function hobLaunch() {
@@ -266,15 +266,16 @@ function createWindow(st) {
     height: 900,
     minWidth: 1000,
     minHeight: 640,
-    title: 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ»',
+    title: 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru',
     backgroundColor: '#1C1D1F',
     autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, sandbox: true, preload: path.join(__dirname, 'preload.js') }
   });
   // на Mac без меню не работают Cmd+C / Cmd+V / Cmd+Q
+  app.setAboutPanelOptions({ applicationName: 'STZ Расчёт зубьев', applicationVersion: app.getVersion(), copyright: '© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru', credits: 'Автор: Рафаил Шарапов\nrafail@sharapov-cnc.ru\nСделано специально по заказу ООО «СпецТехЗаказ»' });
   Menu.setApplicationMenu(isMac ? Menu.buildFromTemplate([{ role: 'appMenu' }, { role: 'editMenu' }, { role: 'windowMenu' }]) : null);
   mainWin = win;
-  const base = 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ»';
+  const base = 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru';
   const setTitle = s => { win.setTitle(s && s.state === 'trial' ? base + ' · пробный период, осталось ' + s.daysLeft + ' дн.' : base); };
   win.on('page-title-updated', e => e.preventDefault());
   setTitle(st);
@@ -288,7 +289,7 @@ function startApp() {
   if (!apiStarted) { apiStarted = true; startApi(); }
   if (!mainWin || mainWin.isDestroyed()) createWindow(st);
 }
-const base0 = 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ»';
+const base0 = 'STZ Расчёт зубьев — версия ' + app.getVersion() + ' · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru';
 setInterval(() => {
   const st = lic.check();
   if (!licOk(st)) { showLock(); if (mainWin && !mainWin.isDestroyed()) mainWin.destroy(); }

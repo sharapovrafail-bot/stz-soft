@@ -33,6 +33,7 @@ FLOW_CONTROL = ["XON/XOFF", "RTS/CTS", "None"]
 APP_NAME = "STZ & FANUC LAN"
 APP_VERSION = "1.0.0"
 COMPANY = "ООО «СпецТехЗаказ»"
+AUTHOR = "Рафаил Шарапов · rafail@sharapov-cnc.ru"
 
 C = {
     "dark": "#1c1c1c",
@@ -547,7 +548,7 @@ def show_text_window(parent, title, text):
 class ProgramTransferTool(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title(f"{APP_NAME} — версия {APP_VERSION} · Сделано по заказу {COMPANY}")
+        self.title(f"{APP_NAME} — версия {APP_VERSION} · Сделано по заказу {COMPANY} · {AUTHOR}")
         self.geometry("1400x900")
         self.minsize(1150, 700)
 

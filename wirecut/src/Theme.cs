@@ -12,7 +12,7 @@ namespace WireCut
         public static readonly Color Green = Color.FromArgb(47,168,79), Orange = Color.FromArgb(255,107,53), Error = Color.FromArgb(255,111,111);
         public static readonly Color Border = Color.FromArgb(63,73,85), Grid = Color.FromArgb(38,44,52), MajorGrid = Color.FromArgb(46,54,64);
         public static readonly Color[] Passes = { Color.FromArgb(88,207,133), Color.FromArgb(85,193,230), Color.FromArgb(236,199,94), Color.FromArgb(194,145,235) };
-        public const string Brand = "Сделано специально по заказу ООО «СпецТехЗаказ»";
+        public const string Brand = "Сделано специально по заказу ООО «СпецТехЗаказ»\nРафаил Шарапов · rafail@sharapov-cnc.ru";
         public static GraphicsPath Shape(Rectangle r)
         {
             GraphicsPath p = new GraphicsPath();

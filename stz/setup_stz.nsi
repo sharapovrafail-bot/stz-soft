@@ -12,7 +12,7 @@ InstallDir "$LOCALAPPDATA\Programs\${APP}"
 InstallDirRegKey HKCU "Software\SpecTehZakaz\STZ" "Dir"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
-BrandingText "Сделано специально по заказу ${PUB}"
+BrandingText "Сделано специально по заказу ${PUB} · Рафаил Шарапов · rafail@sharapov-cnc.ru"
 VIProductVersion "1.0.0.18"
 VIAddVersionKey /LANG=1049 "ProductName" "${APP}"
 VIAddVersionKey /LANG=1049 "CompanyName" "${PUB}"

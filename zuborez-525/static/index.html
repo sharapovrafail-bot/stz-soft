@@ -85,7 +85,7 @@ td.v.big{font-size:17px;white-space:normal}
 <div id="licOv" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,30,20,.92);align-items:center;justify-content:center;padding:16px"><div style="background:#fff;color:#111;max-width:520px;width:100%;border-radius:12px;padding:24px"><h2 id="licT" style="margin-top:0">Пробный период закончился</h2><p id="licM"></p><p>Код этого компьютера:<br><b id="licId" style="font-size:22px;letter-spacing:1px;user-select:all"></b></p><p>Сообщите этот код разработчику, он пришлёт ключ. Ключ общий для всех программ ООО «СпецТехЗаказ».</p><input id="licK" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%;font-size:18px;text-transform:uppercase"><div id="licE" style="color:#c0392b;min-height:20px"></div><button class="b" id="licGo">Активировать</button></div></div>
 <header><span id="bdg">525</span><h1>Наладка зуборезного полуавтомата для конических и гипоидных колёс с круговым зубом</h1><span id="licBadge" style="font-size:12px;opacity:.8"></span><span class="sp"></span>
 <button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.7.0</span><button onclick="quit()">Закрыть</button></header>
-<div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ»</div>
+<div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
 <main>
 <section class="tab" id="t-calc">
@@ -1551,7 +1551,7 @@ function buildA4(){const c=LAST;if(!c)return;const date=new Date().toLocaleDateS
   <div class="a4g">${gearPic(v.dv,"Деление")}${gearPic(v.ov,"Обкатка")}</div>
   <div class="a4ck"><b>Перед пуском:</b> ☐ всё зажато ☐ гитары затянуты, крышки закрыты ☐ проверочный угол совпал ☐ заготовка зажата ☐ счётчик ☐ охлаждение</div>
   <div class="a4ft">Фактически выставлено / примечания: ____________________________________________________________<br><br>_______________________________________________________________________________________</div>
-  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Зуборез 525 v0.7.0</div></div>`}
+  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.7.0</div></div>`}
  $("a4").innerHTML=h}
 
 /* ---------- мастер пятна контакта ---------- */

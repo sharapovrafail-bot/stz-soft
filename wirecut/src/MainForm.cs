@@ -241,7 +241,7 @@ namespace WireCut
             btns.Controls.Add(BigBtn("Создать УП", Theme.Green, delegate { Run("УП"); }));
             btns.Controls.Add(BigBtn("На станок ▶", Theme.Orange, delegate { Run("НАСТАНОК"); }));
             btns.Resize += delegate { int bw = Math.Max(100, (btns.ClientSize.Width - btns.Padding.Horizontal - 14) / 2); foreach (Control bb in btns.Controls) bb.Width = bw; };
-            Label brand = new Label { Dock = DockStyle.Bottom, Height = 26, Text = Theme.Brand, ForeColor = Theme.Muted, TextAlign = ContentAlignment.MiddleCenter };
+            Label brand = new Label { Dock = DockStyle.Bottom, Height = 44, Text = Theme.Brand, ForeColor = Theme.Muted, TextAlign = ContentAlignment.MiddleCenter };
             left.Controls.Add(grid); left.Controls.Add(new Label { Text = "СВОЙСТВА", Dock = DockStyle.Top, Height = 26, ForeColor = Theme.Muted, Padding = new Padding(12, 5, 0, 0) }); left.Controls.Add(btns); left.Controls.Add(brand);
             Splitter split = new Splitter { Dock = DockStyle.Left, Width = 4, BackColor = Theme.Border };
             leftSplit = split;

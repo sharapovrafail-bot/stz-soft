@@ -9,7 +9,7 @@ InstallDir "$PROGRAMFILES64\СпецТехЗаказ\${APP}"
 InstallDirRegKey HKLM "Software\SpecTehZakaz\Zubofreza5K32A" "Dir"
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
-BrandingText "Сделано специально по заказу ${PUB}"
+BrandingText "Сделано специально по заказу ${PUB} · Рафаил Шарапов · rafail@sharapov-cnc.ru"
 VIProductVersion "${VER}.0"
 VIAddVersionKey /LANG=1049 "ProductName" "${APP}"
 VIAddVersionKey /LANG=1049 "CompanyName" "${PUB}"

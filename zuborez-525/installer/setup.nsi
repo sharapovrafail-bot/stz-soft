@@ -10,7 +10,7 @@ InstallDir "$LOCALAPPDATA\Programs\${APP}"
 InstallDirRegKey HKCU "Software\SpecTehZakaz\Zuborez525" "Dir"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
-BrandingText "Сделано специально по заказу ${PUB}"
+BrandingText "Сделано специально по заказу ${PUB} · Рафаил Шарапов · rafail@sharapov-cnc.ru"
 VIProductVersion "${VER}.0"
 VIAddVersionKey /LANG=1049 "ProductName" "${APP}"
 VIAddVersionKey /LANG=1049 "CompanyName" "${PUB}"

@@ -30,4 +30,4 @@
 
 Сборка — `.github/workflows/build.yml`.
 
-Автор — Рафаил Шарапов. Лицензия MIT (см. `LICENSE`). В STZ WireCut входит GNU LibreDWG (`wirecut/dwg`, GPL v3, без изменений, запускается отдельной программой).
+Автор — Рафаил Шарапов, rafail@sharapov-cnc.ru. Сделано специально по заказу ООО «СпецТехЗаказ». Лицензия MIT (см. `LICENSE`). В STZ WireCut входит GNU LibreDWG (`wirecut/dwg`, GPL v3, без изменений, запускается отдельной программой).
