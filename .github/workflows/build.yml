@@ -158,7 +158,9 @@ jobs:
           mk "Simulyator-UP-Fanuc" "$SIM_APP"
           mk "STZ-FANUC-LAN" "$LAN_APP"
       - uses: actions/upload-artifact@v4
-        with: { name: mac-${{ matrix.arch }}, path: out/*.dmg }
+        with:
+          name: mac-${{ matrix.arch }}
+          path: out/*.dmg
 
   release:
     needs: [windows, fanuc-lan-win, mac]
