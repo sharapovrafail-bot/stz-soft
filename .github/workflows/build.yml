@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  # ---------- Windows: STZ (+5К32А, 525), Симулятор УП, WireCut — собираются в Linux ----------
+  # ---------- Windows: STZ (+5К32А, 525) и WireCut — собираются в Linux ----------
   windows:
     runs-on: ubuntu-latest
     steps:
@@ -39,13 +39,6 @@ jobs:
           makensis -V2 -DVER=$VER setup_stz.nsi
           mkdir -p ../out && mv STZ-Setup-*.exe ../out/
 
-      - name: Симулятор УП Fanuc — установщик
-        working-directory: simulyator
-        run: |
-          npm install --no-audit --no-fund
-          npx electron-builder --win nsis --x64
-          mv dist/*.exe ../out/
-
       - name: STZ WireCut — установщики
         working-directory: wirecut
         run: |
@@ -55,7 +48,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with: { name: windows, path: out/* }
 
-  # ---------- Windows: STZ FANUC LAN (Python, нужен настоящий Windows) ----------
+  # ---------- Windows: STZ FANUC LAN и Симулятор УП (на настоящем Windows) ----------
   fanuc-lan-win:
     runs-on: windows-latest
     steps:
@@ -70,8 +63,17 @@ jobs:
           python -m PyInstaller --noconfirm STZ_FANUC_LAN.spec
           mkdir -p ../out/STZ_FANUC_LAN && cp dist/STZ_FANUC_LAN_1.exe stz.ico ../out/STZ_FANUC_LAN/
           cd ../out && 7z a STZ_FANUC_LAN-win.zip STZ_FANUC_LAN > /dev/null
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Симулятор УП Fanuc — установщик
+        working-directory: simulyator
+        shell: bash
+        run: |
+          npm install --no-audit --no-fund
+          npx electron-builder --win nsis --x64
+          mv dist/*.exe ../out/
       - uses: actions/upload-artifact@v4
-        with: { name: fanuc-lan-win, path: out/*.zip }
+        with: { name: windows-native, path: out/* }
 
   # ---------- macOS ----------
   mac:
@@ -135,10 +137,11 @@ jobs:
           for APP in "$STZ_APP" "$SIM_APP" "$LAN_APP"; do
             codesign --force --deep --sign - --entitlements ent.plist "$APP"
             codesign --verify --deep --strict "$APP" && echo "подпись OK: $APP"
-            EXE="$APP/Contents/MacOS/$(defaults read "$APP/Contents/Info.plist" CFBundleExecutable)"
-            "$EXE" > run.log 2>&1 & P=$!
-            sleep 20
-            if kill -0 $P 2>/dev/null; then echo "ЗАПУСТИЛАСЬ: $(basename "$APP")"; kill $P; else echo "НЕ ЗАПУСТИЛАСЬ: $APP"; cat run.log; fail=1; fi
+            EXE="$APP/Contents/MacOS/$(plutil -extract CFBundleExecutable raw "$APP/Contents/Info.plist")"
+            ELECTRON_ENABLE_LOGGING=1 "$EXE" > run.log 2>&1 & P=$!
+            sleep 25
+            if kill -0 $P 2>/dev/null; then echo "ЗАПУСТИЛАСЬ: $(basename "$APP")"; screencapture -x "out-$(basename "$APP" .app).png" || true; kill $P
+            else wait $P; echo "НЕ ЗАПУСТИЛАСЬ (код $?): $APP"; cat run.log; fail=1; fi
           done
           # программы наладки: сервер должен ответить
           for B in "$STZ_APP/Contents/Resources/hob/Zubofreza_5K32A" "$STZ_APP/Contents/Resources/z525/Zuborez_525"; do

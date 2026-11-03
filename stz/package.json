@@ -18,7 +18,6 @@
   "build": {
     "appId": "ru.spectehzakaz.stz",
     "productName": "STZ Расчёт зубьев",
-    "executableName": "STZ",
     "files": [
       "main.js",
       "preload.js",
@@ -48,7 +47,8 @@
     "afterPack": "./afterPack.js",
     "win": {
       "icon": "stz.ico",
-      "signAndEditExecutable": false
+      "signAndEditExecutable": false,
+      "executableName": "STZ"
     },
     "mac": {
       "icon": "build/icon.png",
