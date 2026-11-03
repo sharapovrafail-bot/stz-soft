@@ -141,7 +141,7 @@ jobs:
             ELECTRON_ENABLE_LOGGING=1 "$EXE" > run.log 2>&1 & P=$!
             sleep 25
             if kill -0 $P 2>/dev/null; then echo "ЗАПУСТИЛАСЬ: $(basename "$APP")"; screencapture -x "out-$(basename "$APP" .app).png" || true; kill $P
-            else wait $P; echo "НЕ ЗАПУСТИЛАСЬ (код $?): $APP"; cat run.log; fail=1; fi
+            else c=0; wait $P || c=$?; echo "НЕ ЗАПУСТИЛАСЬ (код $c): $APP"; cat run.log; fail=1; fi
           done
           # программы наладки: сервер должен ответить
           for B in "$STZ_APP/Contents/Resources/hob/Zubofreza_5K32A" "$STZ_APP/Contents/Resources/z525/Zuborez_525"; do
