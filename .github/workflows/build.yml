@@ -46,7 +46,9 @@ jobs:
           mv dist/*.exe ../out/
 
       - uses: actions/upload-artifact@v4
-        with: { name: windows, path: out/* }
+        with:
+          name: windows
+          path: out/*.exe
 
   # ---------- Windows: STZ FANUC LAN и Симулятор УП (на настоящем Windows) ----------
   fanuc-lan-win:
@@ -73,7 +75,11 @@ jobs:
           npx electron-builder --win nsis --x64
           mv dist/*.exe ../out/
       - uses: actions/upload-artifact@v4
-        with: { name: windows-native, path: out/* }
+        with:
+          name: windows-native
+          path: |
+            out/*.zip
+            out/*.exe
 
   # ---------- macOS ----------
   mac:
@@ -104,8 +110,12 @@ jobs:
         working-directory: stz
         run: |
           npm install --no-audit --no-fund
-          npx electron-builder --mac dir --${{ matrix.arch }}
-          APP=$(find dist -maxdepth 2 -name "*.app" | head -1); echo "STZ_APP=$PWD/$APP" >> $GITHUB_ENV
+          # внутренние имена латиницей (буква «ё» в именах помощников Electron ломает запуск на Mac)
+          npx electron-builder --mac dir --${{ matrix.arch }} -c.productName=STZ
+          APP=$(find dist -maxdepth 2 -name "STZ.app" | head -1)
+          plutil -replace CFBundleDisplayName -string "STZ Расчёт зубьев" "$APP/Contents/Info.plist"
+          NEW="$(dirname "$APP")/STZ Расчёт зубьев.app"; mv "$APP" "$NEW"
+          echo "STZ_APP=$PWD/$NEW" >> $GITHUB_ENV
 
       - name: Симулятор УП Fanuc.app
         working-directory: simulyator
@@ -178,7 +188,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           gh release delete latest --yes --cleanup-tag || true
-          gh release create latest out/*/* \
+          gh release create latest $(find out -type f \( -name '*.exe' -o -name '*.zip' -o -name '*.dmg' \)) \
             --title "Программы STZ (последняя сборка)" \
             --latest \
             --notes "Бесплатно, без лицензии и ключей.
