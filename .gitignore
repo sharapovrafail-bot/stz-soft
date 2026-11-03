@@ -1,0 +1,11 @@
+node_modules/
+dist/
+stz/res/
+out/
+wirecut/out7/
+wirecut/out10/
+!wirecut/dist/
+wirecut/dist/*.exe
+build/STZ*/
+__pycache__/
+*.pyc

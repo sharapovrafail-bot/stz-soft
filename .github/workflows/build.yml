@@ -1,0 +1,183 @@
+# Сборка всех программ на компьютерах GitHub: Windows-установщики и версии для macOS (Apple M и Intel).
+# Результат — во вкладке Releases («latest»).
+name: Сборка программ
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # ---------- Windows: STZ (+5К32А, 525), Симулятор УП, WireCut — собираются в Linux ----------
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.24', cache: false }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Инструменты (NSIS, Mono)
+        run: sudo apt-get update && sudo apt-get install -y nsis mono-devel
+
+      - name: Зубофреза 5К32А и Зуборез 525 (exe)
+        run: |
+          mkdir -p stz/res/hob stz/res/z525
+          (cd naladka-5k32a && GOOS=windows GOARCH=amd64 go build -ldflags "-s -w -H windowsgui" -o ../stz/res/hob/Zubofreza_5K32A.exe .)
+          (cd zuborez-525  && GOOS=windows GOARCH=amd64 go build -ldflags "-s -w -H windowsgui" -o ../stz/res/z525/Zuborez_525.exe .)
+
+      - name: STZ Расчёт зубьев — установщик
+        working-directory: stz
+        run: |
+          npm install --no-audit --no-fund
+          npx electron-builder --win dir --x64
+          VER=$(node -p "require('./package.json').version")
+          export LANG=C.UTF-8 LC_ALL=C.UTF-8
+          makensis -V2 -DVER=$VER setup_stz.nsi
+          mkdir -p ../out && mv STZ-Setup-*.exe ../out/
+
+      - name: Симулятор УП Fanuc — установщик
+        working-directory: simulyator
+        run: |
+          npm install --no-audit --no-fund
+          npx electron-builder --win nsis --x64
+          mv dist/*.exe ../out/
+
+      - name: STZ WireCut — установщики
+        working-directory: wirecut
+        run: |
+          bash build.sh setup
+          mv dist/*.exe ../out/
+
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: out/* }
+
+  # ---------- Windows: STZ FANUC LAN (Python, нужен настоящий Windows) ----------
+  fanuc-lan-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Сборка
+        working-directory: fanuc-lan
+        shell: bash
+        run: |
+          python -m pip install pyinstaller pyserial
+          python -m PyInstaller --noconfirm STZ_FANUC_LAN.spec
+          mkdir -p ../out/STZ_FANUC_LAN && cp dist/STZ_FANUC_LAN_1.exe stz.ico ../out/STZ_FANUC_LAN/
+          cd ../out && 7z a STZ_FANUC_LAN-win.zip STZ_FANUC_LAN > /dev/null
+      - uses: actions/upload-artifact@v4
+        with: { name: fanuc-lan-win, path: out/*.zip }
+
+  # ---------- macOS ----------
+  mac:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: macos-latest,   arch: arm64, goarch: arm64 }   # Apple M1…M4
+          - { runner: macos-15-intel, arch: x64,   goarch: amd64 }   # Intel
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.24', cache: false }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+
+      - name: Зубофреза 5К32А и Зуборез 525 (для Mac)
+        run: |
+          mkdir -p stz/res/hob stz/res/z525
+          (cd naladka-5k32a && CGO_ENABLED=0 GOARCH=${{ matrix.goarch }} go build -ldflags "-s -w" -o ../stz/res/hob/Zubofreza_5K32A .)
+          (cd zuborez-525  && CGO_ENABLED=0 GOARCH=${{ matrix.goarch }} go build -ldflags "-s -w" -o ../stz/res/z525/Zuborez_525 .)
+          chmod +x stz/res/hob/* stz/res/z525/*
+
+      - name: STZ Расчёт зубьев.app
+        working-directory: stz
+        run: |
+          npm install --no-audit --no-fund
+          npx electron-builder --mac dir --${{ matrix.arch }}
+          APP=$(find dist -maxdepth 2 -name "*.app" | head -1); echo "STZ_APP=$PWD/$APP" >> $GITHUB_ENV
+
+      - name: Симулятор УП Fanuc.app
+        working-directory: simulyator
+        run: |
+          npm install --no-audit --no-fund
+          npx electron-builder --mac dir --${{ matrix.arch }}
+          APP=$(find dist -maxdepth 2 -name "*.app" | head -1); echo "SIM_APP=$PWD/$APP" >> $GITHUB_ENV
+
+      - name: STZ FANUC LAN.app
+        working-directory: fanuc-lan
+        run: |
+          python -m pip install pyinstaller pyserial pillow
+          python -m PyInstaller --noconfirm --windowed --name "STZ FANUC LAN" --icon stz.ico \
+            --osx-bundle-identifier ru.spectehzakaz.fanuclan --add-data "stz.ico:." program_transfer_tool.py
+          echo "LAN_APP=$PWD/dist/STZ FANUC LAN.app" >> $GITHUB_ENV
+
+      - name: Подпись (без Apple ID) и проверка запуском
+        run: |
+          cat > ent.plist <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>com.apple.security.cs.allow-jit</key><true/>
+            <key>com.apple.security.cs.allow-unsigned-executable-memory</key><true/>
+            <key>com.apple.security.cs.disable-library-validation</key><true/>
+          </dict></plist>
+          EOF
+          fail=0
+          for APP in "$STZ_APP" "$SIM_APP" "$LAN_APP"; do
+            codesign --force --deep --sign - --entitlements ent.plist "$APP"
+            codesign --verify --deep --strict "$APP" && echo "подпись OK: $APP"
+            EXE="$APP/Contents/MacOS/$(defaults read "$APP/Contents/Info.plist" CFBundleExecutable)"
+            "$EXE" > run.log 2>&1 & P=$!
+            sleep 20
+            if kill -0 $P 2>/dev/null; then echo "ЗАПУСТИЛАСЬ: $(basename "$APP")"; kill $P; else echo "НЕ ЗАПУСТИЛАСЬ: $APP"; cat run.log; fail=1; fi
+          done
+          # программы наладки: сервер должен ответить
+          for B in "$STZ_APP/Contents/Resources/hob/Zubofreza_5K32A" "$STZ_APP/Contents/Resources/z525/Zuborez_525"; do
+            STZ_EMBED=1 "$B" > go.log 2>&1 & P=$!; sleep 5
+            URL=$(grep -o 'http://127.0.0.1:[0-9]*/' go.log | head -1)
+            if [ -n "$URL" ] && curl -sf "$URL" > /dev/null; then echo "сервер отвечает: $(basename "$B")"; else echo "нет ответа: $B"; cat go.log; fail=1; fi
+            kill $P || true
+          done
+          exit $fail
+
+      - name: DMG
+        run: |
+          mkdir -p out
+          mk() { D=$(mktemp -d); cp -R "$2" "$D/"; ln -s /Applications "$D/Applications"
+                 hdiutil create -volname "$1" -srcfolder "$D" -ov -format UDZO "out/$1-mac-${{ matrix.arch }}.dmg"; }
+          mk "STZ-Raschet-zubev" "$STZ_APP"
+          mk "Simulyator-UP-Fanuc" "$SIM_APP"
+          mk "STZ-FANUC-LAN" "$LAN_APP"
+      - uses: actions/upload-artifact@v4
+        with: { name: mac-${{ matrix.arch }}, path: out/*.dmg }
+
+  release:
+    needs: [windows, fanuc-lan-win, mac]
+    if: always() && needs.windows.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: out }
+      - name: Релиз latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest out/*/* \
+            --title "Программы STZ (последняя сборка)" \
+            --latest \
+            --notes "Бесплатно, без лицензии и ключей.
+
+          Windows: STZ-Setup (STZ Расчёт зубьев + Зубофреза 5К32А + Зуборез 525), Simulyator_UP_Fanuc_Setup, STZ_WireCut_Setup (Win10-11 и Win7), STZ_FANUC_LAN-win.zip.
+          macOS: *-mac-arm64.dmg — Mac на Apple M1–M4, *-mac-x64.dmg — Mac на Intel. Первый запуск: правой кнопкой → «Открыть».
+          Передача УП на станок по сети (FOCAS) работает только в Windows и требует библиотеки FANUC Fwlib64.dll и fwlibe64.dll (в C:\\PTT)."

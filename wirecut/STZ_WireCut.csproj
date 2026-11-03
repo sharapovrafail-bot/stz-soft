@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Сборка в Windows: Visual Studio 2019+ или «dotnet build -c Release».
+       net35 — вариант для Windows 7, net48 — для Windows 10/11 (символ NET48). -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net35;net48</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>STZ_WireCut</AssemblyName>
+    <RootNamespace>WireCut</RootNamespace>
+    <ApplicationIcon>src\app.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Nullable>disable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
+    <DefineConstants>$(DefineConstants);NET48</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\*.cs" />
+    <EmbeddedResource Include="src\logo.png" LogicalName="WireCut.logo.png" />
+    <None Include="src\app.config" Condition="'$(TargetFramework)' == 'net35'" Link="app.config" />
+    <None Include="src\app48.config" Condition="'$(TargetFramework)' == 'net48'" Link="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

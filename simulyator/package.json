@@ -1,0 +1,88 @@
+{
+  "name": "simulyator-up-fanuc",
+  "productName": "Симулятор УП Fanuc",
+  "version": "9.0.0",
+  "description": "Симулятор управляющих программ Fanuc (KVL 1000, Puma 3050 LM)",
+  "author": "Rafail Sharapov",
+  "main": "main.js",
+  "scripts": {
+    "win": "electron-builder --win nsis --x64",
+    "mac": "electron-builder --mac dir"
+  },
+  "build": {
+    "appId": "ru.spectehzakaz.simulyator-up-fanuc",
+    "productName": "Симулятор УП Fanuc",
+    "copyright": "© 2026 Rafail Sharapov",
+    "files": [
+      "main.js",
+      "preload.js",
+      "focas.js",
+      "app/**/*",
+      "node_modules/koffi/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "executableName": "SimulyatorUP"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Симулятор УП Fanuc",
+      "uninstallDisplayName": "Симулятор УП Fanuc ${version}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerLanguages": [
+        "ru_RU"
+      ],
+      "language": "1049",
+      "artifactName": "Simulyator_UP_Fanuc_Setup_${version}.${ext}",
+      "runAfterFinish": true
+    },
+    "afterPack": "./afterPack.js",
+    "asarUnpack": [
+      "node_modules/koffi/**/*",
+      "focas.js"
+    ],
+    "extraResources": [
+      {
+        "from": "focas",
+        "to": "focas",
+        "filter": [
+          "*.dll"
+        ]
+      }
+    ],
+    "mac": {
+      "icon": "build/icon-1024.png",
+      "identity": null,
+      "category": "public.app-category.developer-tools",
+      "darkModeSupport": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
+    "resedit": "^3.1.0"
+  },
+  "dependencies": {
+    "koffi": "^2.16.3"
+  },
+  "license": "MIT"
+}

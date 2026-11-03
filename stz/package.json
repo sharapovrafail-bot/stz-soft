@@ -1,0 +1,60 @@
+{
+  "name": "stz-raschet-zubev",
+  "productName": "STZ Расчёт зубьев",
+  "version": "1.0.0-beta.18",
+  "description": "STZ Расчёт зубьев — расчёт зубчатых, червячных, цепных, ремённых и шлицевых передач",
+  "main": "main.js",
+  "author": "Рафаил Шарапов",
+  "license": "MIT",
+  "scripts": {
+    "win": "electron-builder --win dir --x64",
+    "mac": "electron-builder --mac dir"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "^26.15.3",
+    "resedit": "^3.1.0"
+  },
+  "build": {
+    "appId": "ru.spectehzakaz.stz",
+    "productName": "STZ Расчёт зубьев",
+    "executableName": "STZ",
+    "files": [
+      "main.js",
+      "preload.js",
+      "lic.js",
+      "package.json",
+      "version.json",
+      "app/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "mcp",
+        "to": "mcp"
+      },
+      {
+        "from": "res/hob",
+        "to": "hob"
+      },
+      {
+        "from": "res/z525",
+        "to": "z525"
+      }
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "afterPack": "./afterPack.js",
+    "win": {
+      "icon": "stz.ico",
+      "signAndEditExecutable": false
+    },
+    "mac": {
+      "icon": "build/icon.png",
+      "identity": null,
+      "category": "public.app-category.productivity",
+      "darkModeSupport": true
+    }
+  }
+}
