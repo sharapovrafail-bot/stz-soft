@@ -16,7 +16,7 @@ function openFile(p) {
 function create() {
   win = new BrowserWindow({
     width: 1400, height: 900, minWidth: 900, minHeight: 600,
-    title: 'Симулятор УП Fanuc — версия 9.0 · Рафаил Шарапов · rafail@sharapov-cnc.ru',
+    title: 'Симулятор УП Fanuc — версия 9.0.1 · Рафаил Шарапов · rafail@sharapov-cnc.ru',
     icon: path.join(__dirname, 'app', 'icon.png'),
     backgroundColor: '#e9edf0', show: false, autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, nodeIntegration: false, spellcheck: false, preload: path.join(__dirname, 'preload.js') }

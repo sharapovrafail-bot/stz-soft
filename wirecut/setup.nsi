@@ -1,7 +1,7 @@
 Unicode true
 SetCompressor /SOLID lzma
 !define APP "STZ WireCut"
-!define VER "3.3"
+!define VER "3.4"
 Name "${APP} ${VER} (${ED})"
 !ifndef ED
 !define ED "Win7"

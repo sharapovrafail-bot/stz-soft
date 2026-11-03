@@ -2,7 +2,7 @@ Unicode true
 !define APP "STZ Расчёт зубьев"
 !define PUB "ООО «СпецТехЗаказ»"
 !ifndef VER
-  !define VER "1.0.0-beta.18"
+  !define VER "1.0.0-beta.19"
 !endif
 !define EXE "STZ.exe"
 !define UNKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\STZRaschetZubev"
@@ -13,7 +13,7 @@ InstallDirRegKey HKCU "Software\SpecTehZakaz\STZ" "Dir"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
 BrandingText "Сделано специально по заказу ${PUB} · Рафаил Шарапов · rafail@sharapov-cnc.ru"
-VIProductVersion "1.0.0.18"
+VIProductVersion "1.0.0.19"
 VIAddVersionKey /LANG=1049 "ProductName" "${APP}"
 VIAddVersionKey /LANG=1049 "CompanyName" "${PUB}"
 VIAddVersionKey /LANG=1049 "FileDescription" "Установка: ${APP} + Зубофреза 5К32А + Зуборез 525"

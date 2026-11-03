@@ -13,10 +13,10 @@ namespace WireCut
     {
         public const float UiSize = 10.5f;   // крупный шрифт — для маленького монитора у станка
 #if NET48
-        public const string Ver = "3.3 (Win10/11)";
+        public const string Ver = "3.4 (Win10/11)";
         public const string UiFont = "Segoe UI";
 #else
-        public const string Ver = "3.3 (Win7)";
+        public const string Ver = "3.4 (Win7)";
         public const string UiFont = "Tahoma";
 #endif
         public CadCanvas Cv;

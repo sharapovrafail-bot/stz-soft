@@ -8,8 +8,8 @@ using System.Windows.Forms;
 [assembly: System.Reflection.AssemblyProduct("STZ WireCut — электроэрозионная вырезка")]
 [assembly: System.Reflection.AssemblyCompany("Сделано специально по заказу ООО «СпецТехЗаказ»")]
 [assembly: System.Reflection.AssemblyCopyright("© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru")]
-[assembly: System.Reflection.AssemblyVersion("3.3.0.0")]
-[assembly: System.Reflection.AssemblyFileVersion("3.3.0.0")]
+[assembly: System.Reflection.AssemblyVersion("3.4.0.0")]
+[assembly: System.Reflection.AssemblyFileVersion("3.4.0.0")]
 
 namespace WireCut
 {
