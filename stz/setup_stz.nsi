@@ -2,7 +2,7 @@ Unicode true
 !define APP "STZ Расчёт зубьев"
 !define PUB "ООО «СпецТехЗаказ»"
 !ifndef VER
-  !define VER "1.0.0-beta.21"
+  !define VER "1.0.0-beta.22"
 !endif
 !define EXE "STZ.exe"
 !define UNKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\STZRaschetZubev"
