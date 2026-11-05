@@ -1,11 +1,11 @@
 Unicode true
 !define APP "Зуборез 525"
 !define PUB "ООО «СпецТехЗаказ»"
-!define VER "0.7.0"
+!define VER "0.7.1"
 !define EXE "Zuborez_525.exe"
 !define UNKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\Zuborez525"
 Name "${APP} ${VER}"
-OutFile "Ustanovka_Zuborez_525_v0.7.0.exe"
+OutFile "Ustanovka_Zuborez_525_v0.7.1.exe"
 InstallDir "$LOCALAPPDATA\Programs\${APP}"
 InstallDirRegKey HKCU "Software\SpecTehZakaz\Zuborez525" "Dir"
 RequestExecutionLevel user

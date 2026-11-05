@@ -24,7 +24,7 @@ func openWindow(url string) (ok bool) {
 		AutoFocus: true,
 		DataPath:  data,
 		WindowOptions: webview2.WindowOptions{
-			Title:  "5К32А — наладка зубофрезерного станка · версия 1.3.20 · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru",
+			Title:  "5К32А — наладка зубофрезерного станка · версия 1.3.21 · Сделано по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru",
 			Width:  1366,
 			Height: 860,
 			Center: true,

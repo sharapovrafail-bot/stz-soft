@@ -1,10 +1,10 @@
 Unicode true
 !define APP "Зубофреза 5К32А"
 !define PUB "ООО «СпецТехЗаказ»"
-!define VER "1.3.20"
+!define VER "1.3.21"
 !define UNKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\Zubofreza5K32A"
 Name "${APP} ${VER}"
-OutFile "Ustanovka_Zubofreza_5K32A_v1.3.20.exe"
+OutFile "Ustanovka_Zubofreza_5K32A_v1.3.21.exe"
 InstallDir "$PROGRAMFILES64\СпецТехЗаказ\${APP}"
 InstallDirRegKey HKLM "Software\SpecTehZakaz\Zubofreza5K32A" "Dir"
 RequestExecutionLevel admin
