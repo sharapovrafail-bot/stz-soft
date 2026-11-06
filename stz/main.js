@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, ipcMain, net } = require('electron');
+const { app, BrowserWindow, Menu, shell, ipcMain, net, dialog } = require('electron');
 const lic = require('./lic.js');
 const path = require('path');
 const fs = require('fs');
@@ -35,6 +35,21 @@ function startApi() {
   }).on('error', e => { apiUp = false; console.error('STZ API:', e.message); }).listen(API_PORT, '127.0.0.1', () => { apiUp = true; });
 }
 
+// Чертёж А3 → PDF: лист рисуется в скрытом окне, printToPDF, пользователь выбирает, куда сохранить
+ipcMain.handle('stz:savePDF', async (e, name, html) => {
+  const w = new BrowserWindow({ show: false, webPreferences: { javascript: false } });
+  try {
+    await w.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(String(html)));
+    const pdf = await w.webContents.printToPDF({ pageSize: 'A3', landscape: true, printBackground: true, preferCSSPageSize: true, margins: { marginType: 'none' } });
+    fs.mkdirSync(outDir(), { recursive: true });
+    const def = path.join(outDir(), String(name || 'чертёж.pdf').replace(/[\\/:*?"<>|]+/g, '_'));
+    const r = await dialog.showSaveDialog(mainWin && !mainWin.isDestroyed() ? mainWin : undefined, { title: 'Сохранить чертёж в PDF', defaultPath: def, filters: [{ name: 'PDF', extensions: ['pdf'] }] });
+    if (r.canceled || !r.filePath) return { canceled: true };
+    fs.writeFileSync(r.filePath, pdf);
+    shell.openPath(r.filePath);
+    return { ok: true, path: r.filePath };
+  } catch (err) { return { error: err.message || String(err) }; } finally { if (!w.isDestroyed()) w.destroy(); }
+});
 ipcMain.handle('stz:mcp', () => ({ exe: process.execPath, script: mcpScript(), port: API_PORT, up: apiUp, out: outDir() }));
 
 // Автоподключение к Claude Desktop: дописывает сервер "stz" в claude_desktop_config.json

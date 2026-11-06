@@ -15,5 +15,6 @@ contextBridge.exposeInMainWorld('stz', {
   wirecutSend: (name, text) => ipcRenderer.invoke('stz:wirecutSend', name, text),
   licStatus: () => ipcRenderer.invoke('stz:lic'),
   licActivate: key => ipcRenderer.invoke('stz:licActivate', key),
-  mcpInstall: () => ipcRenderer.invoke('stz:mcpInstall')
+  mcpInstall: () => ipcRenderer.invoke('stz:mcpInstall'),
+  savePDF: (name, html) => ipcRenderer.invoke('stz:savePDF', name, html)
 });
