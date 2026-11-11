@@ -81,15 +81,32 @@ td.v.big{font-size:17px;white-space:normal}
 .a4g .gp{background:#fff}.a4ck{border:2px solid #1f4a33;border-radius:8px;padding:6px 10px;margin:6px 0;font-size:15px}.a4ft{margin-top:8px}.a4br{margin-top:8px;text-align:center;font:700 12px Arial;color:#1f4a33}
 @media print{@page{size:A4;margin:8mm}.a4{border:0;margin:0;padding:0;max-width:none;page-break-after:always;break-after:page}.a4:last-child{page-break-after:auto}.mm,.pvf{display:none!important}}
 @media print{header,nav,#brand,.noprint{display:none!important}.tab{display:none!important}.tab.pr{display:block!important}main{border:0;padding:0}body{background:#fff}}
+
+.xp{border-radius:8px;padding:8px 12px;margin:8px 0;border:1px solid var(--bd);background:#f7f9f7}
+.xp>b{display:block;margin-bottom:3px}.xp ul{margin:4px 0 2px;padding-left:20px}.xp li{margin:2px 0}
+.xp.why{border-left:5px solid #2f6fb5;background:#f1f6fc}.xp.why>b{color:#1d4f86}
+.xp.okx{border-left:5px solid var(--okb);background:var(--ok)}.xp.okx>b{color:#16603a}
+.xp.errx{border-left:5px solid var(--badb);background:var(--bad)}.xp.errx>b{color:#96281b}
+.xp.intro{border-left:5px solid var(--gold);background:#fffbea;font-size:16px}.xp.chg{border-left:5px solid #7a9cd9;background:#f4f7fd}.xp.chg table{margin:6px 0;background:#fff}
+.how{font-weight:700;color:var(--acc);margin:10px 0 0}
+.dsw{display:inline-flex;border:1px solid var(--bd);border-radius:8px;overflow:hidden}.dsw button{border:0;background:#e3e9e5;padding:7px 14px;font:600 14px inherit;font-family:inherit;cursor:pointer;color:var(--tx)}.dsw button.on{background:var(--acc);color:#fff}
+.toc{display:flex;flex-wrap:wrap;gap:4px 6px;margin:8px 0 12px;align-items:center}.toc a{border:1px solid var(--bd);border-radius:14px;padding:2px 10px;font-size:13px;color:var(--tx);text-decoration:none;background:#fafcfb}.toc a:hover{border-color:var(--acc);color:var(--acc)}
+.schw{border:1px solid var(--bd);border-radius:8px;background:#fff;padding:6px 8px;margin:0 0 10px}.scht{font-weight:700;font-size:13.5px;margin-bottom:2px;color:var(--tx)}.sch{display:block;width:100%;height:auto}
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.chain>div{border:1px solid var(--bd);border-radius:8px;padding:6px 8px;font-size:12.5px;line-height:1.3;background:#f7f9f7;color:#1b211d}.chain>div b{display:block;font-size:13.5px}.chain>div span{display:block}.chain>div.on{border:3px solid var(--badb);background:#fff3b0}
+.st2{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:start}@media(max-width:1000px){.st2{grid-template-columns:1fr}.chain{grid-template-columns:repeat(2,1fr)}}
+#start h3{margin:22px 0 8px;color:var(--top);border-bottom:2px solid var(--gold);padding-bottom:4px}#start ul.cols{columns:2;column-gap:30px}#start li{margin:3px 0}.gloss td:first-child{width:30%}
+.mm .xp{font-size:19px;line-height:1.4;color:#111}.mm .xp .mut{color:#444}.mmright .schw{max-width:640px;margin:0 auto 10px;color:#111}
+.mmbar span small{display:block;font:600 11px "Segoe UI",Arial;opacity:.85;padding:0 5px;white-space:nowrap}
+@media print{#start h3{break-after:avoid}#start table,#start .xp{break-inside:avoid}}
 </style></head><body>
 <div id="licOv" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,30,20,.92);align-items:center;justify-content:center;padding:16px"><div style="background:#fff;color:#111;max-width:520px;width:100%;border-radius:12px;padding:24px"><h2 id="licT" style="margin-top:0">Пробный период закончился</h2><p id="licM"></p><p>Код этого компьютера:<br><b id="licId" style="font-size:22px;letter-spacing:1px;user-select:all"></b></p><p>Сообщите этот код разработчику, он пришлёт ключ. Ключ общий для всех программ ООО «СпецТехЗаказ».</p><input id="licK" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%;font-size:18px;text-transform:uppercase"><div id="licE" style="color:#c0392b;min-height:20px"></div><button class="b" id="licGo">Активировать</button></div></div>
 <header><span id="bdg">525</span><h1>Наладка зуборезного полуавтомата для конических и гипоидных колёс с круговым зубом</h1><span id="licBadge" style="font-size:12px;opacity:.8"></span><span class="sp"></span>
-<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.7.3</span><button onclick="quit()">Закрыть</button></header>
+<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.8.0</span><button onclick="quit()">Закрыть</button></header>
 <div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
 <main>
 <section class="tab" id="t-calc">
- <div class="warn noprint"><b>Версия 0.7.0.</b> Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
+ <div class="warn noprint"><b>Версия 0.8.0.</b> Новое: вкладка «С чего начать» и развёрнутые пояснения к каждому шагу (зачем, как проверить, частые ошибки, схема «где это на станке»). Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
  <div class="row noprint"><button class="b s" onclick="loadExample(1)">Пример инструкции ЭНИМС: пара 13 / 39</button><button class="b s" onclick="loadExample(2)">Пример карты станка: пара 8 / 41</button><button class="b s" onclick="loadExample(3)">Гипоидная пара (пример СЗТЗС 10 / 41, E 38,1)</button><button class="b s" onclick="loadExample(4)">Пара 23-340 8 / 48 (ГОСТ 19326, МНЛЗ-2)</button><span class="mut">Данные чертежа имеют приоритет: высоты и толщину зуба вводите с чертежа, если они там есть.</span></div>
  <fieldset><legend>Пара (по чертежу)</legend><div class="g">
   <label>Тип пары<select id="ptype"><option value="bev">Коническая с круговым зубом (оси пересекаются)</option><option value="g19">Коническая по ГОСТ 19326 с чертежа (xn, xτ, форма зуба; двусторонний развод)</option><option value="hyp">Гипоидная (оси скрещиваются, смещение E)</option></select></label>
@@ -150,6 +167,7 @@ td.v.big{font-size:17px;white-space:normal}
 </section>
 
 <section class="tab" id="t-card"><div id="card"></div></section>
+<section class="tab" id="t-start"><div id="start"></div></section>
 <section class="tab" id="t-guide"><div id="guide"></div></section>
 <section class="tab" id="t-git"><div id="git"></div></section>
 <section class="tab" id="t-spot"><div id="spot"></div></section>
@@ -477,7 +495,7 @@ function loadExample(n){if(n===4){apply({kind:"g19",ptype:"g19",pname:"23-340 п
  $("res").insertAdjacentHTML("afterbegin",h)}
 
 /* ===== вкладки, сохранение, лицензия ===== */
-const TABS=[["calc","Расчёт"],["card","Карта наладки"],["guide","Пошагово с фото"],["a4","Карты А4 у станка"],["git","Гитары"],["spot","Пятно контакта"],["jobs","Мои пары"],["proven","Удачные наладки"],["set","Мой станок"],["mach","О станке"]];
+const TABS=[["calc","Расчёт"],["card","Карта наладки"],["start","С чего начать"],["guide","Пошагово с фото"],["a4","Карты А4 у станка"],["git","Гитары"],["spot","Пятно контакта"],["jobs","Мои пары"],["proven","Удачные наладки"],["set","Мой станок"],["mach","О станке"]];
 function showTab(t){TABS.forEach(([k])=>$("t-"+k).classList.toggle("on",k===t));[...$("nav").children].forEach((b,i)=>b.classList.toggle("on",TABS[i][0]===t));if(t==="jobs")loadJobs();if(t==="proven")loadProven();if(t==="set")buildSet()}
 TABS.forEach(([k,n])=>{const b=document.createElement("button");b.textContent=n;b.onclick=()=>showTab(k);$("nav").appendChild(b)});
 const KEYS=["ptype","hypE","hasum","gmn","gxn","gxt","gform","gRm","gha","gc","gW1","gW2","gdf1","gdf2","gdae1","gdae2","gda1","gda2","pname","mat","z1","z2","mte","b","beta","hand1","alpha","hae1","hae2","he","s1","A1","A2","head","Nf","jn","vf","sf","sr","zi2","zi1","zr1","zr2","otvod","pz","struna","batch"];
@@ -1395,7 +1413,7 @@ function stolRead(mm){if(!isFinite(mm)||Math.abs(mm)<1e-9)return"0";const sv=(SE
 function limbRead(mm,cfg){if(!isFinite(mm))return"";const n=Math.round(Math.abs(mm)/cfg.div),per=Math.round(cfg.rev/cfg.div);
  const ob=per>0?Math.floor(n/per):0,dv=per>0?n%per:n;return `${n} дел. лимба${ob?` (${ob} об. + ${dv} дел.)`:""}`}
 function turnDir(from,to,key){if(!isFinite(from)||!isFinite(to))return"";let d=to-from;if(key==="lul"){d=((d+540)%360)-180}
- if(Math.abs(d)<1/120)return"не меняется";return `${d>0?"по возрастанию цифр шкалы":"по убыванию цифр шкалы"} на ${dm(Math.abs(d))}`}
+ if(Math.abs(d)<1/120)return"не нужно — угол тот же";return `${d>0?"по возрастанию цифр шкалы":"по убыванию цифр шкалы"} на ${dm(Math.abs(d))}`}
 
 /* ---------- значения прохода (расчёт или «удачная наладка») ---------- */
 const FIELDS=[["hyp","Гипоидное смещение"],["modi","Модификатор"],["head","Резцовая головка"],["razv","Развод резцов / диаметр"],["bab","Угол бабки"],["md","Монтажная дистанция"],["stol","Смещение стола, мм"],["ecc","Угол эксцентрика"],["lul","Угол люльки"],["del","Гитара деления"],["obk","Гитара обкатки"],["red","Редукционный механизм"],["spd","Гитара скорости"],["feed","Гитара подачи"],["zi","zi (пропуск зубьев)"],["chk","Проверочный угол: люлька → изделие"],["otv","Отвод стола, мм"],["pz","Давление зажима"]];
@@ -1489,6 +1507,7 @@ return `<p>Перед установкой проверьте заготовку
  if(!pid.startsWith("R"))S.push({t:"Пробный зуб и толщина",photo:"p14",ctx:{limb:wh?`1 дел. = −${f(c.thLim2,3)} мм`:`1 дел. = −${f(c.thLim1,3)} мм`},rows:[["Толщина по зубомеру",wh?`${f(c.Sk,2)} на высоте ${f(c.hz2,2)}`:`${f(c.Ssh-c.jn,2)} на высоте ${f(c.hz1,2)}`],["Одно деление лимба",`${f(wh?c.thLim2:c.thLim1,3)} мм толщины`]],
   text:`<p>Пройдите один зуб, замерьте зубомером. Если толст — расцепите муфту бабки, доверните шпиндель по лимбу на нужное число делений (толщина лишнего ÷ ${f(wh?c.thLim2:c.thLim1,3)}), повторите проход. Пятно контакта — вкладка «Пятно контакта».</p>`,check:"Толщина зуба в допуске"});
  if(c.hyp)hypAdjustSteps(c,pid,v,S);if(c.g19)g19AdjustSteps(c,pid,v,S);
+ finishSteps(c,pid,v,S);
  return {v,S}}
 function hypAdjustSteps(c,pid,v,S){
  const i0=S.findIndex(s=>s.t==="Резцовая головка и резцы");if(i0>=0)S[i0].rows=[S[i0].rows[0],["Профильные углы, радиус вершин",v.blades],S[i0].rows[2]];
@@ -1503,14 +1522,16 @@ function hypAdjustSteps(c,pid,v,S){
 
 /* ---------- вкладка «Пошагово с фото» ---------- */
 let GPASS="F2";
-function buildGuide(){const c=LAST;if(!c)return;const {S}=passSteps(c,GPASS);
- let h=`<div class="row noprint">${PASSES.map(p=>`<button class="b ${p[0]===GPASS?"":"s"}" onclick="GPASS='${p[0]}';buildGuide()">${p[1]}</button>`).join("")}<span class="sp"></span><button class="b" style="background:#b8860b" onclick="mmOpen('${GPASS}')">Открыть у станка →</button></div>${provenBanner()}${batchHTML(c)}`;
- h+=S.map((s,i)=>`<div class="step"><h3><span class="n">${i+1}</span>${s.t}</h3><div class="body"><div><table>${s.rows.map(r=>`<tr><td>${r[0]}</td><td class="v big">${r[1]}</td></tr>`).join("")}</table>${s.text}${s.checks?`<ul>${s.checks.map(x=>`<li>☐ ${x}</li>`).join("")}</ul>`:""}</div><div>${s.photo?photoHTML(s.photo,s.ctx):""}${(s.more||[]).map(p=>photoHTML(p,s.ctx)).join("")}</div></div></div>`).join("");
- $("guide").innerHTML=h}
+function buildGuide(){const c=LAST;if(!c)return;if(!PASSES.some(p=>p[0]===GPASS))GPASS=PASSES[0][0];const {S}=passSteps(c,GPASS);
+ let h=`<div class="row noprint">${PASSES.map(p=>`<button class="b ${p[0]===GPASS?"":"s"}" onclick="GPASS='${p[0]}';buildGuide()">${p[1]}</button>`).join("")}<span class="sp"></span><button class="b" style="background:#b8860b" onclick="mmOpen('${GPASS}')">Открыть у станка →</button></div>
+ <div class="row noprint">${detailBtn()}<span class="mut">Впервые на этом станке? Начните с вкладки <a href="#" onclick="showTab('start');return false">«С чего начать»</a>.</span></div>${provenBanner()}${batchHTML(c)}${DETAIL?passIntro(c,GPASS):""}
+ <div class="toc noprint"><b>Шаги прохода:</b> ${S.map((s,i)=>`<a href="#gs${i}">${i+1}. ${s.t}</a>`).join("")}</div>`;
+ h+=S.map((s,i)=>`<div class="step" id="gs${i}"><h3><span class="n">${i+1}</span>${s.t}</h3><div class="body"><div><table>${s.rows.map(r=>`<tr><td>${r[0]}</td><td class="v big">${r[1]}</td></tr>`).join("")}</table>${xWhy(s)}${DETAIL?'<div class="how">Как сделать</div>':""}${s.text}${s.checks?`<ul>${s.checks.map(x=>`<li>☐ ${x}</li>`).join("")}</ul>`:""}${xAfter(s)}</div><div>${xSide(s)}${s.photo?photoHTML(s.photo,s.ctx):""}${(s.more||[]).map(p=>photoHTML(p,s.ctx)).join("")}</div></div></div>`).join("");
+ $("guide").innerHTML=h;buildStart()}
 
 /* ---------- режим «у станка» ---------- */
 let MM={pid:"F2",i:0,done:{}};
-function mmKey(){return "z525mm|"+(LAST?LAST.pname+"|"+LAST.z1+"/"+LAST.z2:"")+"|"+MM.pid}
+function mmKey(){return "z525mm2|"+(LAST?LAST.pname+"|"+LAST.z1+"/"+LAST.z2:"")+"|"+MM.pid}
 function mmLoad(){try{MM.done=JSON.parse(localStorage.getItem(mmKey())||"{}")}catch(e){MM.done={}}}
 function mmSave(){try{localStorage.setItem(mmKey(),JSON.stringify(MM.done))}catch(e){}}
 function mmOpen(pid){if(!LAST){alertMsg("Сначала посчитайте пару");return}if(pid)MM.pid=pid;MM.i=0;mmLoad();$("mm").style.display="flex";document.body.style.overflow="hidden";mmRender()}
@@ -1527,11 +1548,11 @@ function mmRender(){const {S}=passSteps(LAST,MM.pid),s=S[MM.i],n=S.length,k="s"+
   checksHTML+=fin&&allDone?`<div class="mmok">МОЖНО ПУСКАТЬ: все шаги отмечены</div>`:fin?`<div class="mmwarn">Пункты проверки отмечены, но не все шаги отмечены «сделано» — посмотрите полосу вверху</div>`:`<div class="mmwarn">Пускать нельзя, пока не отмечены все пункты</div>`;
   checksHTML+=`<button class="b" style="font-size:22px;margin-top:10px;background:#b8860b" onclick="provenForm('${MM.pid}')">Наладка сработала — сохранить фактические установки</button>`}
  else checksHTML=`<button class="mmchk big ${MM.done[k]?"on":""}" onclick="mmToggle('${k}')">${MM.done[k]?"✔ СДЕЛАНО":"☐ Отметить: "+s.check}</button>`;
- $("mm").innerHTML=`<div class="mmtop">${PASSES.map(p=>`<button class="${p[0]===MM.pid?"on":""}" onclick="mmPass('${p[0]}')">${p[1]}</button>`).join("")}<span class="sp"></span><button onclick="mmReset()">Сбросить галочки</button><button onclick="mmClose()">✕ Закрыть</button></div>
- <div class="mmbar">${S.map((x,i)=>{const d=x.checks?x.checks.every((_,j)=>MM.done["s"+i+"c"+j]):MM.done["s"+i];return `<span class="${i===MM.i?"cur":""} ${d?"dn":""}" onclick="MM.i=${i};mmRender()">${i+1}</span>`}).join("")}</div>
+ $("mm").innerHTML=`<div class="mmtop">${PASSES.map(p=>`<button class="${p[0]===MM.pid?"on":""}" onclick="mmPass('${p[0]}')">${p[1]}</button>`).join("")}<span class="sp"></span><button onclick="setDetail(${DETAIL?0:1})">${DETAIL?"Скрыть пояснения":"Показать пояснения"}</button><button onclick="mmReset()">Сбросить галочки</button><button onclick="mmClose()">✕ Закрыть</button></div>
+ <div class="mmbar">${S.map((x,i)=>{const d=x.checks?x.checks.every((_,j)=>MM.done["s"+i+"c"+j]):MM.done["s"+i];return `<span class="${i===MM.i?"cur":""} ${d?"dn":""}" title="${x.t}" onclick="MM.i=${i};mmRender()">${i+1}<small>${STEPSHORT[x.k]||""}</small></span>`}).join("")}</div>
  <div class="mmbody"><div class="mmleft"><div class="mmstep">Шаг ${MM.i+1} из ${n} · ${esc(LAST.pname)} · ${PNAME[MM.pid]}</div><h2>${s.t}</h2>
- <table class="mmt">${s.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>${s.checks?"":checksHTML}<div class="mmtext">${s.text}</div>${s.checks?checksHTML:""}</div>
- <div class="mmright">${s.photo?photoHTML(s.photo,s.ctx,true):""}${(s.more||[]).map(p=>photoHTML(p,s.ctx,true)).join("")}</div></div>
+ <table class="mmt">${s.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>${xWhy(s)}${s.checks?"":checksHTML}<div class="mmtext">${s.text}</div>${s.checks?checksHTML:""}${xAfter(s)}</div>
+ <div class="mmright">${xSide(s)}${s.photo?photoHTML(s.photo,s.ctx,true):""}${(s.more||[]).map(p=>photoHTML(p,s.ctx,true)).join("")}</div></div>
  <div class="mmnav"><button onclick="mmGo(-1)" ${MM.i?"":"disabled"}>◀ Назад</button><button onclick="mmGo(1)" ${MM.i<n-1?"":"disabled"}>Дальше ▶</button></div>`}
 document.addEventListener("keydown",e=>{if($("mm").style.display!=="flex")return;if(e.key==="ArrowRight"||e.key==="PageDown")mmGo(1);if(e.key==="ArrowLeft"||e.key==="PageUp")mmGo(-1);if(e.key==="Escape")mmClose()});
 
@@ -1553,7 +1574,7 @@ function buildA4(){const c=LAST;if(!c)return;const date=new Date().toLocaleDateS
   <div class="a4g">${gearPic(v.dv,"Деление")}${gearPic(v.ov,"Обкатка")}</div>
   <div class="a4ck"><b>Перед пуском:</b> ☐ всё зажато ☐ гитары затянуты, крышки закрыты ☐ проверочный угол совпал ☐ заготовка зажата ☐ счётчик ☐ охлаждение</div>
   <div class="a4ft">Фактически выставлено / примечания: ____________________________________________________________<br><br>_______________________________________________________________________________________</div>
-  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.7.3</div></div>`}
+  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.8.0</div></div>`}
  $("a4").innerHTML=h}
 
 /* ---------- мастер пятна контакта ---------- */
@@ -1674,6 +1695,239 @@ function setSave(){for(const k of ["bab","ecc","lul"]){const m=+$("sc_"+k+"_m").
  SET.md={div:+$("md_d").value||0.01,rev:+$("md_r").value||1};SET.stolV=+$("st_v").value||0.02;SET.heads={6:$("hd_6").checked,9:$("hd_9").checked,12:$("hd_12").checked};
  SET.gears=$("gearsT").value.trim();SET.maxZ={del:+$("mz_d").value||100,obk:+$("mz_o").value||100};SET.clr=Math.max(0,+$("clr").value||0);SET.gitPhoto={del:$("gp_d").value,obk:$("gp_o").value};
  saveSet(true);calc();buildSet()}
+
+
+/* =====================================================================
+   0.8.0 — РАЗВЁРНУТАЯ НАЛАДКА: «зачем», «как проверить», «частые ошибки»,
+   схема «где это на станке», вкладка «С чего начать», словарь, неполадки.
+   Расчёт не затрагивается: только пояснения к готовым шагам passSteps().
+   ===================================================================== */
+let DETAIL=(()=>{try{return localStorage.getItem("z525detail")!=="0"}catch(e){return true}})();
+function setDetail(on){DETAIL=!!on;try{localStorage.setItem("z525detail",on?"1":"0")}catch(e){}buildGuide();if($("mm").style.display==="flex")mmRender()}
+const detailBtn=()=>`<span class="dsw noprint"><button class="${DETAIL?"on":""}" onclick="setDetail(1)">Подробно (с пояснениями)</button><button class="${DETAIL?"":"on"}" onclick="setDetail(0)">Кратко (для опытного)</button></span>`;
+
+/* ---------- ключи шагов по заголовкам ---------- */
+const STEPKEY={"Резцовая головка и резцы":"head","Угол бабки изделия":"bab","Монтажная дистанция и смещение стола":"md","Осевая установка и смещение стола":"md",
+ "Эксцентрик (радиальная установка)":"ecc","Люлька (угловая установка)":"lul","Гитара деления":"del","Гитара обкатки":"obk","Гитара скорости":"spd","Гитара подачи":"feed",
+ "Проверка наладки поворотом люльки":"chk","Заготовка, зажим, счётчик":"blank","Разделение припуска (чистовое по прорезанным впадинам)":"split","Проверка перед пуском":"final",
+ "Пробный зуб и толщина":"tooth","Гипоидное смещение":"hyp","Модификатор обкатки":"modi","Пуск и первая впадина":"run"};
+const STEPSHORT={head:"Головка",bab:"Бабка",md:"Осевая, стол",ecc:"Эксцентрик",lul:"Люлька",del:"Деление",obk:"Обкатка",spd:"Скорость",feed:"Подача",chk:"Провер. угол",blank:"Заготовка",split:"Припуск",final:"Перед пуском",run:"Пуск",tooth:"Замер зуба",hyp:"Гипоид",modi:"Модификатор"};
+
+/* ---------- схема «где это на станке» (условная, не в масштабе) ---------- */
+function schemeSVG(hl){
+ const on=k=>k===hl, st=k=>on(k)?'stroke="#c0392b" stroke-width="3.5" fill="#fff3b0"':'stroke="#5d6a62" stroke-width="1.6" fill="#eef2ef"';
+ const tx=(x,y,t,k,a)=>`<text x="${x}" y="${y}" font-size="12.5" font-family="Segoe UI,Arial" text-anchor="${a||"middle"}" font-weight="${on(k)?800:500}" fill="${on(k)?"#c0392b":"#33403a"}">${t}</text>`;
+ const arr=(d,k)=>`<path d="${d}" fill="none" stroke="${on(k)?"#c0392b":"#8a968f"}" stroke-width="${on(k)?3:1.6}" marker-end="url(#ah${on(k)?"r":"g"})" ${on(k)?"":'stroke-dasharray="4 3"'}/>`;
+ // слева: вид на люльку со стороны заготовки
+ const C=[118,128],D=[152,128],H=[133,95];
+ let s=`<svg viewBox="0 0 540 262" class="sch" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ahr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0392b"/></marker><marker id="ahg" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a968f"/></marker></defs>
+ <text x="118" y="14" font-size="12" text-anchor="middle" fill="#5d6a62" font-family="Segoe UI,Arial">Вид на люльку (со стороны заготовки)</text>
+ <circle cx="${C[0]}" cy="${C[1]}" r="98" ${st("lul")}/>
+ <circle cx="${D[0]}" cy="${D[1]}" r="58" ${st("ecc")}/>
+ <circle cx="${H[0]}" cy="${H[1]}" r="27" ${st("head")}/>
+ ${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<rect x="${H[0]+27*Math.cos(r)-3}" y="${H[1]+27*Math.sin(r)-3}" width="6" height="6" fill="${on("head")?"#c0392b":"#5d6a62"}"/>`}).join("")}
+ <circle cx="${C[0]}" cy="${C[1]}" r="3" fill="#111"/><circle cx="${H[0]}" cy="${H[1]}" r="2.5" fill="#111"/>
+ <line x1="${C[0]}" y1="${C[1]}" x2="${H[0]}" y2="${H[1]}" stroke="${on("ecc")?"#c0392b":"#33403a"}" stroke-width="${on("ecc")?3:1.5}"/>
+ ${arr("M 30 176 A 100 100 0 0 0 66 214","lul")}
+ ${tx(118,246,"ЛЮЛЬКА — поворот на угол","lul")}
+ ${tx(160,174,"эксцентрик","ecc")}${tx(84,118,"U","ecc")}
+ ${tx(H[0],H[1]-33,"головка","head")}
+ ${tx(C[0]-8,C[1]+18,"ось люльки","x","end")}`;
+ // справа: вид сверху
+ const cx=330,cy=128,ang=38*Math.PI/180,ux=Math.cos(ang),uy=Math.sin(ang),px=-uy,py=ux;
+ const P=(a,b)=>`${(cx+a*ux+b*px).toFixed(1)},${(cy+a*uy+b*py).toFixed(1)}`;
+ s+=`<text x="410" y="14" font-size="12" text-anchor="middle" fill="#5d6a62" font-family="Segoe UI,Arial">Вид сверху</text>
+ <rect x="318" y="34" width="208" height="206" rx="10" ${st("stol")} ${on("stol")||on("otv")?"":'fill="#f6f8f6"'}/>
+ <rect x="262" y="40" width="46" height="176" rx="5" ${st("lul")}/>
+ <rect x="308" y="96" width="16" height="64" ${st("head")}/>
+ <polygon points="${P(16,-9)} ${P(62,-34)} ${P(62,34)} ${P(16,9)}" ${st("blank")}/>
+ <polygon points="${P(62,-17)} ${P(150,-17)} ${P(150,17)} ${P(62,17)}" ${st("bab")} ${on("md")?'stroke="#c0392b" stroke-width="3.5" fill="#fff3b0"':""}/>
+ <line x1="${cx}" y1="${cy}" x2="${cx+165*ux}" y2="${cy+165*uy}" stroke="#33403a" stroke-width="1" stroke-dasharray="7 3 2 3"/>
+ <line x1="250" y1="${cy}" x2="${cx+60}" y2="${cy}" stroke="#33403a" stroke-width="1" stroke-dasharray="7 3 2 3"/>
+ <circle cx="${cx}" cy="${cy}" r="4.5" fill="#c0392b"/>
+ ${arr(`M ${cx+78} ${cy} A 78 78 0 0 1 ${(cx+78*Math.cos(ang*0.92)).toFixed(1)} ${(cy+78*Math.sin(ang*0.92)).toFixed(1)}`,"bab")}
+ ${arr(`M ${(cx+96*ux+30*px).toFixed(1)} ${(cy+96*uy+30*py).toFixed(1)} L ${(cx+140*ux+30*px).toFixed(1)} ${(cy+140*uy+30*py).toFixed(1)}`,"md")}
+ ${arr("M 420 52 L 372 52",on("otv")?"otv":"stol")}
+ ${tx(285,232,"люлька","lul")}${tx(334,90,"головка","head","start")}
+ ${tx(cx+8,cy-9,"центр станка","x","start")}
+ ${tx(456,104,"угол бабки","bab")}
+ ${tx(474,168,"бабка изделия","bab")}${tx(400,256,"осевая установка — вдоль оси детали","md")}
+ ${tx(468,56,"стол: подвод / отвод",on("otv")?"otv":"stol")}
+ ${tx(322,214,"заготовка","blank","start")}
+ ${on("hyp")?`<text x="410" y="30" font-size="12.5" text-anchor="middle" font-weight="800" fill="#c0392b" font-family="Segoe UI,Arial">гипоидное смещение — бабка вверх / вниз (на этом виде — на вас / от вас)</text>`:""}
+ </svg>`;
+ return `<div class="schw"><div class="scht">Где это на станке <span class="mut">(схема условная, красным — то, что настраиваете)</span></div>${s}</div>`}
+const SCHEME={head:"head",bab:"bab",md:"md",ecc:"ecc",lul:"lul",hyp:"hyp",blank:"blank",split:"blank",run:"otv"};
+
+/* четыре гитары простыми словами */
+function chainHTML(hl){const G=[["spd","СКОРОСТЬ","обороты резцовой головки","стойкость резцов, чистота"],["feed","ПОДАЧА","сколько секунд режется один зуб","чистота, нагрузка на резцы"],["del","ДЕЛЕНИЕ","поворот заготовки на следующий зуб","шаг и число зубьев — только точно"],["obk","ОБКАТКА","согласует качание люльки с поворотом заготовки","профиль зуба, пятно по высоте"]];
+ return `<div class="schw"><div class="scht">Четыре гитары станка <span class="mut">(сейчас настраиваете выделенную)</span></div><div class="chain">${G.map(g=>`<div class="${g[0]===hl?"on":""}"><b>${g[1]}</b><span>задаёт: ${g[2]}</span><span class="mut">влияет на: ${g[3]}</span></div>`).join("")}</div></div>`}
+
+/* ---------- пояснения к шагам ---------- */
+function explainStep(s,c,pid,v){
+ const wh=pid.endsWith("2"),det=wh?"колеса":"шестерни",rough=pid.startsWith("R"),one=pid==="F1e"||pid==="F1i",plg=pid==="R2"&&c.plunge;
+ const U=isFinite(v.eccN)?270*Math.sin(v.eccN*Math.PI/360):NaN;
+ const X={
+ head:{why:`Резцовая головка — это и есть инструмент: диск с резцами, который вращается и по дуге окружности вырезает впадину между зубьями. От <b>диаметра головки</b> зависит кривизна зуба, от <b>${one?"диаметра по вершинам резцов":"развода резцов"}</b> — ширина впадины, а значит и толщина зуба, от <b>номера резцов</b> — угол профиля. ${one?`Здесь головка односторонняя: она обрабатывает только одну сторону зуба шестерни (${pid==="F1e"?"вогнутую — наружными резцами":"выпуклую — внутренними резцами"}).`:`Здесь головка двусторонняя: наружные и внутренние резцы стоят через один и режут обе стороны впадины сразу. Развод — расстояние между вершинами наружных и внутренних резцов.`}${rough?" Проход черновой: развод взят меньше чистового, чтобы на стенках впадины остался припуск.":""}`,
+  ok:["Головка села на шпиндель плотно, без качки; посадочные торцы перед установкой протёрты насухо.","Индикатор по резцам показывает биение в допуске, все резцы затянуты.","Резцы острые, без сколов и прижогов. Тупые резцы дают рваную поверхность и «уводят» размер."],
+  err:["Не тот номер резцов или перепутаны наружные и внутренние — толщина зуба и пятно контакта не получатся никакими поправками.","Стружка или забоина под торцом головки — биение резцов, грубая поверхность, зубья разной толщины.","После смены головки или заточки не выставлен центр станка — глубина впадины будет неверной на всех деталях."]},
+ bab:{why:`Бабка изделия несёт шпиндель с заготовкой и поворачивается вокруг вертикальной оси, проходящей через <b>центр станка</b>. Её ставят на угол конуса впадин ${det} (${v.bab}). Тогда дно будущей впадины ложится вдоль плоскости, в которой движутся вершины резцов, и зуб получает правильную высоту по всей длине. У шестерни этот угол маленький, у колеса — большой, поэтому при переходе от колеса к шестерне бабку разворачивают почти на четверть оборота.`,
+  ok:["После затяжки гаек отсчёт по шкале и нониусу тот же, что и до затяжки.","Градусы читайте по круговой шкале, минуты — по нониусу: нужная минута та, чей штрих точно совпал со штрихом шкалы."],
+  err:["Ошибка в угле бабки — зуб выйдет разной высоты на узком и широком конце, пятно контакта уйдёт к вершине или к ножке зуба.","Гайки не затянуты — бабку сдвинет усилием резания: брак детали и поломка резцов.","Перепутаны углы колеса и шестерни — проверьте, что в шапке шага написано «"+v.part+"»."]},
+ md:{why:`Здесь три установки вдоль осей. <b>Осевая установка</b> (монтажная дистанция) двигает бабку вдоль оси детали — так, чтобы вершина конуса ${det} попала точно в центр станка. <b>Смещение стола</b> двигает весь стол с бабкой ближе к люльке или дальше от неё — этим задают глубину резания. <b>Отвод стола</b> — на сколько стол уходит назад после каждого зуба, чтобы резцы вышли из впадины и заготовка могла повернуться на следующий зуб.`,
+  ok:["Осевая установка учитывает вашу оправку: к расстоянию с чертежа прибавлена толщина бурта оправки.","После затяжки гаек отсчёты по шкалам не изменились.","Отвод не меньше полной высоты зуба — иначе при делении резцы заденут зубья."],
+  err:["Забыли прибавить бурт оправки — деталь смещена вдоль оси: глубина и пятно контакта неверны.","Нониус стола прочитан «не своего» направления (их два: «вперёд» и «назад»).","Стол не возвращён в среднее положение перед установкой смещения."]},
+ ecc:{why:`Шпиндель резцовой головки стоит в люльке не по центру, а в поворотном эксцентриковом барабане. Поворачивая барабан, меняют расстояние от оси люльки до оси головки — <b>радиальную установку U</b>. От неё зависит угол спирали зуба. На станке ставят не миллиметры, а угол барабана по шкале: ${v.ecc}${isFinite(U)?` — это U ≈ <b>${f(U,2)} мм</b> (U = 270·sin(ε/2))`:""}.${one?" Для вогнутой и выпуклой сторон шестерни радиальная установка разная — поэтому между этими двумя проходами эксцентрик переставляют.":""}`,
+  ok:["Кнопка 9 вытянута только на время установки, гайки 10 после установки затянуты.","Отсчёт проверен после затяжки."],
+  err:["Ошибка эксцентрика меняет угол спирали — пятно контакта уйдёт вдоль зуба: к узкому концу (носку) или к широкому (пятке).","Эксцентрик не зажат — его провернёт при резании."]},
+ lul:{why:`Люлька — большой поворотный барабан, в котором сидит головка. Во время резания она медленно поворачивается (это и есть <b>обкатка</b>): головка изображает зуб воображаемого плоского колеса, а заготовка «катится» по нему, и получается правильный профиль. Угол люльки ${v.lul} задаёт, где находится головка в середине этого движения. Поэтому его ставят, когда станок остановлен на риске <b>«${plg?"КОНЕЦ ВРЕЗАНИЯ":"ЦЕНТР ОБКАТКИ"}»</b>${plg?" — колесо начерно режется врезанием, без обкатки":""}.`,
+  ok:["Риска на диске точно против указателя в момент установки.","Гитара обкатки снова сцеплена, шестерня модификации стоит на месте.","Угол по нониусу 8 после сцепления не изменился."],
+  err:["Угол поставлен не на риске «Центр обкатки» — обкатка пройдёт несимметрично, профиль зуба с одного конца останется недорезанным.","Не сцепили гитару обкатки — люлька и заготовка не связаны: брак и поломка резцов.","Перепутаны шкалы люльки и эксцентрика — они рядом, смотрите подписи на фото."]},
+ del:{why:`Гитара деления отвечает за переход к следующему зубу. За один цикл (качание люльки туда и обратно) заготовка проворачивается ровно на <b>z<sub>i</sub> = ${v.zi}</b> ${v.zi===1?"зуб":"зубьев"}. Числа z<sub>i</sub> и z = ${v.z} не имеют общих делителей, поэтому за ${v.z} циклов резцы побывают в каждой впадине ровно по одному разу. Передаточное число здесь должно быть <b>абсолютно точным</b>: если ошибиться хоть на один зуб сменного колеса, ошибка набегает с каждым циклом и последние впадины «не сойдутся» с первыми.`,
+  ok:["Числа зубьев пересчитаны по клеймам на торцах колёс и совпадают с таблицей: "+v.del+".","Каждое колесо стоит на своём месте (ведущее не перепутано с ведомым).","Колёса проворачиваются рукой свободно, с небольшим боковым зазором, гайки затянуты."],
+  err:["Ведущее и ведомое поменяны местами — получится другое число зубьев, заготовка в брак.","Колёса сцеплены без зазора — нагрев и износ; со слишком большим зазором — неровный шаг.","Колесо с забитым или грязным зубом — будет периодическая ошибка шага."]},
+ obk:{why:`Гитара обкатки согласует два движения: поворот люльки и поворот заготовки. Они должны относиться так же, как числа зубьев заготовки и воображаемого плоского колеса — тогда профиль зуба получается правильным. Небольшое отклонение здесь допустимо (программа показывает «нужно / получится»). <b>Редукционный механизм</b> — дополнительная ступень в этой же цепи; его положение (${v.red}) уже учтено в подобранных колёсах, поэтому ставьте именно то, что указано.`,
+  ok:["Колёса стоят по таблице: "+v.obk+".","Обе рукоятки редукции — в одном и том же положении ("+v.red+").","Проверочный угол (отдельный шаг ниже) подтвердит, что деление, обкатка и редукция собраны верно."],
+  err:["Ошибка в обкатке искажает профиль — пятно контакта смещается по высоте зуба (к вершине или к ножке).","Рукоятки редукции в разных положениях или не в том — расхождение проверочного угла в несколько раз.","Забыли поставить колёса после установки угла люльки."]},
+ spd:{why:`Гитара скорости задаёт обороты резцовой головки, то есть скорость резания. Слишком быстро — резцы быстро тупятся и «горят», слишком медленно — долго и поверхность хуже. Колёс всего два, и их сумма всегда 101, поэтому межосевое расстояние не меняется — их просто меняют парой по табличке. Направление вращения головки зависит от направления спирали детали, поэтому ведущую шестерню ставят на один из двух валиков: «правое резание» или «левое резание».`,
+  ok:["Пара колёс взята из одной строки таблички.","Ведущая стоит на валике с нужной надписью; после пробного толчка головка вращается по стрелке на её корпусе."],
+  err:["Ведущая не на том валике — головка вращается в обратную сторону, резцы режут затылком и ломаются на первой же впадине. Всегда проверяйте направление толчком до подвода заготовки.","A и B поменяны местами — обороты совсем другие (например, вместо 60 — 98 об/мин)."]},
+ feed:{why:`Гитара подачи задаёт время одного цикла — сколько секунд режется один зуб (S = ${f(v.feedR[0],1)} с). Чем больше S, тем медленнее идёт обкатка: поверхность чище, резцам легче. Чем меньше — тем быстрее, но грубее и тяжелее для инструмента. ${rough?"Проход черновой: чистота не важна, но снимается много металла.":"Проход чистовой: припуск маленький, время берут больше ради чистоты и точности."}`,
+  ok:["Колёса стоят по таблице, B и C — вместе на пальце.","Крышка закрыта, гайки затянуты."],
+  err:["Слишком малое время на зуб на твёрдой или крупномодульной заготовке — вибрация, сколы резцов, рваная поверхность. Если сомневаетесь — берите большее S.","B и C на пальце поменяны местами — время цикла другое."]},
+ chk:{why:`Это проверка всей кинематики без резания. Вы поворачиваете люльку на известный угол и смотрите, на сколько за это время повернулась заготовка. Если гитары деления и обкатки и редукция собраны правильно, угол заготовки совпадёт с расчётным (${dm(v.chkI)}). Проверка занимает пять минут и страхует от самой дорогой ошибки — неверно поставленных колёс, которую иначе увидишь только на испорченной заготовке.`,
+  ok:["Угол изделия совпал с расчётным в пределах точности нониуса."],
+  err:["Отличается немного — не то колесо в гитаре обкатки.","Отличается в разы — не то положение редукции, либо ведущие и ведомые колёса поменяны местами.",...(c.hyp?["Проверяли с включённым модификатором — проверочный угол действителен только при выключенном."]:[])]},
+ blank:{why:`Заготовка должна сидеть на оправке без биения и быть зажата так, чтобы её не провернуло при резании. Давление зажима ограничено прочностью резьбы струны (тяги). <b>Счётчик циклов</b> считает нарезанные зубья и сам останавливает станок, когда пройдены все ${v.z}.`,
+  ok:["Базовый торец заготовки и торец оправки протёрты, под ними нет стружки.","Индикатор по конусу вершин заготовки показывает биение в допуске.","Риски на гайке поршня не видно — деталь действительно зажата."],
+  err:["Стружка под торцом — биение венца, пара будет шуметь.","Счётчик выставлен не на z = "+v.z+" — станок остановится раньше (не все зубья) или пойдёт на второй круг.","Слабый зажим — заготовку проворачивает, ломаются все резцы головки."]},
+ split:{why:`После чернового прохода на обеих стенках каждой впадины оставлен припуск. Чистовые резцы должны войти во впадину так, чтобы ${one?"дойти до своей стороны зуба и снять с неё ровный слой":"снять с обеих сторон поровну"}. Если заготовка стоит со сдвигом по углу, одна сторона останется «чёрной» (не зачистится), а с другой снимется лишнее.`,
+  ok:["Резцы входят во впадину, не касаясь стенок раньше времени.","После первого зуба обе стороны (или обрабатываемая сторона) блестят по всей длине и высоте."],
+  err:["Забыли закрепить муфту 12 — заготовка провернётся при резании.","Дроссель не вернули в нормальное положение — стол будет ходить медленно."]},
+ final:{why:`Последняя остановка перед резанием. Каждый пункт здесь — это типичная причина брака или поломки. Не отмечайте «по памяти»: подойдите и посмотрите.`,ok:[],err:[]},
+ run:{why:`${plg?"Колесо начерно режется <b>врезанием</b>: люлька почти не качается, стол подаёт заготовку на вращающуюся головку на полную глубину, потом отходит, и заготовка поворачивается на следующий зуб.":"За один цикл станок сам делает четыре действия: стол подводит заготовку к головке → люлька поворачивается, идёт резание с обкаткой → стол отходит → люлька возвращается назад, а заготовка за это время переходит к следующей впадине."} Так повторяется ${v.z} раз, после чего счётчик останавливает станок. Ваша задача — внимательно посмотреть первую впадину и не отходить от кнопки «Стоп».`,
+  ok:["Звук ровный, без ударов и визга; стружка сходит и смывается охлаждением.","После первой впадины её стенки чистые, без рванин и ступенек."+(rough?"":" При чистовом — блестят обе стороны (или обрабатываемая сторона).")],
+  err:["Удары, сильная вибрация, искры — сразу «Стоп», стол назад рукояткой стола. Ищите: направление вращения головки, зажим заготовки, отвод стола, тупые резцы.","Резцы задевают зуб при повороте заготовки — мал отвод стола.","Станок прошёл все зубья, но последняя впадина легла не туда — ошибка в гитаре деления или в счётчике."]},
+ tooth:{why:`Толщина зуба определяет боковой зазор в собранной паре. Толстый зуб — пара не соберётся на монтажном расстоянии или заклинит при нагреве; тонкий — большой зазор и стук. Поэтому после первого зуба делают замер зубомером и, если надо, доводят.`,
+  ok:["Замер сделан на указанной высоте от вершины зуба, губки зубомера стоят перпендикулярно зубу.","Замерены 3–4 зуба в разных местах венца — разница небольшая."],
+  err:["Зубомер выставлен не на ту высоту — толщина «получается» не та, хотя зуб правильный.","Довернули по лимбу не в ту сторону — зуб не утоняется. После каждого доворота делайте повторный замер."]},
+ hyp:{why:`У гипоидной пары оси шестерни и колеса не пересекаются, а разнесены по высоте на величину E. Чтобы нарезать такой зуб, бабку изделия поднимают или опускают относительно оси люльки. Без этой установки получится обычный конический зуб, и пара не соберётся.`,
+  ok:["Установка сделана движением снизу вверх (люфт винта выбран).","Гайки затянуты, отсчёт после затяжки тот же."],err:["Перепутан знак (вверх вместо вниз) — зуб получится «зеркальным», пара не соберётся."]},
+ modi:{why:`Модификатор слегка меняет скорость обкатки по ходу цикла. Он нужен для чистовой обработки гипоидной шестерни, чтобы пятно контакта получилось нужной формы и не выходило на кромки.`,ok:["Проверочный угол проверен до включения модификатора."],err:["Модификатор оставлен включённым от прошлой детали там, где он не нужен."]}
+ }[s.k];
+ if(X){s.why=X.why;s.ok=X.ok;s.err=X.err}
+ s.scheme=SCHEME[s.k]||null;s.chain=["del","obk","spd","feed"].includes(s.k)?s.k:null}
+
+/* ---------- завершение списка шагов: шаг «Пуск», ключи, пояснения ---------- */
+function finishSteps(c,pid,v,S){
+ const plg=pid==="R2"&&c.plunge,Sz=v.feedR?v.feedR[0]:0,tm=(Sz+(v.z<=15?5:2.5))*v.z/60;
+ const iF=S.findIndex(s=>s.final);
+ if(iF>=0)S.splice(iF+1,0,{t:"Пуск и первая впадина",photo:"p04",ctx:{},rows:[["Что делает станок за цикл",plg?"подвод стола на глубину → отвод → поворот на следующий зуб":"подвод стола → резание с обкаткой → отвод → возврат люльки и переход к следующему зубу"],["Циклов (зубьев)",String(v.z)],["Время прохода",`≈ ${f(tm,1)} мин`]],
+  text:`<ol><li>Включите главный выключатель (на правой стороне станка) и нажмите <b>«Пуск гидравлики»</b> (на фото — 3): заработают гидропривод и насос охлаждения, загорится лампа.</li><li>Рукояткой управления столом (в руководстве — рукоятка 7 по рис. 1) стол с бабкой можно в любой момент подвести или отвести; ею же включается гидрозажим заготовки. Подачу охлаждающей жидкости открывает рукоятка 19 по рис. 1.</li><li>Пока стол отведён, нажмите <b>«Толчок»</b> (на фото — 6) и убедитесь, что головка вращается по стрелке на корпусе.</li><li>Нажмите <b>«Пуск»</b> (на фото — 5). Смотрите первую впадину, держа руку у кнопки <b>«Стоп»</b> (7); красный гриб (4) — аварийный останов.</li><li>После первой впадины остановите станок, когда стол отойдёт, и осмотрите её. ${pid.startsWith("R")?"При черновом проходе важно, чтобы впадина была прорезана по всей длине зуба и резцы не оставляли ступеньки на дне.":"При чистовом — сразу переходите к шагу «Пробный зуб и толщина»."}</li><li>Если всё в порядке — пускайте дальше. Станок сам остановится по счётчику после ${v.z} циклов. Отведите стол, разожмите и снимите деталь, смойте стружку с оправки.</li></ol><p class="mut">Провернуть станок вручную можно маховичком (поз. 8 по рис. 1 руководства): остановите станок на рабочем ходу и включите ручной привод рукояткой (поз. 3) — пока он включён, главный двигатель не запустится (руководство, раздел X).</p>`,
+  check:"Первая впадина осмотрена, проход идёт нормально"});
+ S.forEach(s=>{s.k=s.k||STEPKEY[s.t]||"";explainStep(s,c,pid,v)})}
+
+/* ---------- блоки пояснений в HTML ---------- */
+function xWhy(s){return DETAIL&&s.why?`<div class="xp why"><b>Зачем это и что настраиваем</b><div>${s.why}</div></div>`:""}
+function xAfter(s){if(!DETAIL)return"";let h="";
+ if(s.ok&&s.ok.length)h+=`<div class="xp okx"><b>Как понять, что сделано правильно</b><ul>${s.ok.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+ if(s.err&&s.err.length)h+=`<div class="xp errx"><b>Частые ошибки и чем они кончаются</b><ul>${s.err.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+ return h}
+function xSide(s){if(!DETAIL)return"";return (s.scheme?schemeSVG(s.scheme):"")+(s.chain?chainHTML(s.chain):"")}
+
+/* что перенастраивать по сравнению с прошлым проходом */
+const PASSWHAT={R2:"Черновое нарезание колеса: прорезаем все впадины почти на полную глубину, оставляя припуск на стенках под чистовой проход. Точность и чистота здесь не важны — важно снять основной металл и не перегрузить резцы.",
+ F2:"Чистовое нарезание колеса: двусторонняя головка за один проход зачищает обе стороны каждой впадины. Колесо делают первым и «начисто» — потом под него подгоняют шестерню по пятну контакта.",
+ R1:"Черновое нарезание шестерни: прорезаем впадины с припуском на обе стороны зуба. Бабку разворачивают на угол шестерни, ставят её гитары.",
+ F1e:"Чистовая обработка вогнутой стороны зубьев шестерни односторонней головкой с наружными резцами. Вторая сторона зуба в этом проходе не трогается.",
+ F1i:"Чистовая обработка выпуклой стороны зубьев шестерни односторонней головкой с внутренними резцами. Здесь же окончательно получается толщина зуба — её доводят поворотом заготовки по лимбу.",
+ F1:"Чистовое нарезание шестерни двусторонней головкой: обе стороны зуба сразу. Толщину зуба доводят глубиной (осевой установкой)."};
+function passIntro(c,pid){const idx=PASSES.findIndex(p=>p[0]===pid),v=passVals(c,pid);let ch="";
+ if(idx>0){const pv=passVals(c,PASSES[idx-1][0]),diff=[],same=[];
+  for(const [k,t] of FIELDS){if(k==="chk"||k==="zi")continue;(String(pv[k])!==String(v[k])?diff:same).push([t,pv[k],v[k]])}
+  if(pv.part!==v.part)diff.unshift(["Деталь на оправке",pv.part,v.part]);
+  ch=`<div class="xp chg"><b>Что перенастроить после прохода «${PNAME[PASSES[idx-1][0]]}»</b>${diff.length?`<table><tr><th>Установка</th><th>Было</th><th>Стало</th></tr>${diff.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="v">${r[2]}</td></tr>`).join("")}</table>`:"<div>Ничего — установки те же.</div>"}${same.length?`<div class="mut">Не меняется: ${same.map(r=>r[0].toLowerCase()).join(", ")}. Эти шаги достаточно проверить и отметить.</div>`:""}</div>`}
+ else ch=`<div class="xp chg"><b>Это первый проход пары</b><div>Все установки делаются с нуля, по порядку шагов ниже. На следующих проходах программа покажет, что именно нужно перенастроить, а что остаётся как было.</div></div>`;
+ return `<div class="xp intro"><b>Проход ${idx+1} из ${PASSES.length}: ${PNAME[pid]}</b><div>${PASSWHAT[pid]||""}</div></div>${ch}`}
+
+/* ---------- вкладка «С чего начать» ---------- */
+const GLOSS=[["Шестерня и колесо","В паре меньшая деталь — шестерня (z₁), бóльшая — колесо (z₂)."],
+ ["Круговой (спиральный) зуб","Зуб изогнут по дуге окружности — её и описывают резцы вращающейся головки."],
+ ["Вогнутая и выпуклая стороны зуба","Две боковые стороны одного зуба. Вогнутую режут наружные резцы головки, выпуклую — внутренние."],
+ ["Носок и пятка","Узкий (внутренний) и широкий (внешний) концы зуба."],
+ ["Резцовая головка","Диск с резцами — инструмент станка. Двусторонняя режет обе стороны впадины сразу, односторонняя — одну."],
+ ["Развод резцов","Расстояние между вершинами наружных и внутренних резцов двусторонней головки. Задаёт ширину дна впадины."],
+ ["Номер резцов","Поправка к углу профиля резцов. Подбирается расчётом, указан в маркировке резцов."],
+ ["Люлька","Большой поворотный барабан с резцовой головкой. Её качание во время резания — обкатка."],
+ ["Эксцентрик (радиальная установка U)","Поворотный барабан в люльке; им задают расстояние от оси люльки до оси головки."],
+ ["Бабка изделия","Узел со шпинделем, на котором на оправке закреплена заготовка. Поворачивается на угол конуса впадин."],
+ ["Центр станка","Точка, где ось люльки пересекает плоскость вершин резцов. В неё должна попасть вершина конуса детали."],
+ ["Монтажная дистанция (осевая установка)","Расстояние от вершины конуса детали до её опорного торца; по нему ставят бабку вдоль оси."],
+ ["Стол: смещение и отвод","Стол несёт бабку. Смещение — поправка рабочего положения (глубина), отвод — ход назад для перехода к следующему зубу."],
+ ["Обкатка","Согласованный поворот люльки и заготовки во время резания. Формирует профиль зуба."],
+ ["Деление","Поворот заготовки к следующей впадине после каждого цикла."],
+ ["z<sub>i</sub> — число пропускаемых зубьев","На сколько зубьев проворачивается заготовка за один цикл. Не должно иметь общих делителей с z."],
+ ["Гитара","Набор сменных зубчатых колёс, которым задают передаточное число цепи станка."],
+ ["Редукционный механизм","Дополнительная ступень в цепи обкатки с двумя рукоятками; обе ставятся одинаково."],
+ ["Врезание","Черновой способ для колеса: без обкатки, стол подаёт заготовку на головку на полную глубину."],
+ ["Проверочный угол","Контроль гитар без резания: повернули люльку на заданный угол — заготовка должна повернуться на расчётный."],
+ ["Разделение припуска","Установка заготовки по углу так, чтобы чистовые резцы вошли в середину прорезанной впадины."],
+ ["Пятно контакта","Отпечаток краски на зубьях после обкатки пары. По его положению судят, правильно ли нарезан зуб."],
+ ["Гипоидное смещение","Сдвиг оси шестерни по высоте относительно оси колеса (только у гипоидных пар)."]];
+const TROUBLE=[["Зуб толще или тоньше нужного","Замер зубомером после первого зуба","Чистовые проходы: шаг «Пробный зуб и толщина» — доворот по лимбу или глубина. Проверить развод резцов."],
+ ["Зубья разной толщины, последняя впадина не сходится с первой","Видно на глаз после полного круга","Гитара деления (числа зубьев, места колёс), z<sub>i</sub>, счётчик. Проверочный угол."],
+ ["Одна сторона впадины после чистового осталась чёрной","Не снят припуск с одной стороны","Не разделён припуск — шаг «Разделение припуска». Проверить, не провернулась ли заготовка на оправке."],
+ ["Рваная, ребристая поверхность зуба","Видны полосы (огранка) вдоль профиля","Увеличить время на зуб S; заточить резцы; проверить биение резцов и зажим головки."],
+ ["Вибрация, дробление, визг","Слышно и видно по следам на зубе","Зажим заготовки и оправки, затяжка бабки, люльки, эксцентрика; снизить скорость резания; тупые резцы."],
+ ["Ступенька на дне впадины","Дно неровное","Развод резцов, биение резцов по высоте, центр станка после заточки."],
+ ["Зуб разной высоты на носке и пятке","Замер высоты по концам зуба","Угол бабки, осевая установка, смещение стола."],
+ ["Пятно контакта смещено вдоль зуба (к носку или пятке)","Обкатка пары с краской","Вкладка «Пятно контакта» — поправка радиальной установки (эксцентрик)."],
+ ["Пятно контакта смещено по высоте (к вершине или ножке)","Обкатка пары с краской","Вкладка «Пятно контакта» — осевая установка шестерни, обкатка."],
+ ["Заготовку провернуло, поломка резцов","Удар, остановка","Давление зажима, риска поршня, штифт или шпонка на оправке; заменить и выверить резцы, заново выставить центр станка."],
+ ["Резцы задевают зубья при повороте заготовки","Удар в момент деления","Мал отвод стола — увеличить (обычно 1,1 полной высоты зуба)."]];
+function buildStart(){const c=LAST;if(!c||!$("start"))return;
+ const N=PASSES.length;let tAll=0;
+ const rows=PASSES.map((p,i)=>{const v=passVals(c,p[0]),S=v.feedR?v.feedR[0]:0,m=(S+(v.z<=15?5:2.5))*v.z/60;tAll+=m;
+  return `<tr><td class="v">${i+1}</td><td><b>${p[1]}</b><br><span class="mut">${PASSWHAT[p[0]]||""}</span></td><td>${v.head}<br><span class="mut">${p[0].startsWith("F1")&&p[0]!=="F1"?"":"развод "+v.razv}</span></td><td class="v">${f(m,1)} мин</td><td><button class="b s" style="white-space:nowrap" onclick="GPASS='${p[0]}';buildGuide();showTab('guide')">Шаги →</button></td></tr>`}).join("");
+ $("start").innerHTML=`<div class="row noprint"><button class="b" onclick="printTab('start')">Распечатать памятку</button><button class="b" style="background:#b8860b" onclick="GPASS=PASSES[0][0];buildGuide();showTab('guide')">Перейти к шагам первого прохода →</button></div>
+ <h2>С чего начать: наладка станка 525 простыми словами</h2>
+ <p>Эта страница — для того, кто понимает чертёж и станки, но зуборезный полуавтомат для конических колёс налаживает впервые или редко. Сначала — как станок получает зуб, потом — порядок работы над вашей парой <b>${esc(c.pname||"")}</b> (z ${c.z1} / ${c.z2}), дальше — словарь и что делать, если что-то пошло не так. Сами установки с цифрами и фотографиями — на вкладке «Пошагово с фото» и в режиме «У СТАНКА».</p>
+
+ <h3>1. Как станок нарезает зуб</h3>
+ <div class="st2"><div>
+ <p><b>Резание.</b> Резцовая головка — диск с резцами — вращается. Вершины резцов движутся по окружности и вырезают в заготовке впадину, изогнутую по дуге. Отсюда и название — круговой зуб.</p>
+ <p><b>Обкатка.</b> Головка сидит в люльке — большом поворотном барабане. Пока идёт резание, люлька медленно поворачивается, а заготовка поворачивается согласованно с ней. Головка при этом изображает один зуб воображаемого плоского колеса, а заготовка «катится» по нему. Так у зуба получается правильный профиль.</p>
+ <p><b>Деление.</b> Когда впадина готова, стол отводит заготовку от головки, люлька возвращается назад, а заготовка за это время переходит к следующей впадине. Потом стол снова подводит заготовку — и цикл повторяется, пока счётчик не насчитает все зубья.</p>
+ <p><b>Что настраивает наладчик.</b> Положение головки (эксцентрик и угол люльки), положение заготовки (угол бабки, осевая установка, смещение стола) и четыре гитары сменных колёс: скорость, подача, деление, обкатка. Все числа считает программа — ваша задача аккуратно перенести их на шкалы и собрать гитары.</p>
+ </div><div>${schemeSVG("x")}${chainHTML("")}</div></div>
+
+ <h3>2. Порядок работы над этой парой — ${N} ${N===4?"прохода":"проходов"}, машинное время ≈ ${f(tAll,0)} мин</h3>
+ <table><tr><th>№</th><th>Проход и его смысл</th><th>Головка</th><th>Время</th><th class="noprint"></th></tr>${rows}</table>
+ <p class="mut">Сначала полностью делают колесо, потом шестерню. Колесо — «эталон»: после него шестерню подгоняют по пятну контакта. Сводная таблица всех установок по проходам — на вкладке «Карта наладки».</p>
+
+ <h3>3. Что подготовить до начала</h3>
+ <ul class="cols"><li>Чертежи обеих деталей (число зубьев, модуль, угол спирали и его направление, монтажные расстояния, толщина зуба).</li><li>Резцовые головки по таблице выше, резцы нужного номера, заточенные.</li><li>Прибор с индикатором для выверки резцов и прибор установки центра станка.</li><li>Набор сменных колёс — колёса для всех проходов видны на вкладке «Гитары».</li><li>Оправки для колеса и шестерни; измерена толщина бурта оправки.</li><li>Заготовки, проверенные по диаметру вершин, углу конуса и биению.</li><li>Зубомер (штангензубомер), штангенциркуль, индикатор на стойке.</li><li>Краска для проверки пятна контакта и контрольное приспособление или корпус редуктора.</li><li>Ключи, трубчатый ключ-рукоятка для поворота люльки, медный молоток.</li><li>Распечатанные «Карты А4 у станка» — по одной на проход.</li></ul>
+
+ <h3>4. Органы управления</h3>
+ <div class="st2"><div><table><tr><th>Что</th><th>Для чего</th></tr>
+ <tr><td>Главный выключатель — на правой стороне станка</td><td>подаёт питание на станок</td></tr>
+ <tr><td>«Пуск гидравлики» (на фото — 3)</td><td>включает гидропривод и насос охлаждения; загорается лампа</td></tr>
+ <tr><td>«Пуск» (5), «Стоп» (7), «Толчок» (6)</td><td>главный двигатель: работа, остановка, короткое включение для проверки</td></tr>
+ <tr><td>Красный гриб (4)</td><td>аварийный останов</td></tr>
+ <tr><td>Рукоятка стола (в руководстве — поз. 7 рис. 1)</td><td>стол с бабкой вперёд / назад — в любой момент цикла и при остановленном двигателе; ею же включается гидрозажим заготовки</td></tr>
+ <tr><td>Рукоятка охлаждения (поз. 19 рис. 1)</td><td>подача охлаждающей жидкости</td></tr>
+ <tr><td>Маховичок (поз. 8) и рукоятка ручного привода (поз. 3)</td><td>проворот станка вручную; пока включён ручной привод, главный двигатель не запускается</td></tr></table>
+ <p class="mut">Кнопки названы так, как подписаны на фото вашего пульта (подписи можно поправить на вкладке «Мой станок»). Рукоятки — по рис. 1 «Руководства к станку 525», раздел X: в шагах наладки номера узлов (гайки, винты, шкалы) тоже даны по рисункам руководства.</p></div>
+ <div style="max-width:380px">${photoHTML("p04",{})}</div></div>
+
+ <h3>5. Правила, которые берегут резцы и руки</h3>
+ <ul><li>Любые установки, смена колёс и замеры — только при остановленном главном двигателе.</li><li>После каждой установки затяните зажимы и прочитайте шкалу ещё раз: при затяжке узел может сдвинуться.</li><li>После смены колёс скорости всегда проверяйте направление вращения головки толчком, пока стол отведён.</li><li>Перед первым пуском на новой наладке сделайте проверочный угол — это пять минут против испорченной заготовки и головки.</li><li>Первую впадину смотрите, не отходя от кнопки «Стоп».</li><li>Стружку убирайте крючком или щёткой, не рукой; замеры в зоне резания — только при остановленной головке.</li><li>Не уверены в установке — не пускайте. Вернитесь на шаг и проверьте по фото.</li></ul>
+
+ <h3>6. Если что-то пошло не так</h3>
+ <table><tr><th>Что видите</th><th>Как это выглядит</th><th>Где искать причину</th></tr>${TROUBLE.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
+
+ <h3>7. Словарь наладчика</h3>
+ <table class="gloss">${GLOSS.map(g=>`<tr><td><b>${g[0]}</b></td><td>${g[1]}</td></tr>`).join("")}</table>`}
 
 /* ---------- запуск ---------- */
 (async function(){await loadSet();await loadProven(true);if(!window.__stzGot){showTab("calc");loadExample(1)}else calc()})();
