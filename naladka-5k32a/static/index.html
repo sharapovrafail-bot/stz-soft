@@ -163,7 +163,7 @@ table.mt{border-collapse:collapse;margin:8px 0}table.mt td,table.mt th{border:1p
 <label>Направление витка<select id="hhand"><option value="R">правое</option><option value="L">левое</option></select></label>
 <label>Метод фрезерования<select id="meth"><option value="up" selected>встречное (рекомендуется)</option><option value="down">попутное</option></select></label>
 <label>Зубья фрезы у заготовки идут (смотреть при работе)<select id="tdir"><option value="up" selected>вверх ↑</option><option value="down">вниз ↓</option></select></label>
-<label>Сборка гитары дифференциала<select id="gvar"><option value="4" selected>Вариант 1: 4 колеса (точнее)</option><option value="2p">Вариант 2: 2 колеса + паразит</option><option value="2pp">Вариант 3: 2 колеса + 2 паразита</option><option value="2">Вариант 4: 2 колеса напрямую</option></select></label>
+<label>Сборка гитары дифференциала<select id="gvar"><option value="auto" selected>Подобрать автоматически (по направлению зуба и фрезы)</option><option value="4">Вариант 1: 4 колеса (точнее)</option><option value="2p">Вариант 2: 2 колеса + паразит</option><option value="2pp">Вариант 3: 2 колеса + 2 паразита</option><option value="2">Вариант 4: 2 колеса напрямую</option></select></label>
 <label>Класс точности<select id="hcls"><option>AA</option><option selected>A</option><option>B</option></select></label>
 <label>Длина фрезы, мм<input id="hL" type="number" value="70"></label>
 </div></fieldset>
@@ -510,12 +510,16 @@ function calc(){
  if(NOT_IN_MANUAL.includes(z)&&K===1)err.push("Для z = "+z+" в таблице руководства настройки нет, подбор мой — проверьте, что колёса встают на гитару.");
  // дифференциал
  let rDif=null,tDif=null;
- const gvar=$("gvar").value||"4",LAD=+$("cAD").value||178,MG=2.5;let rDif4=null,rDif2p=null,rDif2d=null,rDif2pp=null;
+ let gvar=$("gvar").value||"auto";const gvAuto=gvar==="auto";if(gvAuto)gvar="4";const LAD=+$("cAD").value||178,MG=2.5;let rDif4=null,rDif2p=null,rDif2d=null,rDif2pp=null;
  if(Math.abs(beta)>1e-9){tDif=Cdf*Math.abs(sb)/(mn*K);rDif4=pick(tDif,S,clr,8);
   const P2=(direct,free)=>{const P=[];for(const a of S)for(const d of S){if(a===d)continue;const rt=a/d;if(rt<1/3||rt>3)continue;const cd=MG*(a+d)/2;
    if(!free&&(direct?Math.abs(cd-LAD)>1.5:cd+2*MG>LAD-2))continue;P.push({a,d,two:true,e:Math.abs(rt-tDif)/tDif})}
    P.sort((p,q)=>p.e-q.e||Math.max(p.a,p.d)-Math.max(q.a,q.d));return P.slice(0,8)};
-  rDif2p=P2(false);rDif2d=P2(true);rDif2pp=P2(false);rDif=gvar==="4"?rDif4:gvar==="2p"?rDif2p:gvar==="2pp"?rDif2pp:rDif2d;if(rDif&&!rDif.length)rDif=null}
+  rDif2p=P2(false);rDif2d=P2(true);rDif2pp=P2(false);
+  /* авто: только сборки, у которых направление вращения стола сходится с таблицей стр. 35; из них — самая точная */
+  if(gvAuto){const odd=$("ghand").value===$("hhand").value,cs=(odd?[["2pp",rDif2pp],["2",rDif2d]]:[["4",rDif4],["2p",rDif2p]]).filter(x=>x[1]&&x[1].length);
+   if(cs.length){cs.sort((p,q)=>p[1][0].e-q[1][0].e);gvar=cs[0][0]}}
+  rDif=gvar==="4"?rDif4:gvar==="2p"?rDif2p:gvar==="2pp"?rDif2pp:rDif2d;if(rDif&&!rDif.length)rDif=null}
  const difKey=gvar==="4"?"dif":"dif_"+gvar;const selKey="k5sel:"+[$("pname").value,mn,z,beta,K].join("|");let _ss={};try{_ss=JSON.parse(localStorage.getItem(selKey)||"{}")}catch(e){}
  rDiv=applySel(rDiv,_ss.div,tDiv);if(rDif)rDif=applySel(rDif,_ss[difKey],tDif);
  // ограничения по паспорту
