@@ -3,12 +3,12 @@ ManifestDPIAware true
 !define APPNAME "Симулятор УП Fanuc"
 !define APPDIR "SimulyatorUP"
 !define APPEXE "SimulyatorUP.exe"
-!define VERSION "9.0.0"
+!define VERSION "9.1.0"
 !define PUBLISHER "Rafail Sharapov"
 !define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\SimulyatorUP"
 
 Name "${APPNAME}"
-OutFile "Simulyator_UP_Fanuc_Setup_9.0.0.exe"
+OutFile "Simulyator_UP_Fanuc_Setup_9.1.0.exe"
 InstallDir "$PROGRAMFILES64\${APPDIR}"
 InstallDirRegKey HKLM "Software\${APPDIR}" "InstallDir"
 RequestExecutionLevel admin
@@ -16,7 +16,7 @@ SetCompressor /SOLID lzma
 SetCompressorDictSize 64
 BrandingText "${APPNAME} ${VERSION}"
 
-VIProductVersion "9.0.0.0"
+VIProductVersion "9.1.0.0"
 VIAddVersionKey /LANG=1049 "ProductName" "${APPNAME}"
 VIAddVersionKey /LANG=1049 "FileDescription" "Установка ${APPNAME}"
 VIAddVersionKey /LANG=1049 "CompanyName" "${PUBLISHER}"

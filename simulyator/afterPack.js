@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
   vi.setStringValues({ lang: 1033, codepage: 1200 }, {
     FileDescription: 'Симулятор УП Fanuc', ProductName: 'Симулятор УП Fanuc', CompanyName: 'Rafail Sharapov',
     LegalCopyright: '© 2026 Рафаил Шарапов · rafail@sharapov-cnc.ru', OriginalFilename: 'SimulyatorUP.exe', InternalName: 'SimulyatorUP',
-    FileVersion: '9.0.1', ProductVersion: '9.0.1'
+    FileVersion: '9.1.0', ProductVersion: '9.1.0'
   });
   vi.outputToResourceEntries(res.entries);
   res.outputResource(pe);

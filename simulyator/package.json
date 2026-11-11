@@ -1,7 +1,7 @@
 {
   "name": "simulyator-up-fanuc",
   "productName": "Симулятор УП Fanuc",
-  "version": "9.0.1",
+  "version": "9.1.0",
   "description": "Симулятор управляющих программ Fanuc (KVL 1000, Puma 3050 LM)",
   "author": {
     "name": "Рафаил Шарапов",

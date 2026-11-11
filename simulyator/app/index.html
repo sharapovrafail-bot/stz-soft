@@ -190,13 +190,74 @@ h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing
 .mdl-f { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--line); }
 .mdl-f .grow { flex: 1; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* раскладка: разделители и сворачивание */
+.work { grid-template-columns: var(--edw, 34%) 10px minmax(0, 1fr); gap: 0; }
+.work.noed { grid-template-columns: minmax(0, 1fr); }
+.work.noed > .editor, .work.noed > .vsplit { display: none; }
+.vsplit { cursor: col-resize; position: relative; touch-action: none; }
+.vsplit::after { content: ''; position: absolute; left: 4px; top: 30%; bottom: 30%; width: 2px; border-radius: 2px; background: var(--line); }
+.vsplit:hover::after, .vsplit.drag::after { background: var(--accent); top: 0; bottom: 0; }
+.stage { grid-template-rows: auto minmax(200px, 1fr) auto auto 8px var(--panh, 210px); gap: 6px; }
+.stage.nopan { grid-template-rows: auto minmax(200px, 1fr) auto auto 0 auto; }
+.stage.nopan .tabbody { display: none; }
+.stage.nopan .hsplit { visibility: hidden; margin: 0; }
+.hsplit { cursor: row-resize; position: relative; margin: -4px 0; touch-action: none; }
+.hsplit::after { content: ''; position: absolute; top: 3px; left: 35%; right: 35%; height: 2px; border-radius: 2px; background: var(--line); }
+.hsplit:hover::after, .hsplit.drag::after { background: var(--accent); left: 0; right: 0; }
+.tabs .grow { flex: 1 1 auto; }
+.tabs #tabTgl { padding: 7px 12px; font-size: 13px; }
+.chip.on#btnBig { background: var(--accent); color: var(--accent-fg); }
+.ed-head .seg button { padding: 3px 10px; font-size: 12px; }
+.ed-head .ib { border: 1px solid var(--line); background: var(--panel); border-radius: 5px; padding: 1px 7px; color: var(--muted); }
+.ed-head .ib:hover { border-color: var(--accent); color: var(--accent); }
+.readout > div { padding: 4px 10px; }
+
+/* мастер токарной обработки */
+.wiz { position: absolute; inset: 0; z-index: 3; overflow: auto; background: var(--panel); font: 13px/1.4 var(--sans); padding: 10px 12px 16px; }
+.wz-sec { margin-bottom: 14px; }
+.wz-g { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px 12px; }
+.wz-f { display: grid; grid-template-columns: minmax(0, 1fr) 84px; gap: 6px; align-items: center; font-size: 12.5px; color: var(--muted); }
+.wz-f input, .wz-f select, .wz-t input, .wz-t select, .wz-oh input[type=number], .wz-add select { border: 1px solid var(--line); background: var(--panel2); border-radius: 4px; padding: 3px 6px; font: 12.5px var(--mono); color: var(--fg); width: 100%; min-width: 0; }
+.wz-f input[type=text], .wz-f select { grid-column: 1 / -1; }
+.wz-f:has(input[type=text]), .wz-f:has(select) { grid-template-columns: 1fr; gap: 2px; }
+.wz-t { width: 100%; }
+.wz-t td { padding: 2px 4px 2px 0; }
+.wz-t th { padding-bottom: 2px; }
+.wz-t input[type=number] { max-width: none; }
+.wz-t { table-layout: fixed; }
+.wz-t select { max-width: none; padding: 3px 2px; }
+.wz-t input { padding: 3px 4px; }
+.wz-t th:nth-child(1) { width: 18px; } .wz-t th:nth-child(2) { width: 18%; } .wz-t th:nth-child(5) { width: 11%; } .wz-t th:nth-child(6) { width: 17%; } .wz-t th:nth-child(7) { width: 11%; } .wz-t th:nth-child(8) { width: 56px; }
+.wz-t input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+.wz-t input[type=number]::-webkit-inner-spin-button, .wz-t input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.wz-n { color: var(--muted); font-family: var(--mono); width: 18px; }
+.wz-b { white-space: nowrap; display: inline-flex; gap: 3px; }
+.wz-b button { border: 1px solid var(--line); background: var(--panel2); border-radius: 4px; width: 24px; height: 24px; padding: 0; color: var(--muted); }
+.wz-b button:hover { border-color: var(--accent); color: var(--accent); }
+.wz-op { border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px 9px; margin-bottom: 7px; background: var(--panel); }
+.wz-op.off { opacity: .55; }
+.wz-oh { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.wz-oh b { color: var(--fg); font-weight: 600; }
+.wz-add { display: flex; gap: 8px; align-items: center; }
+.wz-add select { width: auto; font-family: var(--sans); padding: 5px 8px; }
+.wz-w { color: var(--warn); font-size: 12.5px; margin-bottom: 4px; padding-left: 14px; position: relative; }
+.wz-w::before { content: ''; position: absolute; left: 2px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+.wz-ok { color: var(--ok); font-size: 12.5px; margin-bottom: 6px; }
+#wizWarn { margin-bottom: 8px; }
+@media (max-width: 900px) { .work { grid-template-columns: 1fr; } .vsplit, .hsplit { display: none; } .stage { grid-template-rows: auto 56vh auto auto 0 auto; } }
 </style>
 
 <div class="app">
   <header class="top">
     <div class="brand">
       <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 20V9l7-5 7 5v11" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><path d="M8 20c0-4 2-6 4-6s4 2 4 6" fill="none" stroke="var(--rapid)" stroke-width="1.8" stroke-dasharray="3 2"/></svg>
-      <b>Симулятор УП</b><small>Fanuc iO · G-код</small><small id="appVer" title="Изменения версии 9.0 (20.10.2026):
+      <b>Симулятор УП</b><small>Fanuc iO · G-код</small><small id="appVer" title="Изменения версии 9.1 (11.11.2026):
+• Мастер токарной обработки (кнопка «Мастер» над программой): заготовка, контур по точкам, операции — УП составляется сама, циклами или развёрнутыми проходами, и сразу идёт в симуляцию
+• Токарный вид: сверху разрез со штриховкой, снизу деталь снаружи с объёмом; патрон с кулачками, резцы с пластинами и державками
+• Вид детали крупнее: панели программы и сообщений меняют размер мышью и сворачиваются, кнопка «Крупно»
+• Сверление: отскок сверла в цикле G74 больше не считается столкновением
+Версия 9.0 (20.10.2026):
 • Новый расчёт материала как во Fusion (три-дексель: лучи по Z, X и Y) — стенки, цилиндр, канавки ровные и гладкие, без ступенек и полос
 • Затенение во впадинах и углах (ambient occlusion), острые рёбра, свет привязан к камере, отражение на металле
 • «По операциям» и «по инструменту»: стенка окрашивается той операцией, которая её прошла
@@ -243,7 +304,7 @@ h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing
 • Режим ввода координат без точки задаётся отдельно для каждого станка
 • Puma 3050 LM: по умолчанию калькуляторный ввод (3401#0 = 1), X20 = 20 мм
 • KVL 1000: стандарт Fanuc (X20 = 0.02 мм)
-• Номер версии показывается в заголовке" style="cursor:help;border:1px solid var(--line);border-radius:4px;padding:0 5px">версия 9.0 · 20.10.2026</small>
+• Номер версии показывается в заголовке" style="cursor:help;border:1px solid var(--line);border-radius:4px;padding:0 5px">версия 9.1 · 11.11.2026</small>
     </div>
     <div class="seg" id="modeSeg" role="group" aria-label="Тип станка">
       <button data-mode="mill" class="on">Фрезерная · KVL 1000</button><button data-mode="lathe">Токарная · Puma 3050 LM</button>
@@ -258,19 +319,22 @@ h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing
     <input type="file" id="file" accept=".nc,.txt,.tap,.cnc,.gcode,.mpf,.min,.ngc,*/*" hidden>
   </header>
 
-  <main class="work">
+  <main class="work" id="work">
     <section class="card editor" aria-label="Редактор управляющей программы">
-      <div class="ed-head"><span>Программа</span> <b id="progName">—</b><span class="grow"></span><span id="lineInfo">стр. 1</span></div>
+      <div class="ed-head"><div class="seg" id="edSeg" hidden><button data-ed="code" class="on" title="Текст управляющей программы">Программа</button><button data-ed="wiz" title="Мастер токарной обработки: деталь и операции задаются параметрами, G-код составляется сам (как Manual Guide)">Мастер</button></div> <b id="progName">—</b><span class="grow"></span><span id="lineInfo">стр. 1</span><button class="ib" id="btnEdHide" title="Свернуть панель программы — вид детали на всю ширину">◀</button></div>
       <div class="ed" id="ed">
         <div class="gutter" id="gutter"></div>
         <div class="hl" id="hl"></div>
         <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" aria-label="Текст УП"></textarea>
+        <div class="wiz" id="wiz" hidden></div>
       </div>
       <div class="ed-foot"><span id="edInfo">—</span></div>
     </section>
+    <div class="vsplit" id="vsplit" title="Потяните, чтобы изменить ширину панели программы"></div>
 
-    <section class="stage" aria-label="Моделирование">
+    <section class="stage" id="stage" aria-label="Моделирование">
       <div class="viewbar" id="viewbar">
+        <div class="grp"><button class="chip" id="btnEdShow" hidden title="Показать панель программы">▶ Программа</button><button class="chip" id="btnBig" title="Крупный вид: свернуть программу и нижнюю панель">⛶ Крупно</button></div>
         <div class="grp" id="viewBtns"></div>
         <div class="grp">
           <label class="chk"><input type="checkbox" id="oRapid" checked> Быстрые</label>
@@ -305,6 +369,7 @@ h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing
         </label>
       </div>
       <div class="card readout" id="readout"></div>
+      <div class="hsplit" id="hsplit" title="Потяните, чтобы изменить высоту нижней панели"></div>
       <div class="card panel">
         <div class="tabs" id="tabs" role="tablist"></div>
         <div class="tabbody" id="tabbody"></div>
@@ -553,8 +618,8 @@ function parseToolText(text) {
   else if (T(/BULL|TORIC|\bTOR\b|ТОР/) || (h.cr > 0 && T(/MILL|FREZ|ФРЕЗ|END/))) h.type = 'bull';
   else if (T(/\bTAP\b|METCH|МЕТЧ/)) h.type = 'tap';
   else if (T(/FACE\s*MILL|TORCEV\w*\s*FREZ|ТОРЦЕВ\w*\s*ФРЕЗ/)) h.type = 'face';
-  else if (T(/BORING|RASTOCH|РАСТОЧ|ВНУТР/)) h.type = T(/MILL|FREZ|ФРЕЗ/) ? 'bore' : 'int';
-  else if (T(/GROOV|KANAV|КАНАВ|ОТРЕЗ|PARTING/)) h.type = 'groove';
+  else if (T(/BORING|RASTOCH|РАСТОЧ|ВНУТР/) || (T(/VNUTR/) && !T(/REZB|THREAD/))) h.type = T(/MILL|FREZ|ФРЕЗ/) ? 'bore' : 'int';
+  else if (T(/GROOV|KANAV|КАНАВ|ОТРЕЗ|OTREZ|PARTING/)) h.type = 'groove';
   else if (T(/THREAD|REZB|РЕЗЬБ/)) h.type = 'thread';
   else if (T(/FLAT|KONCEV|КОНЦЕВ|END\s*MILL|ENDMILL|FREZ|ФРЕЗ|MILL/)) h.type = 'flat';
   if (h.type === 'ball' && h.d === undefined) { const r = /(?<![A-Z])R\s*=?\s*(\d+(?:\.\d+)?)/i.exec(t); if (r) h.d = 2 * parseFloat(r[1]); }
@@ -2048,7 +2113,7 @@ class LatheSim {
     for (let i = a; i <= b; i++) {
       if (Ro[i] - Ri[i] < 0.02) continue;
       if (tool.type === 'int') { if (Math.min(Ro[i], r - 0.02) > Ri[i] + 0.0) return true; }
-      else if (tool.type === 'drill') { if (Math.min(Ro[i], tool.d / 2 * 0.9) > Ri[i] + 0.02) return true; }
+      else if (tool.type === 'drill') { const zi = this.st.zFace - i * this.dz, env = Math.min(tool.d / 2 * 0.95, Math.max(0, zi - z) * Math.tan(coneHalf(tool))); if (Math.min(Ro[i], env) > Ri[i] + 0.06) return true; }   // материал внутри конуса сверла
       else if (Ro[i] > r + 0.02 && Ro[i] > Ri[i] + 0.02 && r + 0.02 > Ri[i] - 1e9) { if (Ro[i] > Math.max(r, Ri[i]) + 0.02) return true; }
     }
     return false;
@@ -2743,7 +2808,9 @@ function refreshTheme() {
   THEME.stockTop = hex(g('--stock-top')); THEME.stockDeep = hex(g('--stock-deep')); THEME.stockSide = g('--stock-side');
   THEME.panel = g('--panel2'); THEME.line = g('--line');
   THEME.font = g('--mono');
+  { const b = hex(THEME.bg); THEME.dark = (b[0] * 0.3 + b[1] * 0.59 + b[2] * 0.11) < 110; }
 }
+function mixc(a, b, t) { return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * t) + ',' + Math.round(a[1] + (b[1] - a[1]) * t) + ',' + Math.round(a[2] + (b[2] - a[2]) * t) + ')'; }
 function rgbStr(r, gg, b) { return 'rgb(' + (r | 0) + ',' + (gg | 0) + ',' + (b | 0) + ')'; }
 function niceStep(raw) {
   const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
@@ -4082,44 +4149,80 @@ class LatheView extends BaseView {
     ctx.stroke();
     for (let z = Math.ceil(zl / gs) * gs; z <= zr; z += gs) ctx.fillText('Z' + f3(z), SX(z) + 3, H - 14);
     for (let r = Math.ceil(0 / gs) * gs; r <= rtop; r += gs) if (r > 0) ctx.fillText('⌀' + f3(r * 2), 4, SY(r) + 2);
-    // ось
-    ctx.strokeStyle = THEME.axis; ctx.setLineDash([14, 3, 2, 3]); ctx.beginPath(); ctx.moveTo(0, SY(0)); ctx.lineTo(W, SY(0)); ctx.stroke(); ctx.setLineDash([]);
 
-    // патрон
-    const zc = st.zFace - st.len;
-    ctx.fillStyle = THEME.panel; ctx.strokeStyle = THEME.line; ctx.lineWidth = 1;
-    const ch = st.dia * 0.85;
-    ctx.beginPath(); ctx.rect(SX(zc - st.dia * 0.7), SY(ch), st.dia * 0.7 * sc, 2 * ch * sc); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = THEME.axis; ctx.fillText('патрон', SX(zc - st.dia * 0.7) + 4, SY(ch) + 4);
+    const T0 = THEME.stockTop, edgeC = mixc(T0, [0, 0, 0], THEME.dark ? 0.75 : 0.62);
+    // патрон: корпус и кулачки
+    const zc = st.zFace - st.len, Rs = st.dia / 2;
+    {
+      const jh = Math.max(8, st.dia * 0.28), grip = Math.min(st.len * 0.22, Math.max(6, st.dia * 0.35)), bl = Math.max(10, st.dia * 0.3), Rb = Rs + jh + 3;
+      const gB = ctx.createLinearGradient(0, SY(Rb), 0, SY(-Rb));
+      gB.addColorStop(0, mixc(T0, [255, 255, 255], 0.25)); gB.addColorStop(0.5, mixc(T0, [0, 0, 0], 0.18)); gB.addColorStop(1, mixc(T0, [0, 0, 0], 0.45));
+      ctx.fillStyle = gB; ctx.strokeStyle = edgeC; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.rect(SX(zc - bl), SY(Rb), bl * sc, 2 * Rb * sc); ctx.fill(); ctx.stroke();
+      for (const sg of [1, -1]) {
+        ctx.beginPath();
+        const J = [[zc - 0.01, Rs], [zc + grip, Rs], [zc + grip, Rs + jh * 0.45], [zc + grip * 0.5, Rs + jh * 0.45], [zc + grip * 0.5, Rs + jh], [zc - 0.01, Rs + jh]];
+        J.forEach((q, i) => { const x = SX(q[0]), y = SY(sg * q[1]); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+        ctx.closePath(); ctx.fillStyle = mixc(T0, [0, 0, 0], sg > 0 ? 0.3 : 0.42); ctx.fill(); ctx.stroke();
+      }
+    }
 
-    // заготовка
+    // заготовка: верхняя половина — разрез со штриховкой, нижняя — вид снаружи с объёмной заливкой
     if (this.opts.stock && this.sim) {
-      const sim = this.sim, n = sim.n;
-      const px = Math.max(1, Math.round(1.2 / (sim.dz * sc)));
-      const T = THEME.stockTop, Dp = THEME.stockDeep;
-      ctx.fillStyle = rgbStr(T[0], T[1], T[2]); ctx.strokeStyle = rgbStr(Dp[0], Dp[1], Dp[2]); ctx.lineWidth = 1.4;
-      const prof = (arr, sgn) => {
-        for (let i = 0; i < n; i += px) { const z = st.zFace - i * sim.dz; ctx.lineTo(SX(z), SY(sgn * arr[i])); }
-        ctx.lineTo(SX(st.zFace - (n - 1) * sim.dz), SY(sgn * arr[n - 1]));
-      };
+      const sim = this.sim, n = sim.n, Ro = sim.Ro, Ri = sim.Ri;
+      const px = Math.max(1, Math.round(0.6 / (sim.dz * sc)));
+      const zOf = i => st.zFace - i * sim.dz;
+      // разрез
+      const sec = new Path2D();
+      sec.moveTo(SX(zOf(0)), SY(Ri[0]));
+      for (let i = 0; i < n; i += px) sec.lineTo(SX(zOf(i)), SY(Ro[i]));
+      sec.lineTo(SX(zOf(n - 1)), SY(Ro[n - 1])); sec.lineTo(SX(zOf(n - 1)), SY(Ri[n - 1]));
+      for (let i = n - 1; i >= 0; i -= px) sec.lineTo(SX(zOf(i)), SY(Ri[i]));
+      sec.closePath();
+      const gU = ctx.createLinearGradient(0, SY(Rs), 0, SY(0));
+      gU.addColorStop(0, mixc(T0, [255, 255, 255], 0.3)); gU.addColorStop(1, mixc(T0, [255, 255, 255], 0.05));
+      ctx.fillStyle = gU; ctx.fill(sec);
+      ctx.save(); ctx.clip(sec);
+      ctx.strokeStyle = mixc(T0, [0, 0, 0], 0.5); ctx.globalAlpha = 0.4; ctx.lineWidth = 1; ctx.beginPath();
+      const hs = 9, hx0 = SX(zOf(n - 1)), hx1 = SX(zOf(0)), yT = SY(Rs), yB = SY(0), hh = yB - yT;
+      for (let x = hx0 - hh; x < hx1 + hs; x += hs) { ctx.moveTo(x, yB); ctx.lineTo(x + hh, yT); }
+      ctx.stroke(); ctx.restore(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = edgeC; ctx.lineWidth = 1.5; ctx.lineJoin = 'round'; ctx.stroke(sec);
+      // вид снаружи
       ctx.beginPath();
-      ctx.moveTo(SX(st.zFace), SY(sim.Ri[0]));
-      ctx.lineTo(SX(st.zFace), SY(sim.Ro[0]));
-      prof(sim.Ro, 1);
-      ctx.lineTo(SX(st.zFace - (n - 1) * sim.dz), SY(sim.Ri[n - 1]));
-      for (let i = n - 1; i >= 0; i -= px) ctx.lineTo(SX(st.zFace - i * sim.dz), SY(sim.Ri[i]));
-      ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(SX(st.zFace), SY(-sim.Ri[0]));
-      ctx.lineTo(SX(st.zFace), SY(-sim.Ro[0]));
-      prof(sim.Ro, -1);
-      ctx.lineTo(SX(st.zFace - (n - 1) * sim.dz), SY(-sim.Ri[n - 1]));
-      for (let i = n - 1; i >= 0; i -= px) ctx.lineTo(SX(st.zFace - i * sim.dz), SY(-sim.Ri[i]));
-      ctx.closePath(); ctx.globalAlpha = 0.5; ctx.fill(); ctx.globalAlpha = 1; ctx.stroke();
+      ctx.moveTo(SX(zOf(0)), SY(0));
+      for (let i = 0; i < n; i += px) ctx.lineTo(SX(zOf(i)), SY(-Ro[i]));
+      ctx.lineTo(SX(zOf(n - 1)), SY(-Ro[n - 1])); ctx.lineTo(SX(zOf(n - 1)), SY(0));
+      ctx.closePath();
+      const gL = ctx.createLinearGradient(0, SY(0), 0, SY(-Rs));
+      gL.addColorStop(0, mixc(T0, [255, 255, 255], 0.3)); gL.addColorStop(0.3, mixc(T0, [255, 255, 255], 0.72)); gL.addColorStop(0.62, mixc(T0, [0, 0, 0], 0.06)); gL.addColorStop(1, mixc(T0, [0, 0, 0], 0.5));
+      ctx.fillStyle = gL; ctx.fill();
+      ctx.strokeStyle = edgeC; ctx.lineWidth = 1.5; ctx.stroke();
+      // рёбра уступов и торцы отверстий
+      ctx.strokeStyle = mixc(T0, [0, 0, 0], 0.55); ctx.lineWidth = 1; ctx.globalAlpha = 0.8; ctx.beginPath();
+      const thr = Math.max(2.5 * sim.dz, 0.12);
+      for (let i = 0; i + 1 < n; i++) {
+        if (Math.abs(Ro[i + 1] - Ro[i]) > thr) { const x = SX(zOf(i) - sim.dz / 2); ctx.moveTo(x, SY(0)); ctx.lineTo(x, SY(-Math.max(Ro[i], Ro[i + 1]))); }
+      }
+      ctx.stroke(); ctx.globalAlpha = 1;
+      if (Ri[0] > 0.05) {   // отверстие — штриховыми линиями невидимого контура
+        ctx.setLineDash([6, 4]); ctx.strokeStyle = mixc(T0, [0, 0, 0], 0.6); ctx.lineWidth = 1; ctx.beginPath();
+        let st0 = false;
+        for (let i = 0; i < n; i += px) { if (Ri[i] > 0.05) { const x = SX(zOf(i)), y = SY(-Ri[i]); if (st0) ctx.lineTo(x, y); else { ctx.moveTo(x, y); st0 = true; } } else st0 = false; }
+        ctx.stroke(); ctx.setLineDash([]);
+      }
     }
     // исходный контур заготовки
-    ctx.strokeStyle = THEME.axis; ctx.setLineDash([4, 3]); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.rect(SX(st.zFace - st.len), SY(st.dia / 2), st.len * sc, st.dia * sc); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = THEME.axis; ctx.setLineDash([4, 3]); ctx.lineWidth = 1; ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.rect(SX(st.zFace - st.len), SY(st.dia / 2), st.len * sc, st.dia * sc); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    // ось поверх детали
+    ctx.strokeStyle = THEME.axis; ctx.setLineDash([14, 3, 2, 3]); ctx.beginPath(); ctx.moveTo(0, SY(0)); ctx.lineTo(W, SY(0)); ctx.stroke(); ctx.setLineDash([]);
+    // контур детали из мастера (по чертежу)
+    if (this.design) {
+      ctx.strokeStyle = '#f08c1e'; ctx.lineWidth = 1.3; ctx.setLineDash([7, 4]);
+      for (const pl of this.design) { if (!pl || pl.length < 2) continue; ctx.beginPath(); pl.forEach((q, i) => { const x = SX(q[0]), y = SY(q[1] / 2); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }); ctx.stroke(); }
+      ctx.setLineDash([]);
+    }
 
     this.drawPaths(ctx, SX, SY, pb);
     // нулевая точка
@@ -4156,8 +4259,8 @@ class LatheView extends BaseView {
       else { add('n' + col + rap, { col, rap, dim: false }, m, 0, fr); add('d' + col + rap, { col, rap, dim: true }, m, fr, 1); }
     }
     for (const [, g] of groups) {
-      ctx.globalAlpha = g.st.dim ? 0.25 : 1; ctx.strokeStyle = g.st.col; ctx.lineWidth = g.st.rap ? 1.1 : 1.8;
-      ctx.setLineDash(g.st.rap ? [5, 4] : []); ctx.beginPath();
+      ctx.globalAlpha = g.st.dim ? 0.22 : (g.st.rap ? 0.8 : 1); ctx.strokeStyle = g.st.col; ctx.lineWidth = g.st.rap ? 0.9 : 1.5;
+      ctx.setLineDash(g.st.rap ? [4, 4] : []); ctx.beginPath();
       for (let k = 0; k < g.l.length; k += 3) {
         const m = g.l[k], a = g.l[k + 1], b = g.l[k + 2], tot = m.cl[m.cl.length - 1];
         const la = tot * a, lb = tot * b;
@@ -4180,22 +4283,58 @@ class LatheView extends BaseView {
   }
   drawTool(ctx, SX, SY, sc, pb) {
     const z = pb.pos[2], r = Math.abs(pb.pos[0]) / 2, tool = this.toolOf(pb.tool);
-    let poly;
+    const D2 = Math.PI / 180, dark = THEME.dark;
+    const holdC = dark ? '#6d7a86' : '#56616c', holdE = dark ? '#aab6c2' : '#2c343c', insC = '#e7b93f', insE = '#7a5600';
+    const poly = (pts, fill, stroke, lw) => {
+      ctx.beginPath();
+      pts.forEach((p, i) => { const x = SX(z + p[0]), y = SY(r + p[1]); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+      ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = stroke; ctx.lineWidth = lw || 1; ctx.stroke();
+    };
+    const rhomb = (a1, a2, L) => { const e1 = [Math.sin(a1 * D2), Math.cos(a1 * D2)], e2 = [Math.sin(a2 * D2), Math.cos(a2 * D2)]; return [[0, 0], [L * e1[0], L * e1[1]], [L * (e1[0] + e2[0]), L * (e1[1] + e2[1])], [L * e2[0], L * e2[1]]]; };
+    const hole = (c, rr) => { ctx.beginPath(); ctx.arc(SX(z + c[0]), SY(r + c[1]), Math.max(1.2, rr * sc), 0, 6.3); ctx.fillStyle = holdC; ctx.fill(); ctx.strokeStyle = insE; ctx.lineWidth = 0.8; ctx.stroke(); };
+    ctx.lineJoin = 'round';
     switch (tool.type) {
-      case 'int': poly = [[0, 0], [9, 0], [9, -6], [1.2, -6]]; break;
-      case 'groove': { const w = tool.w || 3; poly = [[0, 0], [w, 0], [w, 8], [0, 8]]; break; }
-      case 'thread': poly = [[0, 0], [1.2, 0.7], [7, 0.7], [7, 6], [-1.2, 0.7]]; break;
-      case 'drill': { const R = tool.d / 2, hc = R / Math.tan(coneHalf(tool)); poly = [[0, 0], [hc, R], [hc + 22, R], [hc + 22, -R], [hc, -R]]; break; }
-      case 'live_ax': { const R = tool.d / 2; poly = [[0, -R], [0, R], [22, R], [22, -R]]; break; }
-      case 'live_drill': { const R = tool.d / 2, hc = R / Math.tan(coneHalf(tool)); poly = [[0, 0], [hc, R], [hc + 22, R], [hc + 22, -R], [hc, -R]]; break; }
-      case 'live_rad': { const R = tool.d / 2; poly = [[-R, 0], [R, 0], [R, 18], [-R, 18]]; break; }
-      default: poly = [[0, 0], [8, 0], [8, 6], [1.2, 6]];
+      case 'int': {
+        const fin = tool.nr > 0 && tool.nr <= 0.2, L = 7, I = rhomb(fin ? 177 : 175, fin ? 122 : 95, L).map(p => [p[0], p[1]]);
+        const tb = clamp(r * 1.1, 5, 16);
+        poly([[3.5, -1.6], [80, -1.6], [80, -1.6 - tb], [6, -1.6 - tb], [3.5, -4.5]], holdC, holdE);
+        poly(I, insC, insE, 1.1); hole([(I[1][0] + I[3][0]) / 2, (I[1][1] + I[3][1]) / 2], 1.1);
+        break;
+      }
+      case 'groove': {
+        const w = tool.w || 3;
+        poly([[-1.5, 16], [w + 14, 16], [w + 14, 70], [-1.5, 70]], holdC, holdE);
+        poly([[0.15, 5], [w - 0.15, 5], [w - 0.15, 17], [0.15, 17]], holdC, holdE);
+        poly([[0, 0], [w, 0], [w - 0.12, 5.5], [0.12, 5.5]], insC, insE, 1.1);
+        break;
+      }
+      case 'thread': {
+        const h = 5.2, t = h * Math.tan(30 * D2);
+        poly([[-6, 6], [14, 6], [14, 70], [-6, 70]], holdC, holdE);
+        poly([[0, 0], [t, h], [7.5, h + 1], [7.5, h + 7.5], [-4.2, h + 7.5], [-4.2, h + 1], [-t, h]], insC, insE, 1.1);
+        hole([1.6, h + 4.2], 1.3);
+        break;
+      }
+      case 'drill': case 'live_drill': {
+        const R = tool.d / 2, hc = R / Math.tan(coneHalf(tool)), Lf = Math.max(tool.d * 4, 30);
+        poly([[hc + Lf, R * 0.85], [hc + Lf + 40, R * 0.85], [hc + Lf + 40, -R * 0.85], [hc + Lf, -R * 0.85]], holdC, holdE);
+        poly([[0, 0], [hc, R], [hc + Lf, R], [hc + Lf, -R], [hc, -R]], dark ? '#b9c3cd' : '#c8d0d8', holdE, 1.1);
+        ctx.strokeStyle = holdE; ctx.globalAlpha = 0.55; ctx.lineWidth = 1; ctx.beginPath();
+        const pitch = Math.max(tool.d * 1.6, 4);
+        for (let q = hc; q < hc + Lf - pitch * 0.5; q += pitch) { ctx.moveTo(SX(z + q), SY(r + R)); ctx.lineTo(SX(z + q + pitch * 0.5), SY(r - R)); }
+        ctx.stroke(); ctx.globalAlpha = 1;
+        break;
+      }
+      case 'live_ax': { const R = tool.d / 2; poly([[0, -R], [0, R], [26, R], [26, -R]], dark ? '#b9c3cd' : '#c8d0d8', holdE); poly([[26, R * 0.8], [60, R * 0.8], [60, -R * 0.8], [26, -R * 0.8]], holdC, holdE); break; }
+      case 'live_rad': { const R = tool.d / 2; poly([[-R, 0], [R, 0], [R, 22], [-R, 22]], dark ? '#b9c3cd' : '#c8d0d8', holdE); poly([[-R * 0.8, 22], [R * 0.8, 22], [R * 0.8, 60], [-R * 0.8, 60]], holdC, holdE); break; }
+      default: {
+        const fin = tool.nr > 0 && tool.nr <= 0.4, L = fin ? 11 : 12.5, I = rhomb(fin ? 3 : 5, fin ? 58 : 85, L);
+        const c = [(I[1][0] + I[3][0]) / 2, (I[1][1] + I[3][1]) / 2];
+        poly([[I[1][0] + 0.6, I[1][1] - 1], [c[0] + 1, c[1] + 1.5], [I[3][0] + 1.5, I[3][1] + 1.2], [I[3][0] + 14, I[3][1] + 4], [I[3][0] + 14, 80], [I[1][0] + 0.6, 80]], holdC, holdE);
+        poly(I, insC, insE, 1.1); hole(c, fin ? 1.5 : 2);
+      }
     }
-    ctx.fillStyle = THEME.accent; ctx.globalAlpha = 0.6; ctx.strokeStyle = THEME.fg; ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    poly.forEach((p, i) => { const x = SX(z + p[0]), y = SY(r + p[1]); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
-    ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1; ctx.stroke();
-    ctx.fillStyle = THEME.fg; ctx.beginPath(); ctx.arc(SX(z), SY(r), 3, 0, 6.3); ctx.fill();
+    ctx.fillStyle = '#ff3b30'; ctx.beginPath(); ctx.arc(SX(z), SY(r), 2.4, 0, 6.3); ctx.fill();
   }
 }
 
@@ -4554,6 +4693,340 @@ N390 M30
 };
 
 /* ================================================================
+   МАСТЕР ТОКАРНОЙ ОБРАБОТКИ (как Manual Guide): деталь и операции задаются параметрами,
+   wizGenerate() выдаёт УП для Puma 3050 LM — циклами (G71/G70/G74/G75/G76) или развёрнутыми проходами.
+   Чистые функции, без DOM.
+   ================================================================ */
+const WIZ_MATS = {
+  st45: { n: 'Сталь 45', c: 'STAL 45', vr: 180, vf: 220, vd: 70, vg: 110, vt: 100 },
+  st40h: { n: 'Сталь 40Х', c: 'STAL 40H', vr: 160, vf: 200, vd: 60, vg: 100, vt: 90 },
+  st45h: { n: 'Сталь 45Х', c: 'STAL 45H', vr: 150, vf: 190, vd: 55, vg: 95, vt: 85 },
+  inox: { n: 'Нерж. 12Х18Н10Т', c: 'NERZH 12H18N10T', vr: 120, vf: 150, vd: 35, vg: 80, vt: 70 },
+  al: { n: 'Алюминий Д16Т', c: 'ALYUMINIJ D16T', vr: 350, vf: 450, vd: 120, vg: 200, vt: 150 },
+  brass: { n: 'Латунь / бронза', c: 'LATUN', vr: 220, vf: 280, vd: 80, vg: 140, vt: 110 },
+  iron: { n: 'Чугун СЧ20', c: 'CHUGUN SCH20', vr: 140, vf: 180, vd: 60, vg: 90, vt: 70 }
+};
+const WIZ_OPS = {
+  face: { n: 'Подрезка торца', c: 'PODREZKA TORCA', t: 1 },
+  rough: { n: 'Наружное черновое', c: 'NARUZHNOE CHERNOVOE', t: 1 },
+  finish: { n: 'Наружное чистовое', c: 'NARUZHNOE CHISTOVOE', t: 2 },
+  drill: { n: 'Сверление по оси', c: 'SVERLENIE', t: 3 },
+  brough: { n: 'Расточка черновая', c: 'RASTOCHKA CHERNOVAYA', t: 4 },
+  bfinish: { n: 'Расточка чистовая', c: 'RASTOCHKA CHISTOVAYA', t: 4 },
+  groove: { n: 'Канавка наружная', c: 'KANAVKA', t: 5 },
+  thread: { n: 'Резьба', c: 'REZBA', t: 6 },
+  cutoff: { n: 'Отрезка', c: 'OTREZKA', t: 7 }
+};
+function wizOpDefaults(type, W) {
+  const m = WIZ_MATS[W.mat] || WIZ_MATS.st45, D = W.dia;
+  const o = { type, on: true, t: WIZ_OPS[type].t };
+  switch (type) {
+    case 'face': Object.assign(o, { ap: 1, f: 0.2, v: m.vr, nr: 0.8 }); break;
+    case 'rough': Object.assign(o, { ap: 2, u: 0.4, w: 0.1, f: 0.25, v: m.vr, nr: 0.8 }); break;
+    case 'finish': Object.assign(o, { f: 0.1, v: m.vf, nr: 0.4, comp: true }); break;
+    case 'drill': Object.assign(o, { d: 20, depth: 30, q: 5, f: 0.12, v: m.vd }); break;
+    case 'brough': Object.assign(o, { ap: 1.2, u: 0.3, w: 0.05, f: 0.15, v: Math.round(m.vr * 0.8), nr: 0.4 }); break;
+    case 'bfinish': Object.assign(o, { f: 0.08, v: Math.round(m.vf * 0.8), nr: 0.4, comp: true }); break;
+    case 'groove': Object.assign(o, { tw: 3, z: -20, b: 3, xb: Math.max(2, D - 26), xs: Math.max(4, D - 20), q: 1.5, f: 0.08, v: m.vg }); break;
+    case 'thread': Object.assign(o, { inner: false, d: 20, p: 1.5, zs: 4, ze: -20, s: 0, n: 0 }); break;
+    case 'cutoff': Object.assign(o, { tw: 3, z: -50, xe: -1, f: 0.08, v: m.vg }); break;
+  }
+  return o;
+}
+function wizDefaults() {
+  const W = {
+    num: 1, name: 'VAL', mat: 'st45', it: 'IT7', dia: 60, len: 82, bore: 0, face: 1, smax: 2500, style: 'cycles',
+    outer: [
+      { x: 0, z: 0, t: 'L', c: '-', cv: 0 },
+      { x: 20, z: 0, t: 'L', c: 'C', cv: 2 },
+      { x: 20, z: -25, t: 'L', c: '-', cv: 0 },
+      { x: 30, z: -25, t: 'L', c: 'C', cv: 1 },
+      { x: 30, z: -40, t: 'L', c: 'R', cv: 5 },
+      { x: 50, z: -40, t: 'L', c: 'C', cv: 1 },
+      { x: 50, z: -65, t: 'L', c: '-', cv: 0 },
+      { x: 58, z: -65, t: 'L', c: 'C', cv: 1 },
+      { x: 58, z: -75, t: 'L', c: '-', cv: 0 }
+    ],
+    inner: [],
+    ops: []
+  };
+  W.ops = ['face', 'rough', 'finish', 'groove', 'thread'].map(t => wizOpDefaults(t, W));
+  Object.assign(W.ops[3], { z: -22, b: 3, xb: 16, xs: 20 });
+  Object.assign(W.ops[4], { d: 20, p: 1.5, zs: 4, ze: -22.5 });
+  return W;
+}
+
+/* Контур из таблицы точек: [{t:'L'|'A', x(диаметр), z, r, cw}], первый элемент — начальная точка.
+   Фаска/скругление ставится в точке между двумя прямыми. */
+function wizContour(rows, warn) {
+  const P = rows.filter(r => isFinite(+r.x) && isFinite(+r.z)).map(r => ({ x: +r.x, z: +r.z, t: r.t || 'L', r: Math.abs(+r.r || 0), c: r.c || '-', cv: Math.abs(+r.cv || 0) }));
+  if (P.length < 2) return [];
+  const out = [{ t: 'S', x: P[0].x, z: P[0].z }];
+  let cur = { x: P[0].x, z: P[0].z };
+  const isL = i => i >= 1 && i < P.length && P[i].t === 'L';
+  for (let i = 1; i < P.length; i++) {
+    const p = P[i];
+    if (p.t !== 'L') {
+      const ch = Math.hypot(p.z - cur.z, (p.x - cur.x) / 2);
+      if (!(p.r > 0) || p.r < ch / 2 - 1e-6) { warn && warn('Контур, строка ' + (i + 1) + ': радиус дуги меньше половины хорды — заменена прямой'); out.push({ t: 'L', x: p.x, z: p.z }); }
+      else out.push({ t: 'A', x: p.x, z: p.z, r: p.r, cw: p.t === 'CW' });
+      cur = { x: p.x, z: p.z }; continue;
+    }
+    let end = { x: p.x, z: p.z }, extra = null;
+    if (p.c !== '-' && p.cv > 0 && i + 1 < P.length) {
+      if (!isL(i + 1)) warn && warn('Контур, строка ' + (i + 1) + ': фаска/скругление ставится только между двумя прямыми');
+      else {
+        const n = P[i + 1];
+        const a = [cur.z - p.z, (cur.x - p.x) / 2], b = [n.z - p.z, (n.x - p.x) / 2];
+        const la = Math.hypot(a[0], a[1]), lb = Math.hypot(b[0], b[1]);
+        if (la > 1e-9 && lb > 1e-9) {
+          const ua = [a[0] / la, a[1] / la], ub = [b[0] / lb, b[1] / lb];
+          const cosv = clamp(ua[0] * ub[0] + ua[1] * ub[1], -1, 1), ang = Math.acos(cosv);
+          let d = p.c === 'C' ? p.cv : p.cv / Math.tan(ang / 2);
+          if (ang < 1e-3 || Math.PI - ang < 1e-3) d = 0;
+          if (d > la + 1e-6 || d > lb + 1e-6) { warn && warn('Контур, строка ' + (i + 1) + ': ' + (p.c === 'C' ? 'фаска' : 'скругление') + ' ' + p.cv + ' не помещается на участке'); d = 0; }
+          if (d > 0) {
+            end = { z: p.z + ua[0] * d, x: p.x + 2 * ua[1] * d };
+            const q = { z: p.z + ub[0] * d, x: p.x + 2 * ub[1] * d };
+            // направление обхода: в осях (Z вправо, X вверх) поворот по часовой — G2
+            const d1 = [-ua[0], -ua[1]], cr = d1[0] * ub[1] - d1[1] * ub[0];
+            extra = p.c === 'C' ? { t: 'L', x: q.x, z: q.z } : { t: 'A', x: q.x, z: q.z, r: p.cv, cw: cr < 0 };
+          }
+        }
+      }
+    }
+    if (Math.hypot(end.z - cur.z, end.x - cur.x) > 1e-6) out.push({ t: 'L', x: end.x, z: end.z });
+    cur = end;
+    if (extra) { out.push(extra); cur = { x: extra.x, z: extra.z }; }
+  }
+  return out;
+}
+/* Ломаная по контуру (дуги разбиты) — для поиска, где контур достигает заданного диаметра */
+function wizPoly(seg) {
+  const pts = [[seg[0].z, seg[0].x]];
+  for (let i = 1; i < seg.length; i++) {
+    const a = seg[i - 1], b = seg[i];
+    if (b.t === 'A') {
+      const z0 = a.z, r0 = a.x / 2, z1 = b.z, r1 = b.x / 2, ch = Math.hypot(z1 - z0, r1 - r0);
+      const h = Math.sqrt(Math.max(0, b.r * b.r - ch * ch / 4)), mz = (z0 + z1) / 2, mr = (r0 + r1) / 2;
+      const nz = -(r1 - r0) / ch, nr = (z1 - z0) / ch, sg = b.cw ? -1 : 1;
+      const cz = mz + sg * nz * h, cr = mr + sg * nr * h;
+      let a0 = Math.atan2(r0 - cr, z0 - cz), a1 = Math.atan2(r1 - cr, z1 - cz);
+      if (b.cw) { while (a1 > a0) a1 -= 2 * Math.PI; } else { while (a1 < a0) a1 += 2 * Math.PI; }
+      const n = Math.max(6, Math.ceil(Math.abs(a1 - a0) * b.r / 0.05));
+      for (let k = 1; k <= n; k++) { const t = a0 + (a1 - a0) * k / n; pts.push([cz + b.r * Math.cos(t), 2 * (cr + b.r * Math.sin(t))]); }
+    } else pts.push([b.z, b.x]);
+  }
+  return pts;
+}
+
+function wizGenerate(W) {
+  const warns = [], warn = s => { if (!warns.includes(s)) warns.push(s); };
+  const F = v => { let s = (Math.round(v * 1000) / 1000).toFixed(3).replace(/0+$/, ''); if (s === '-0.') s = '0.'; return s; };
+  const mat = WIZ_MATS[W.mat] || WIZ_MATS.st45;
+  const D = Math.max(1, +W.dia || 1), SMAX = clamp(Math.round(+W.smax || 2500), 100, 3500), cyc = W.style !== 'expanded';
+  const ZS = 2;                                   // плоскость подвода по Z
+  const ops = (W.ops || []).filter(o => o.on !== false);
+  const outer = wizContour(W.outer || [], warn), inner = wizContour(W.inner || [], warn);
+  const lines = [], labels = {};
+  const B = (code, cm, label) => { lines.push({ code, cm, label }); };
+  const C = cm => lines.push({ cm, only: true });
+  const tcode = t => 'T' + String(t).padStart(2, '0') + String(t).padStart(2, '0');
+  const rpmOf = (v, d) => clamp(Math.round(1000 * v / (Math.PI * Math.max(d, 1)) / 10) * 10, 50, SMAX);
+  // описание инструмента для шапки (симулятор по нему определяет вид резца)
+  const tdesc = {};
+  const tool = (t, txt) => { if (!tdesc[t]) tdesc[t] = txt; else if (tdesc[t] !== txt && !tdesc[t].includes(txt)) warn('T' + t + ' назначен разным операциям с разным инструментом — проверьте номера'); };
+  // один и тот же резец в соседних операциях не уводится в исходную: меняется только режим и точка подвода
+  let curT = null, curSpd = '', css0 = 0;
+  const toolOff = () => { if (curT === null) return; B('G28 U0. W0. M9', 'V ISHODNUYU'); B('M5'); B('M1', 'OSTANOV PO VYBORU'); curT = null; curSpd = ''; };
+  const toolStart = (o, txt, css, x, z, cm) => {
+    const same = curT === o.t;
+    if (!same) toolOff();
+    C('--- ' + tcode(o.t) + ': ' + cm + ' ---');
+    if (!same) B(tcode(o.t), txt);
+    const spd = css ? 'G96 S' + Math.round(o.v) : 'G97 S' + css0;
+    if (spd !== curSpd) {
+      if (css) { if (!same || !/^G96/.test(curSpd)) B('G50 S' + SMAX, 'OGRANICHENIE OBOROTOV'); B(spd + ' M3', 'POSTOYANNAYA SKOROST REZANIYA'); }
+      else B(spd + ' M3');
+    }
+    curSpd = spd; curT = o.t;
+    B('G0 X' + F(x) + ' Z' + F(z) + (same ? '' : ' M8'), 'PODVOD');
+  };
+  const toolEnd = () => {};
+  const segCode = (s, shx, shz) => s.t === 'A' ? (s.cw ? 'G2' : 'G3') + ' X' + F(s.x + shx) + ' Z' + F(s.z + shz) + ' R' + F(s.r) : 'G1 X' + F(s.x + shx) + ' Z' + F(s.z + shz);
+  const mono = (seg, inn) => { for (let i = 1; i < seg.length; i++) { if (seg[i].z > seg[i - 1].z + 1e-6 || (inn ? seg[i].x > seg[i - 1].x + 1e-6 : seg[i].x < seg[i - 1].x - 1e-6)) return false; } return true; };
+  const hole = () => { let h = +W.bore || 0; for (const o of ops) if (o.type === 'drill') h = Math.max(h, +o.d || 0); return h; };
+  // блоки контура для G71/G70: N(ns) G0 [G42] X..; G1 Z.. F..; ...; N(nf) G1 [G40] X(выход)
+  const contourBlocks = (seg, inn, key, o, xOut, comp, ffin) => {
+    const g = comp ? (inn ? 'G41 ' : 'G42 ') : '';
+    B('G0 ' + g + 'X' + F(seg[0].x), 'NACHALO KONTURA', key + 's');
+    B('G1 Z' + F(seg[0].z) + ' F' + F(ffin));
+    for (let i = 1; i < seg.length; i++) B(segCode(seg[i], 0, 0));
+    B('G1 ' + (comp ? 'G40 ' : '') + 'X' + F(xOut), 'KONEC KONTURA', key + 'f');
+  };
+  // развёрнутое черновое: проходы вдоль Z по уровням, затем получистовой проход по контуру с припуском
+  const roughExpanded = (seg, inn, o, xStart, base) => {
+    const sg = inn ? -1 : 1, u = sg * Math.abs(+o.u || 0), w = Math.abs(+o.w || 0), ap = Math.max(0.05, +o.ap || 1);
+    const poly = wizPoly(seg).map(p => [p[0] + w, p[1] + u]);
+    const x0 = poly[0][1];
+    const zAt = x => { for (let i = 1; i < poly.length; i++) { const a = poly[i - 1], b = poly[i]; if ((b[1] - x) * sg >= 0) { if (Math.abs(b[1] - a[1]) < 1e-9) return a[0]; const t = (x - a[1]) / (b[1] - a[1]); return a[0] + (b[0] - a[0]) * clamp(t, 0, 1); } } return poly[poly.length - 1][0]; };
+    let first = true, n = 0;
+    for (let x = base - sg * 2 * ap; (x - x0) * sg > 1e-6; x -= sg * 2 * ap) {
+      const ze = zAt(x);
+      if (ze >= ZS - 0.01) continue;
+      B('G0 X' + F(x));
+      B('G1 Z' + F(ze) + (first ? ' F' + F(o.f) : ''));
+      B('G1 X' + F(x + sg * 1) + ' Z' + F(ze + 0.5), n ? '' : 'OTVOD POD 45 GRAD');
+      B('G0 Z' + F(ZS));
+      first = false; if (++n > 400) { warn('Слишком много черновых проходов — увеличьте глубину резания'); break; }
+    }
+    B('G0 X' + F(seg[0].x + u), 'POLUCHISTOVOJ PROHOD PO KONTURU');
+    B('G1 Z' + F(seg[0].z + w) + (first ? ' F' + F(o.f) : ''));
+    for (let i = 1; i < seg.length; i++) B(segCode(seg[i], u, w));
+    B('G1 X' + F(xStart));
+    B('G0 Z' + F(ZS));
+  };
+  let roughOutKey = null, roughInKey = null;
+
+  for (let oi = 0; oi < ops.length; oi++) {
+    const o = ops[oi], key = 'c' + oi;
+    switch (o.type) {
+      case 'face': {
+        tool(o.t, 'REZEC PROHODNOJ NR' + F(o.nr || 0.8).replace(/\.$/, ''));
+        const xe = (+W.bore > 0 ? +W.bore - 1 : -2 * (o.nr || 0.8)), al = Math.max(0, +W.face || 0), ap = Math.max(0.1, +o.ap || 1);
+        const np = Math.max(1, Math.ceil(al / ap - 1e-9));
+        toolStart(o, 'REZEC PROHODNOJ', true, D + 2, ZS, 'PODREZKA TORCA' + (al > 0 ? ', PRIPUSK ' + F(al) : ''));
+        for (let k = 1; k <= np; k++) {
+          const z = al > 0 ? al - al * k / np : 0;
+          B('G0 Z' + F(z)); B('G1 X' + F(xe) + (k === 1 ? ' F' + F(o.f) : ''), k === np ? 'TOREC V RAZMER Z0' : '');
+          B('G0 Z' + F(z + 1)); B('G0 X' + F(D + 2));
+        }
+        toolEnd(); break;
+      }
+      case 'rough': case 'brough': {
+        const inn = o.type === 'brough', seg = inn ? inner : outer;
+        if (seg.length < 2) { warn((inn ? 'Расточка' : 'Наружное точение') + ': не задан ' + (inn ? 'внутренний' : 'наружный') + ' контур'); break; }
+        if (!mono(seg, inn)) warn((inn ? 'Внутренний' : 'Наружный') + ' контур не монотонный (есть поднутрение): цикл G71 тип I его не обработает — уберите впадину в отдельную операцию «Канавка»');
+        const h = hole();
+        if (inn && !(h > 0)) warn('Расточка: нет отверстия — добавьте «Сверление по оси» перед расточкой или задайте Ø отверстия заготовки');
+        const xs = inn ? Math.max(0, h - 1) : D + 2;
+        tool(o.t, inn ? 'REZEC RASTOCHNOJ NR' + F(o.nr || 0.4).replace(/\.$/, '') : 'REZEC PROHODNOJ NR' + F(o.nr || 0.8).replace(/\.$/, ''));
+        toolStart(o, inn ? 'REZEC RASTOCHNOJ' : 'REZEC PROHODNOJ', true, xs, ZS, (inn ? 'RASTOCHKA CHERNOVAYA' : 'NARUZHNOE CHERNOVOE') + ', PRIPUSK X' + F(Math.abs(o.u)) + ' Z' + F(Math.abs(o.w)));
+        if (cyc) {
+          const fin = ops.find(q => q.type === (inn ? 'bfinish' : 'finish'));
+          B('G71 U' + F(o.ap) + ' R0.5', 'GLUBINA REZANIYA ' + F(o.ap) + ', OTVOD 0.5');
+          B('G71 P{' + key + 's} Q{' + key + 'f} U' + F((inn ? -1 : 1) * Math.abs(o.u)) + ' W' + F(Math.abs(o.w)) + ' F' + F(o.f));
+          contourBlocks(seg, inn, key, o, xs, !!(fin && fin.comp), fin ? fin.f : o.f);
+          if (inn) roughInKey = key; else roughOutKey = key;
+        } else roughExpanded(seg, inn, o, xs, inn ? h : D);
+        toolEnd(); break;
+      }
+      case 'finish': case 'bfinish': {
+        const inn = o.type === 'bfinish', seg = inn ? inner : outer;
+        if (seg.length < 2) { warn((inn ? 'Расточка чистовая' : 'Наружное чистовое') + ': не задан контур'); break; }
+        const h = hole(), xs = inn ? Math.max(0, h - 1) : D + 2, rk = inn ? roughInKey : roughOutKey;
+        tool(o.t, inn ? 'REZEC RASTOCHNOJ NR' + F(o.nr || 0.4).replace(/\.$/, '') : 'REZEC PROHODNOJ NR' + F(o.nr || 0.4).replace(/\.$/, ''));
+        toolStart(o, inn ? 'REZEC RASTOCHNOJ' : 'REZEC PROHODNOJ CHISTOVOJ', true, xs, ZS, (inn ? 'RASTOCHKA CHISTOVAYA' : 'NARUZHNOE CHISTOVOE') + ' PO KONTURU');
+        if (cyc && rk) B('G70 P{' + rk + 's} Q{' + rk + 'f}', 'CHISTOVOJ PROHOD');
+        else {
+          const g = o.comp ? (inn ? 'G41 ' : 'G42 ') : '';
+          B('G0 ' + g + 'X' + F(seg[0].x), o.comp ? 'KORREKCIYA NA RADIUS VERSHINY' : '');
+          B('G1 Z' + F(seg[0].z) + ' F' + F(o.f));
+          for (let i = 1; i < seg.length; i++) B(segCode(seg[i], 0, 0));
+          B('G1 ' + (o.comp ? 'G40 ' : '') + 'X' + F(xs));
+          B('G0 Z' + F(ZS));
+        }
+        toolEnd(); break;
+      }
+      case 'drill': {
+        const d = Math.max(0.5, +o.d || 1), dep = Math.abs(+o.depth || 0), q = Math.max(0.2, +o.q || d / 4);
+        tool(o.t, 'SVERLO D' + F(d).replace(/\.$/, ''));
+        css0 = rpmOf(o.v, d);
+        toolStart(o, 'SVERLO D' + F(d).replace(/\.$/, ''), false, 0, 3, 'SVERLENIE D' + F(d).replace(/\.$/, '') + ' NA GLUBINU ' + F(dep).replace(/\.$/, ''));
+        if (cyc) { B('G74 R1.', 'OTSKOK 1 MM'); B('G74 Z' + F(-dep) + ' Q' + Math.round(q * 1000) + ' F' + F(o.f), 'SHAG ' + F(q) + ' MM'); }
+        else { let z = 0, k = 0; while (z > -dep + 1e-9) { z = Math.max(-dep, z - q); B('G1 Z' + F(z) + (k++ ? '' : ' F' + F(o.f))); if (z > -dep + 1e-9) B('G0 Z' + F(z + 1)); } B('G0 Z3.'); }
+        toolEnd(); break;
+      }
+      case 'groove': {
+        const tw = Math.max(0.5, +o.tw || 3), b = Math.max(tw, +o.b || tw), zr = +o.z || 0, zl = zr - b, xb = +o.xb, xs = (+o.xs || D) + 2;
+        if (+o.b < tw - 1e-9) warn('Канавка: ширина канавки меньше ширины резца — принята ширина резца ' + tw);
+        if (!(xb < xs - 2)) warn('Канавка: Ø дна должен быть меньше Ø поверхности');
+        tool(o.t, 'REZEC KANAVOCHNYJ SHIRINA ' + F(tw).replace(/\.$/, '') + ' MM');
+        toolStart(o, 'REZEC KANAVOCHNYJ', true, xs, zr - tw, 'KANAVKA SHIRINA ' + F(b).replace(/\.$/, '') + ' DO D' + F(xb).replace(/\.$/, '') + ', PRAVAYA STENKA Z' + F(zr));
+        const step = Math.max(0.2, tw - 0.3), wide = b > tw + 1e-6, pk = Math.max(0.1, +o.q || 1);
+        if (cyc) {
+          B('G75 R0.3', 'OTSKOK 0.3');
+          B('G75 X' + F(xb) + (wide ? ' Z' + F(zl) : '') + ' P' + Math.round(pk * 1000) + (wide ? ' Q' + Math.round(step * 1000) : '') + ' F' + F(o.f));
+        } else {
+          let z = zr - tw, k = 0;
+          for (;;) {
+            if (k) B('G0 Z' + F(z));
+            let x = xs; const r0 = xs;
+            while (x > xb + 1e-9) { x = Math.max(xb, x - 2 * pk); B('G1 X' + F(x) + (k++ ? '' : ' F' + F(o.f))); if (x > xb + 1e-9) B('G0 X' + F(x + 0.6)); }
+            B('G0 X' + F(r0));
+            if (z <= zl + 1e-9) break;
+            z = Math.max(zl, z - step);
+          }
+        }
+        toolEnd(); break;
+      }
+      case 'thread': {
+        const inn = !!o.inner, d = +o.d || 10, p = Math.max(0.2, +o.p || 1), hgt = (inn ? 0.5413 : 0.6134) * p;
+        const xT = inn ? d : d - 2 * hgt, xS = inn ? d - 2 * hgt - 1.5 : d + 4;
+        const n = Math.max(3, Math.round(+o.n) || Math.round(4 + 3 * p)), q1 = hgt / Math.sqrt(n);
+        css0 = clamp(Math.round(+o.s) || rpmOf(mat.vt, d), 50, Math.min(SMAX, Math.floor(4000 / p)));
+        tool(o.t, inn ? 'REZEC REZBOVOJ VNUTRENNIJ 60 GRAD' : 'REZEC REZBOVOJ 60 GRAD');
+        toolStart(o, 'REZEC REZBOVOJ', false, xS, +o.zs, 'REZBA ' + (inn ? 'VNUTRENNYAYA ' : '') + 'M' + F(d).replace(/\.$/, '') + 'X' + F(p).replace(/\.$/, '') + ', VYSOTA PROFILYA ' + F(hgt));
+        if (cyc) {
+          B('G76 P020060 Q' + Math.max(30, Math.round(q1 * 400)) + ' R0.03', '2 CHISTOVYH, UGOL 60');
+          B('G76 X' + F(xT) + ' Z' + F(+o.ze) + ' P' + Math.round(hgt * 1000) + ' Q' + Math.round(q1 * 1000) + ' F' + F(p), 'SHAG ' + F(p));
+        } else {
+          for (let k = 1; k <= n; k++) {
+            const dk = hgt * Math.sqrt(k / n), x = inn ? d - 2 * (hgt - dk) : d - 2 * dk;
+            B(k === 1 ? 'G92 X' + F(x) + ' Z' + F(+o.ze) + ' F' + F(p) : 'X' + F(x), k === 1 ? 'PROHOD 1 IZ ' + n : '');
+          }
+          B('X' + F(xT), 'ZACHISTNOJ PROHOD'); B('G0 X' + F(xS));
+        }
+        toolEnd(); break;
+      }
+      case 'cutoff': {
+        const tw = Math.max(0.5, +o.tw || 3), z = (+o.z || 0) - tw, xe = +W.bore > 0 || hole() > 0 ? Math.max(+o.xe, hole() - 1) : +o.xe;
+        tool(o.t, 'REZEC OTREZNOJ SHIRINA ' + F(tw).replace(/\.$/, '') + ' MM');
+        toolStart(o, 'REZEC OTREZNOJ', true, D + 3, z, 'OTREZKA, DLINA DETALI ' + F(Math.abs(+o.z || 0)));
+        const xm = Math.max(xe, 6);
+        if (xm < D + 3 - 0.01) B('G1 X' + F(xm) + ' F' + F(o.f));
+        if (xe < xm - 0.01) B('G1 X' + F(xe) + ' F' + F(Math.max(0.02, o.f / 2)), 'U CENTRA PODACHA V 2 RAZA MENSHE');
+        B('G0 X' + F(D + 3));
+        toolEnd(); break;
+      }
+    }
+  }
+  // сборка текста: шапка, нумерация N10, N20…, подстановка номеров кадров контура
+  const head = [];
+  const num = String(clamp(Math.round(+W.num) || 1, 1, 9999)).padStart(4, '0');
+  const nm = String(W.name || 'DETAL').toUpperCase().replace(/[()]/g, ' ').trim() || 'DETAL';
+  head.push('%', 'O' + num + ' (' + nm + ')');
+  head.push('(DETAL: ' + nm + ')');
+  head.push('(MATERIAL: ' + mat.c + ', ZAGOTOVKA D' + F(D).replace(/\.$/, '') + ' L' + F(+W.len || 0).replace(/\.$/, '') + (+W.bore > 0 ? ' OTV D' + F(+W.bore).replace(/\.$/, '') : '') + ')');
+  head.push('(KVALITET: ' + String(W.it || 'IT7').toUpperCase() + ', STANOK: PUMA 3050 LM)');
+  head.push('(SOZDANO MASTEROM TOKARNOJ OBRABOTKI, ' + (cyc ? 'CIKLY' : 'RAZVERNUTYE PROHODY') + ')');
+  for (const t of Object.keys(tdesc).map(Number).sort((a, b) => a - b)) head.push('(' + tcode(t) + ' - ' + tdesc[t] + ')');
+  const body = [];
+  toolOff();
+  B('M30', 'KONEC PROGRAMMY');
+  const all = [{ code: 'G21 G40 G80 G97 G99', cm: 'SBROS REZHIMOV' }, { code: 'G28 U0. W0.', cm: 'V ISHODNUYU TOCHKU' }].concat(lines);
+  let n = 0;
+  for (const L of all) { if (L.only) continue; n += 10; L.n = n; if (L.label) labels[L.label] = n; }
+  for (const L of all) {
+    if (L.only) { body.push('(' + L.cm.replace(/(\d)\.(?=[\s,]|$)/g, '$1') + ')'); continue; }
+    const c = L.code.replace(/\{(\w+)\}/g, (m, k) => labels[k] !== undefined ? labels[k] : '0');
+    body.push('N' + L.n + ' ' + c + (L.cm ? ' (' + L.cm.replace(/(\d)\.(?=[\s,]|$)/g, '$1') + ')' : ''));
+  }
+  if (!ops.length) warn('Не выбрано ни одной операции');
+  return { code: head.concat(body, ['%']).join('\n'), warns, outer, inner };
+}
+
+/* ================================================================
    ПРИЛОЖЕНИЕ: состояние, редактор, воспроизведение, панели
    ================================================================ */
 (function () {
@@ -4809,6 +5282,7 @@ N390 M30
 
   /* ---------- редактор ---------- */
   function setCode(text) {
+    if (S.ui && S.ui.edTab === 'wiz') { S.ui.edTab = 'code'; syncEdTab(); }
     code.value = text; S.code[S.mode] = text; persist();
     code.scrollTop = 0; gutter.firstChild && (gutter.firstChild.style.transform = 'translateY(0)');
     pb.w = 0; pb.playing = false; setPlayIcon();
@@ -5019,7 +5493,7 @@ N390 M30
     const unk = res ? res.tools.filter(t => { const e = tl2[t]; return e && e.auto && !e.dKnown && (S.mode === 'mill' || e.type === 'drill' || /^live/.test(e.type)); }).length : 0;
     $('tabs').innerHTML = TABS.map(([k, t]) => '<button role="tab" data-tab="' + k + '" class="' + (S.tab === k ? 'on' : '') + '">' + t +
       (k === 'msg' && (ne + nw) ? '<span class="badge ' + (ne ? 'e' : 'w') + '">' + (ne + nw) + '</span>' : '') +
-      (k === 'tool' && unk ? '<span class="badge e" title="Диаметр не найден в программе">' + unk + '</span>' : '') + '</button>').join('');
+      (k === 'tool' && unk ? '<span class="badge e" title="Диаметр не найден в программе">' + unk + '</span>' : '') + '</button>').join('') + '<span class="grow"></span><button id="tabTgl" data-tgl="1">' + (S.ui && S.ui.panHide ? '▴' : '▾') + '</button>';
     renderTabBody(msgs);
   }
   function renderTabBody(msgs) {
@@ -5038,7 +5512,7 @@ N390 M30
     else if (S.tab === 'stat') b.innerHTML = statTab();
     else b.innerHTML = helpTab();
   }
-  $('tabs').addEventListener('click', e => { const t = e.target.closest('button'); if (!t) return; S.tab = t.dataset.tab; persist(); renderTabs(); });
+  $('tabs').addEventListener('click', e => { const t = e.target.closest('button'); if (!t) return; if (t.dataset.tgl) S.ui.panHide = !S.ui.panHide; else { S.tab = t.dataset.tab; S.ui.panHide = false; } persist(); renderTabs(); applyLayout(); });
 
   const TYPES_MILL = [['flat', 'Концевая'], ['ball', 'Шаровая'], ['bull', 'Тороидальная'], ['drill', 'Сверло'], ['spot', 'Центровка'], ['chamfer', 'Фаска (коническая)'], ['slot', 'Дисковая (пазовая)'], ['tap', 'Метчик'], ['face', 'Торцевая фреза'], ['bore', 'Расточная']];
   const TYPES_LATHE = [['ext', 'Проходной (наружн.)'], ['int', 'Расточной'], ['groove', 'Канавочный'], ['thread', 'Резьбовой'], ['drill', 'Сверло (по оси)'], ['live_drill', 'Живое сверло / центровка (торец)'], ['live_ax', 'Живая фреза осевая (торец)'], ['live_rad', 'Живая фреза радиальная (бок)']];
@@ -5143,6 +5617,7 @@ N390 M30
     return '<div class="grid2">' +
       '<div><h4>KVL 1000 (X Y Z + стол B, C)</h4><div class="note" style="margin-top:0"><b>Движение:</b> G0, G1, G2/G3 (R или I J K, спираль по Z), G4, G17/G18/G19, G28, G53, G54–G59, G90/G91, G92, G20/G21.<br><b>Стол:</b> B наклоняет, C вращает. Без G43.4 координаты X Y Z считаются машинными осями (заготовка уезжает вместе со столом). С G43.4 (TCP) координаты в системе заготовки. G68.2 X Y Z I J K (углы Эйлера) с G53.1 задаёт наклонную плоскость, G69 отменяет.<br><b>Циклы:</b> G73, G81, G82, G83, G84, G85, G86, G89 (G98/G99, K/L), в том числе в наклонной плоскости.<br><b>Коррекция:</b> G41/G42 считаются в плоскости G17 без наклона (радиус = Ø/2 из таблицы).<br><b>Макрос B:</b> #переменные, [ ], SIN/COS/SQRT, IF/GOTO, WHILE/DO/END, подпрограммы M98/M99.</div></div>' +
       '<div><h4>Puma 3050 LM (X Z C, Fanuc 0i-TF Plus)</h4><div class="note" style="margin-top:0"><b>Точение (система G-кодов A):</b> G0–G4, G28, G32, G50, G96/G97, G98/G99, U/W, циклы G70, G71, G72 (тип I), G73, G74, G75, G76, G90, G92, G94.<br><b>Ось C:</b> позиционирование C (абсолютно, H — инкрементально), живой инструмент типов «осевой» и «радиальный» (тип задаётся в таблице инструмента или словами ZHIVAYA, OSEVAYA, RADIALNAYA в комментарии), G12.1/G112 полярная интерполяция, G83 (торец) и G87 (бок). M14/M15/M45/M46 принимаются без действия. Вид «3D (ось C)» показывает пазы и отверстия.<br>Коррекция на радиус вершины G41/G42 не считается. Контур G71/G72 должен быть монотонным.</div></div>' +
+      '<div><h4>Мастер токарной обработки</h4><div class="note" style="margin-top:0">Режим «Токарная» → кнопка <b>«Мастер»</b> над текстом программы. Задайте заготовку, контур детали по точкам (X — диаметр, Z от чистого торца; фаска или радиус — в углу между двумя прямыми) и операции по порядку. Программа составляется сама и сразу проигрывается; оранжевый пунктир — контур по чертежу. <b>«Показать G-код»</b> открывает текст для правки и отправки на станок. Вид кода: циклами (G71/G70, G74, G75, G76) или развёрнутыми проходами. Режимы резания подставляются по материалу — проверьте их под свой инструмент. Привязку инструмента и радиус вершины (для G41/G42) задайте на стойке.</div></div>' +
       '<div><h4>Как читать результат</h4><div class="note" style="margin-top:0">Красный пунктир: быстрый ход. Сплошные: подача (цвет по инструменту). Фиолетовый: резьба. Красный крест: быстрый ход идёт через материал. Показывается траектория относительно детали: при повороте стола деталь неподвижна, а инструмент идёт по дуге. Щёлкните строку в редакторе, чтобы перейти к кадру. Пробел: пуск/пауза, ←/→: кадр назад/вперёд.</div></div>' +
       '<div><h4>Ограничения</h4><div class="note" style="margin-top:0">Это визуальная проверка траектории, а не замена проверке на станке. Не моделируются: оснастка, корпус станка и пределы осей, динамика разгонов, одновременная обработка по B и C без TCP точнее приблизительна, G65 и макровызовы. Направление +B и +C и положение оси B настраиваются на вкладке «Заготовка и нули»: сверьте их по первой своей программе. Целые числа без точки читаются как ×0.001 (мм и градусы), как на стандартной стойке Fanuc.</div></div></div>';
   }
@@ -5265,6 +5740,7 @@ N390 M30
     persist();
     syncControls();
     rebuild();
+    if (syncEdTab()) { renderWiz(); wizApply(); }
   }
   $('modeSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.dataset.mode === S.mode) return; setMode(b.dataset.mode); });
 
@@ -5413,7 +5889,164 @@ N390 M30
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { refreshTheme(); needRender = true; });
 
   /* ---------- старт ---------- */
+  /* ---------- мастер токарной обработки и раскладка окна ---------- */
+  if (!S.wiz || !Array.isArray(S.wiz.ops)) S.wiz = wizDefaults();
+  if (!S.ui) S.ui = { edW: 34, panH: 190, edHide: false, panHide: false, edTab: 'code' };
+  let wizT = 0, wizGen = null;
+  const WF = {   // поля операций: [ключ, подпись, шаг]
+    face: [['ap', 'Глубина за проход, мм', 0.1], ['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5]],
+    rough: [['ap', 'Глубина резания (на сторону), мм', 0.1], ['u', 'Припуск по X (на Ø), мм', 0.05], ['w', 'Припуск по Z, мм', 0.05], ['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5]],
+    finish: [['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5], ['nr', 'Радиус вершины, мм', 0.1]],
+    drill: [['d', 'Ø сверла, мм', 0.5], ['depth', 'Глубина (до вершины), мм', 1], ['q', 'Шаг сверления, мм', 0.5], ['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5]],
+    groove: [['tw', 'Ширина резца, мм', 0.5], ['z', 'Z правой стенки', 0.5], ['b', 'Ширина канавки, мм', 0.5], ['xs', 'Ø поверхности, мм', 1], ['xb', 'Ø дна канавки, мм', 0.5], ['q', 'Шаг врезания (на сторону), мм', 0.1], ['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5]],
+    thread: [['d', 'Ø резьбы номинальный, мм', 1], ['p', 'Шаг, мм', 0.25], ['zs', 'Z начала (разгон)', 0.5], ['ze', 'Z конца резьбы', 0.5], ['s', 'Обороты (0 — авто)', 50], ['n', 'Число проходов (0 — авто)', 1]],
+    cutoff: [['tw', 'Ширина резца, мм', 0.5], ['z', 'Z левого торца детали', 0.5], ['xe', 'Резать до Ø, мм', 0.5], ['f', 'Подача, мм/об', 0.01], ['v', 'Скорость Vc, м/мин', 5]]
+  };
+  WF.brough = WF.rough; WF.bfinish = WF.finish;
+  const wnum = (path, v, step, w) => '<input type="number" data-w="' + path + '" value="' + (v === undefined || v === null ? '' : v) + '" step="' + (step || 1) + '"' + (w ? ' style="width:' + w + 'px"' : '') + '>';
+  function wizContourTable(key, title, note) {
+    const rows = S.wiz[key] || [];
+    let h = '<div class="wz-sec"><h4>' + title + '</h4>';
+    if (!rows.length) return h + '<div class="note">' + note + '</div><button class="chip" data-wa="cadd" data-k="' + key + '">+ Добавить контур</button></div>';
+    h += '<table class="wz-t"><tr><th>№</th><th>Линия</th><th>X ⌀</th><th>Z</th><th>R дуги</th><th>В углу</th><th>Размер</th><th></th></tr>';
+    rows.forEach((r, i) => {
+      const p = key + '.' + i + '.';
+      h += '<tr><td class="wz-n">' + (i + 1) + '</td><td>' + (i ? '<select data-w="' + p + 't"><option value="L"' + (r.t === 'L' ? ' selected' : '') + '>линия</option><option value="CW"' + (r.t === 'CW' ? ' selected' : '') + '>дуга G2</option><option value="CCW"' + (r.t === 'CCW' ? ' selected' : '') + '>дуга G3</option></select>' : '<span class="note">начало</span>') + '</td>' +
+        '<td>' + wnum(p + 'x', r.x, 0.5) + '</td><td>' + wnum(p + 'z', r.z, 0.5) + '</td><td>' + (i && r.t !== 'L' ? wnum(p + 'r', r.r, 0.5) : '') + '</td>' +
+        '<td>' + (i && i < rows.length - 1 && r.t === 'L' ? '<select data-w="' + p + 'c"><option value="-"' + (r.c === '-' ? ' selected' : '') + '>—</option><option value="C"' + (r.c === 'C' ? ' selected' : '') + '>фаска</option><option value="R"' + (r.c === 'R' ? ' selected' : '') + '>радиус</option></select>' : '') + '</td>' +
+        '<td>' + (i && i < rows.length - 1 && r.t === 'L' && r.c !== '-' ? wnum(p + 'cv', r.cv, 0.5) : '') + '</td>' +
+        '<td class="wz-b"><button data-wa="cins" data-k="' + key + '" data-i="' + i + '" title="Вставить точку после этой">+</button><button data-wa="cdel" data-k="' + key + '" data-i="' + i + '" title="Удалить точку">×</button></td></tr>';
+    });
+    return h + '</table><div class="note">' + note + '</div></div>';
+  }
+  function renderWiz() {
+    const W = S.wiz, el = $('wiz');
+    const fld = (lbl, inner) => '<label class="wz-f"><span>' + lbl + '</span>' + inner + '</label>';
+    let h = '<div class="wz-sec"><h4>Деталь и заготовка</h4><div class="wz-g">' +
+      fld('Номер программы O', wnum('num', W.num, 1)) +
+      fld('Название (латиницей)', '<input type="text" data-w="name" value="' + esc(W.name || '') + '">') +
+      fld('Материал', '<select data-w="mat">' + Object.keys(WIZ_MATS).map(k => '<option value="' + k + '"' + (W.mat === k ? ' selected' : '') + '>' + WIZ_MATS[k].n + '</option>').join('') + '</select>') +
+      fld('Квалитет', '<select data-w="it">' + ['IT6', 'IT7', 'IT8', 'IT9', 'IT11', 'IT14'].map(k => '<option' + (W.it === k ? ' selected' : '') + '>' + k + '</option>').join('') + '</select>') +
+      fld('Ø заготовки, мм', wnum('dia', W.dia, 1)) +
+      fld('Длина заготовки из кулачков, мм', wnum('len', W.len, 1)) +
+      fld('Ø отверстия заготовки (0 — пруток)', wnum('bore', W.bore, 1)) +
+      fld('Припуск на торец, мм', wnum('face', W.face, 0.5)) +
+      fld('Макс. обороты G50 (до 3500)', wnum('smax', W.smax, 100)) +
+      fld('Вид G-кода', '<select data-w="style"><option value="cycles"' + (W.style !== 'expanded' ? ' selected' : '') + '>циклами G71/G70/G74/G75/G76</option><option value="expanded"' + (W.style === 'expanded' ? ' selected' : '') + '>развёрнутыми проходами G0/G1</option></select>') +
+      '</div><div class="note">Ноль детали — на чистом правом торце (Z0), ось X — диаметр.</div></div>';
+    h += wizContourTable('outer', 'Наружный контур', 'Точки идут от торца к патрону: X не убывает, Z не растёт. Фаска или радиус ставятся в точке между двумя прямыми. Конус — прямая, у которой меняются и X, и Z.');
+    h += wizContourTable('inner', 'Внутренний контур (расточка)', 'Точки идут от торца вглубь: X не растёт, Z не растёт. Начните с большего диаметра на торце.');
+    h += '<div class="wz-sec"><h4>Операции по порядку</h4>';
+    W.ops.forEach((o, i) => {
+      const d = WIZ_OPS[o.type]; if (!d) return;
+      h += '<div class="wz-op' + (o.on === false ? ' off' : '') + '"><div class="wz-oh"><label class="chk"><input type="checkbox" data-w="ops.' + i + '.on"' + (o.on !== false ? ' checked' : '') + '> <b>' + (i + 1) + '. ' + d.n + '</b></label><span class="grow"></span>' +
+        '<span class="note">T</span>' + wnum('ops.' + i + '.t', o.t, 1, 46) +
+        '<span class="wz-b"><button data-wa="oup" data-i="' + i + '" title="Выше">↑</button><button data-wa="odn" data-i="' + i + '" title="Ниже">↓</button><button data-wa="odel" data-i="' + i + '" title="Удалить операцию">×</button></span></div><div class="wz-g">';
+      if (o.type === 'thread') h += fld('Резьба', '<select data-w="ops.' + i + '.inner"><option value="0"' + (!o.inner ? ' selected' : '') + '>наружная</option><option value="1"' + (o.inner ? ' selected' : '') + '>внутренняя</option></select>');
+      for (const [k, lbl, st] of WF[o.type]) h += fld(lbl, wnum('ops.' + i + '.' + k, o[k], st));
+      if (o.type === 'finish' || o.type === 'bfinish') h += fld('Коррекция на радиус вершины', '<select data-w="ops.' + i + '.comp"><option value="1"' + (o.comp ? ' selected' : '') + '>' + (o.type === 'finish' ? 'G42' : 'G41') + ' включена</option><option value="0"' + (!o.comp ? ' selected' : '') + '>без коррекции</option></select>');
+      h += '</div></div>';
+    });
+    h += '<div class="wz-add"><select id="wizAdd"><option value="">+ Добавить операцию…</option>' + Object.keys(WIZ_OPS).map(k => '<option value="' + k + '">' + WIZ_OPS[k].n + '</option>').join('') + '</select>' +
+      '<span class="grow"></span><button class="chip" data-wa="reset" title="Вернуть пример: вал Ø60 с резьбой М20×1,5">Сбросить к примеру</button></div></div>';
+    h += '<div class="wz-sec"><div id="wizWarn"></div><button class="btn primary" data-wa="show">Показать G-код</button> <span class="note">Симуляция справа обновляется сама при каждом изменении.</span></div>';
+    el.innerHTML = h;
+    wizWarns();
+  }
+  function wizWarns() {
+    const el = $('wizWarn'); if (!el) return;
+    const w = wizGen ? wizGen.warns : [];
+    el.innerHTML = w.length ? w.map(s => '<div class="wz-w">' + esc(s) + '</div>').join('') : '<div class="wz-ok">Замечаний к параметрам нет. Проверьте сообщения симулятора внизу.</div>';
+  }
+  function wizApply() {
+    const W = S.wiz;
+    wizGen = wizGenerate(W);
+    const su = S.setup.lathe;
+    su.stockAuto = false; su.stockInfo = '';
+    Object.assign(su.stock, { dia: Math.max(1, +W.dia || 1), len: Math.max(1, +W.len || 1), zFace: Math.max(0, +W.face || 0), bore: Math.max(0, +W.bore || 0) });
+    su.tools = {};
+    if (code.value.trim() && !/SOZDANO MASTEROM/.test(code.value) && code.value !== wizGen.code) replaced = { text: code.value };
+    code.value = wizGen.code; S.code.lathe = wizGen.code; persist();
+    lathe.design = [wizPoly(wizGen.outer.length > 1 ? wizGen.outer : [{ x: 0, z: 0 }]), wizGen.inner.length > 1 ? wizPoly(wizGen.inner) : null];
+    pb.playing = false; setPlayIcon();
+    rebuild();
+    pb.w = tl.W; needRender = true;
+    wizWarns();
+  }
+  function wizSchedule(ms) { clearTimeout(wizT); wizT = setTimeout(wizApply, ms === undefined ? 300 : ms); }
+  function syncEdTab() {
+    const wizOn = S.mode === 'lathe' && S.ui.edTab === 'wiz';
+    $('edSeg').hidden = S.mode !== 'lathe';
+    document.querySelectorAll('#edSeg button').forEach(b => b.classList.toggle('on', (b.dataset.ed === 'wiz') === wizOn));
+    $('wiz').hidden = !wizOn;
+    if (!wizOn) lathe.design = null;
+    return wizOn;
+  }
+  $('edSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    S.ui.edTab = b.dataset.ed; persist();
+    if (syncEdTab()) { renderWiz(); wizApply(); } else { needRender = true; renderGutter(); }
+  });
+  $('wiz').addEventListener('input', e => {
+    const t = e.target, path = t.dataset.w; if (!path) return;
+    const k = path.split('.'), last = k[k.length - 1];
+    let o = S.wiz; for (let i = 0; i < k.length - 1; i++) o = o[k[i]]; if (!o) return;
+    let v;
+    if (t.type === 'checkbox') v = t.checked;
+    else if (t.type === 'number') { v = parseFloat(t.value); if (!Number.isFinite(v)) return; }
+    else if (last === 'inner' || last === 'comp') v = t.value === '1';
+    else v = t.value;
+    o[last] = v;
+    let re = t.tagName === 'SELECT' || t.type === 'checkbox';
+    if (path === 'mat') { const m = WIZ_MATS[v]; for (const q of S.wiz.ops) { const d = wizOpDefaults(q.type, S.wiz); if (d.v !== undefined) q.v = d.v; } }
+    persist();
+    if (re) { renderWiz(); wizSchedule(0); } else wizSchedule();
+  });
+  $('wiz').addEventListener('change', e => {
+    if (e.target.id !== 'wizAdd' || !e.target.value) return;
+    S.wiz.ops.push(wizOpDefaults(e.target.value, S.wiz)); persist(); renderWiz(); wizSchedule(0);
+  });
+  $('wiz').addEventListener('click', e => {
+    const b = e.target.closest('[data-wa]'); if (!b) return;
+    const a = b.dataset.wa, i = +b.dataset.i, W = S.wiz, k = b.dataset.k;
+    if (a === 'show') { S.ui.edTab = 'code'; persist(); syncEdTab(); renderGutter(); needRender = true; return; }
+    if (a === 'reset') { S.wiz = wizDefaults(); }
+    else if (a === 'cadd') { W[k] = k === 'inner' ? [{ x: 32, z: 0, t: 'L', c: '-', cv: 0 }, { x: 30, z: -1, t: 'L', c: '-', cv: 0 }, { x: 30, z: -25, t: 'L', c: '-', cv: 0 }] : wizDefaults().outer; }
+    else if (a === 'cins') { const r = W[k][i], n = W[k][i + 1]; W[k].splice(i + 1, 0, { x: n ? (r.x + n.x) / 2 : r.x + (k === 'inner' ? -4 : 4), z: n ? (r.z + n.z) / 2 : r.z - 5, t: 'L', c: '-', cv: 0 }); }
+    else if (a === 'cdel') { W[k].splice(i, 1); if (W[k].length < 2) W[k] = []; }
+    else if (a === 'odel') W.ops.splice(i, 1);
+    else if (a === 'oup' && i > 0) W.ops.splice(i - 1, 0, W.ops.splice(i, 1)[0]);
+    else if (a === 'odn' && i < W.ops.length - 1) W.ops.splice(i + 1, 0, W.ops.splice(i, 1)[0]);
+    else return;
+    persist(); renderWiz(); wizSchedule(0);
+  });
+  /* раскладка: ширина редактора и высота нижней панели меняются мышью, обе панели сворачиваются */
+  function applyLayout() {
+    const w = $('work'), st = $('stage');
+    w.style.setProperty('--edw', clamp(S.ui.edW, 18, 60) + '%');
+    st.style.setProperty('--panh', clamp(S.ui.panH, 90, 600) + 'px');
+    w.classList.toggle('noed', !!S.ui.edHide); st.classList.toggle('nopan', !!S.ui.panHide);
+    $('btnEdShow').hidden = !S.ui.edHide;
+    $('btnBig').classList.toggle('on', !!(S.ui.edHide && S.ui.panHide));
+    const tg = $('tabTgl'); if (tg) { tg.textContent = S.ui.panHide ? '▴' : '▾'; tg.title = S.ui.panHide ? 'Развернуть панель' : 'Свернуть панель'; }
+    needRender = true;
+  }
+  function dragSplit(el, onMove) {
+    el.addEventListener('pointerdown', e => {
+      el.setPointerCapture(e.pointerId); el.classList.add('drag');
+      const mv = ev => { onMove(ev); applyLayout(); };
+      const up = () => { el.removeEventListener('pointermove', mv); el.removeEventListener('pointerup', up); el.classList.remove('drag'); persist(); };
+      el.addEventListener('pointermove', mv); el.addEventListener('pointerup', up);
+    });
+  }
+  dragSplit($('vsplit'), ev => { const r = $('work').getBoundingClientRect(); S.ui.edW = (ev.clientX - r.left) / r.width * 100; });
+  dragSplit($('hsplit'), ev => { const r = $('stage').getBoundingClientRect(); S.ui.panH = r.bottom - ev.clientY - 4; S.ui.panHide = false; });
+  $('btnEdHide').onclick = () => { S.ui.edHide = true; persist(); applyLayout(); };
+  $('btnEdShow').onclick = () => { S.ui.edHide = false; persist(); applyLayout(); };
+  $('btnBig').onclick = () => { const big = !(S.ui.edHide && S.ui.panHide); S.ui.edHide = big; S.ui.panHide = big; persist(); applyLayout(); };
+
   applyTheme();
+  applyLayout();
   setMode(S.mode, true);
   onCaret();
   requestAnimationFrame(frame);
