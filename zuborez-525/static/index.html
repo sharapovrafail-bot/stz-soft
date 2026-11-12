@@ -56,6 +56,11 @@ td.v.big{font-size:17px;white-space:normal}
 .gp{display:inline-flex;gap:10px;align-items:flex-end;border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:6px 8px 6px 0;background:#fafcfb;flex-wrap:wrap}
 .gp .gt{font-weight:700;color:var(--acc);align-self:center;margin-right:4px}
 .gc{text-align:center}.gz{display:flex;align-items:center;justify-content:center;border-radius:50%;border:3px dashed #5d6a62;background:#e9efe9;font:800 20px Consolas,monospace}.gl{font-weight:700;color:var(--mut)}.gz.gzi{border-color:#b8860b;background:#fff6d8}
+.gsch{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:6px;margin:8px 0;max-width:620px;color:#111}.gsch svg{width:100%;height:auto;display:block}.gsch .gcap{font-size:13px;color:#555;padding:2px 6px}.gsch.sm{max-width:300px;margin:0;border:0;padding:0}
+.gfit{border:1px solid #9ab7a6;border-left:5px solid #2e7d4f;border-radius:8px;background:#f2f8f4;padding:8px 12px;margin:8px 0;color:#111}.gfit .mut{color:#555}
+.gswap{border:1px solid var(--bd);border-radius:8px;padding:6px 12px;margin:8px 0;background:#fafcfb;color:#111}.gswap summary{font-weight:700;cursor:pointer;color:#1f4a33}.gswap .mut{color:#555}
+.gsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin:8px 0}.gscard{border:1px solid #cfdcd3;border-radius:8px;padding:6px;background:#fff}.gscard .gsl{font-size:14px;margin:4px 2px 6px}
+.a4s{display:flex;gap:10px}.a4s>div{flex:1}.a4s .gsch{max-width:none;margin:2px 0;padding:2px}.a4s .gsch svg{max-height:125px}.a4s{margin:4px 0}.a4s b{font-size:12px}
 .idl{border:1px solid #d9b84a;border-left:5px solid #b8860b;border-radius:8px;background:#fffbea;padding:8px 12px;margin:8px 0;color:#111}.idl input{width:70px;font:700 18px Consolas,monospace;padding:4px 6px;margin:0 6px}.idl .row{margin-top:6px;align-items:center}
 .spotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:10px 0}
 .spc{border:2px solid var(--bd);border-radius:10px;padding:6px;text-align:center;cursor:pointer;background:#fff;font-size:14px}.spc.on{border-color:var(--acc);background:var(--ok)}.spc:hover{border-color:var(--acc)}
@@ -108,12 +113,12 @@ td.v.big{font-size:17px;white-space:normal}
 </style></head><body>
 <div id="licOv" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,30,20,.92);align-items:center;justify-content:center;padding:16px"><div style="background:#fff;color:#111;max-width:520px;width:100%;border-radius:12px;padding:24px"><h2 id="licT" style="margin-top:0">Пробный период закончился</h2><p id="licM"></p><p>Код этого компьютера:<br><b id="licId" style="font-size:22px;letter-spacing:1px;user-select:all"></b></p><p>Сообщите этот код разработчику, он пришлёт ключ. Ключ общий для всех программ ООО «СпецТехЗаказ».</p><input id="licK" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%;font-size:18px;text-transform:uppercase"><div id="licE" style="color:#c0392b;min-height:20px"></div><button class="b" id="licGo">Активировать</button></div></div>
 <header><span id="bdg">525</span><h1>Наладка зуборезного полуавтомата для конических и гипоидных колёс с круговым зубом</h1><span id="licBadge" style="font-size:12px;opacity:.8"></span><span class="sp"></span>
-<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.8.2</span><button onclick="quit()">Закрыть</button></header>
+<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.8.3</span><button onclick="quit()">Закрыть</button></header>
 <div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
 <main>
 <section class="tab" id="t-calc">
- <div class="warn noprint"><b>Версия 0.8.2.</b> Новое: паразитное колесо показано на схеме гитары и подписано на фото; программа запоминает, какая паразитка встала, и дальше подсказывает сама. В 0.8.1: вкладка «Выставление резцов» — памятка с иллюстрациями по головке (развод, выверка индикатором, центр станка, пробная впадина) с печатью. Ранее: вкладка «С чего начать» и развёрнутые пояснения к каждому шагу (зачем, как проверить, частые ошибки, схема «где это на станке»). Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
+ <div class="warn noprint"><b>Версия 0.8.3.</b> Новое: у гитар деления, обкатки и подачи — схема «вид спереди + ряды колёс» рядом с фото; «Замена колёс» — другие наборы с тем же передаточным (с большей суммой зубьев, если колёса не достают) и кнопка «Поставить этот вариант»; кнопки «Встало / Не достало» — программа запоминает, какая сумма зубьев достаёт, и дальше сама берёт подходящие колёса. В 0.8.2: паразитное колесо показано на схеме гитары и подписано на фото; программа запоминает, какая паразитка встала, и дальше подсказывает сама. В 0.8.1: вкладка «Выставление резцов» — памятка с иллюстрациями по головке (развод, выверка индикатором, центр станка, пробная впадина) с печатью. Ранее: вкладка «С чего начать» и развёрнутые пояснения к каждому шагу (зачем, как проверить, частые ошибки, схема «где это на станке»). Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
  <div class="row noprint"><button class="b s" onclick="loadExample(1)">Пример инструкции ЭНИМС: пара 13 / 39</button><button class="b s" onclick="loadExample(2)">Пример карты станка: пара 8 / 41</button><button class="b s" onclick="loadExample(3)">Гипоидная пара (пример СЗТЗС 10 / 41, E 38,1)</button><button class="b s" onclick="loadExample(4)">Пара 23-340 8 / 48 (ГОСТ 19326, МНЛЗ-2)</button><span class="mut">Данные чертежа имеют приоритет: высоты и толщину зуба вводите с чертежа, если они там есть.</span></div>
  <fieldset><legend>Пара (по чертежу)</legend><div class="g">
   <label>Тип пары<select id="ptype"><option value="bev">Коническая с круговым зубом (оси пересекаются)</option><option value="g19">Коническая по ГОСТ 19326 с чертежа (xn, xτ, форма зуба; двусторонний развод)</option><option value="hyp">Гипоидная (оси скрещиваются, смещение E)</option></select></label>
@@ -1355,7 +1360,7 @@ const DEF_SET={
  gears:M.set15.join(" "),
  maxZ:{del:100,obk:100}, clr:15,
  gitPhoto:{del:"p13",obk:"p09"},
- idl:{del:[],obk:[]},
+ idl:{del:[],obk:[]}, fit:{del:[],obk:[]}, gsel:{},
  marks:DEF_MARKS, spotSign:{}
 };
 let SET=JSON.parse(JSON.stringify(DEF_SET));
@@ -1364,7 +1369,7 @@ async function loadSet(){try{const r=await api("/api/settings");if(r.ok){const j
  try{if(!location.protocol.startsWith("http")){const j=JSON.parse(localStorage.getItem("z525set")||"null");if(j)mergeSet(j)}}catch(e){}}
 function mergeSet(j){if(!j||typeof j!=="object")return;const d=JSON.parse(JSON.stringify(DEF_SET));
  SET=Object.assign(d,j);SET.scales=Object.assign(d.scales,j.scales||{});SET.md=Object.assign(d.md,j.md||{});SET.stol=Object.assign(d.stol,j.stol||{});
- SET.maxZ=Object.assign(d.maxZ,j.maxZ||{});SET.heads=Object.assign(d.heads,j.heads||{});SET.gitPhoto=Object.assign(d.gitPhoto,j.gitPhoto||{});SET.marks=Object.assign(JSON.parse(JSON.stringify(DEF_MARKS)),j.marks||{});SET.spotSign=j.spotSign||{};SET.idl={del:((j.idl||{}).del||[]).slice(),obk:((j.idl||{}).obk||[]).slice()}}
+ SET.maxZ=Object.assign(d.maxZ,j.maxZ||{});SET.heads=Object.assign(d.heads,j.heads||{});SET.gitPhoto=Object.assign(d.gitPhoto,j.gitPhoto||{});SET.marks=Object.assign(JSON.parse(JSON.stringify(DEF_MARKS)),j.marks||{});SET.spotSign=j.spotSign||{};SET.idl={del:((j.idl||{}).del||[]).slice(),obk:((j.idl||{}).obk||[]).slice()};SET.fit={del:((j.fit||{}).del||[]).slice(),obk:((j.fit||{}).obk||[]).slice()};SET.gsel=Object.assign({},j.gsel||{})}
 async function saveSet(msg){try{const r=await api("/api/settings",{method:"POST",body:JSON.stringify(SET)});if(!r.ok)throw 0;if(msg)alertMsg("Настройки станка сохранены")}catch(e){try{localStorage.setItem("z525set",JSON.stringify(SET))}catch(_){};if(msg)alertMsg("Сохранено в этом окне (файл настроек — в установленной программе)")}}
 
 /* ---------- одновременный подбор колёс прохода: деление + обкатка + подача из одного набора ---------- */
@@ -1384,9 +1389,16 @@ function pickPass1(c,GS,err,useAlt){const out={},MZ=SET.maxZ||{};
   if(!cntF&&!useAlt&&fr0[5]){const g2=fr0[5],c2=take(cnt0,g2);if(c2){fr=[fr0[0],...g2,null];feedG=g2;cntF=c2;warn.push(`подача: колёс варианта 1 (${fdTxt(fr0)}) нет в наборе — взят вариант 2 с таблички`)}}
   if(!cntF){warn.push(`колёс подачи ${feedG.join("/")} нет в вашем наборе`);cntF=cnt0}
   const D=c.G[dk];let res=null;
-  const dvars=pickGears(D.t,GS,{exact:true,top:12,maxZ:MZ.del||999,cnt:cntF});
+  const OT=c.G[ok].t,selD=gselGet("del",D.t),selO=gselGet("obk",OT),kD=kBounds("del").n,kO=kBounds("obk").n;
+  let dvars=pickGears(D.t,GS,{exact:true,top:12,maxZ:MZ.del||999,cnt:cntF});
+  // 0.8.3: выбор наладчика и записи «встало / не достало» — без них подбор как раньше
+  if(selD||kD)dvars=orderVars(dvars.concat(altGears(D.t,GS,{exact:true,maxZ:MZ.del||999,cnt:cntF})),"del",D.t,cntF,selD);
   for(const dv of dvars){const used=dv.two?[dv.a,dv.d]:[dv.a,dv.b,dv.c,dv.d];const cr=take(cntF,used);if(!cr)continue;
-   const ov=pickGears(c.G[ok].t,GS,{exact:false,top:1,maxZ:MZ.obk||999,cnt:cr})[0];if(ov){res={d:dv,o:ov};break}}
+   let ov;
+   if(selO||kO){let pool=pickGears(OT,GS,{exact:false,top:12,maxZ:MZ.obk||999,cnt:cr}).concat(altGears(OT,GS,{maxZ:MZ.obk||999,cnt:cr,tol:2e-5}));
+    const e0=Math.min(...pool.map(x=>x.e),1);pool=pool.filter(x=>x.e<=Math.max(2e-5,e0*3));ov=orderVars(pool,"obk",OT,cr,selO)[0]}
+   else ov=pickGears(OT,GS,{exact:false,top:1,maxZ:MZ.obk||999,cnt:cr})[0];
+   if(ov){res={d:dv,o:ov};break}}
   if(!res){res={d:dvars[0]||null,o:c.G[ok].v[0]||null};
    if(!dvars.length)err.push(`${nm}: точного набора деления i = ${f(D.t,5)} из вашего набора нет (с учётом колёс подачи и наибольшего колеса ${MZ.del}) — измените z<sub>i</sub>.`);
    else warn.push("деление и обкатка одновременно из набора не собираются — не хватает одинаковых колёс, проверьте");}
@@ -1402,6 +1414,120 @@ function fitCheck(v,maxZ){if(!v)return{ok:false,txt:"нет набора"};const
   if(s2<clr){ok=false;L.push(`колесо b (${v.b}) заденет вал колеса d: c+d−b = ${s2} < ${clr}`)}else L.push(`b не задевает вал d: c+d−b = ${s2} ≥ ${clr}`)}
  else L.push("два колеса, a и d, через паразитку на пальце");
  return{ok,txt:L.join("; ")}}
+
+/* ---------- достанут ли колёса от вала 1 до вала 2 (0.8.3) ----------
+   Валы 1 и 2 гитары неподвижны, палец переставляется. Набор a/b · c/d достаёт, если (a+b)+(c+d) ≥ K,
+   два колеса через паразитку p — если a+d+2p ≥ K (K = 2·L/m, L — расстояние между валами).
+   K в руководстве нет — программа учится на записях наладчика «встало / не достало»
+   (и по наборам из четырёх колёс, и по паразиткам — гитара та же). */
+function gUsed(v){return v?(v.two?[v.a,v.d]:[v.a,v.b,v.c,v.d]):[]}
+function gKey(v){return v?(v.two?v.a+"/"+v.d:v.a+"/"+v.b+"·"+v.c+"/"+v.d):""}
+function gSum(v){return v&&!v.two?v.a+v.b+v.c+v.d:null}
+function kBounds(kind){let hi=Infinity,lo=-Infinity,n=0;
+ ((SET.idl||{})[kind]||[]).forEach(x=>{const k=x.a+x.d+2*x.p;n++;if(x.ok)hi=Math.min(hi,k);else lo=Math.max(lo,k)});
+ ((SET.fit||{})[kind]||[]).forEach(x=>{const k=x.a+x.b+x.c+x.d;n++;if(x.ok)hi=Math.min(hi,k);else lo=Math.max(lo,k)});
+ return{hi,lo,n}}
+/* 1 — по записям достаёт, 0 — не проверено, −1 — по записям не достаёт (два колеса через паразитку — всегда 1) */
+function reachOf(v,kind){if(!v||v.two)return 1;const s=gSum(v),b=kBounds(kind);if(s<=b.lo)return -1;if(s>=b.hi)return 1;return 0}
+function reachTxt(v,kind){if(!v)return"";if(v.two)return"достанет (паразитку подберёте)";const r=reachOf(v,kind),b=kBounds(kind),s=gSum(v);
+ return r>0?`достанет (по записям хватает суммы ${b.hi})`:r<0?`<b>не достанет</b> (по записям сумма ${b.lo} и меньше не достаёт)`:`не проверено${isFinite(b.lo)?` (надо больше ${b.lo})`:""}`}
+/* все наборы с нужным передаточным (без ограничения «лучшие 6») */
+function altGears(t,set,{exact=false,maxZ=999,cnt=null,tol=2e-5}={}){
+ const clr=(typeof SET!=="undefined"&&SET.clr>=0)?SET.clr:15;cnt=cnt||setCount(set);
+ const S=[...new Set(set)].filter(x=>x<=maxZ&&(cnt[x]||0)>0).sort((a,b)=>a-b),has=new Set(S),res=[],lim=exact?1e-12:tol;
+ for(const a of S)for(const d of S){if(a===d&&cnt[a]<2)continue;const r=a/d,e=Math.abs(r-t)/t;if(e<=lim)res.push({two:true,a,d,r,e})}
+ for(const a of S)for(const b of S)for(const c of S){const dd=a*c/(t*b);
+  for(const d of [Math.floor(dd),Math.ceil(dd)]){if(!has.has(d))continue;
+   if(!fits([a,b,c,d],cnt))continue;if(!(a+b>=c+clr&&c+d>=b+clr))continue;const r=a*c/(b*d),e=Math.abs(r-t)/t;if(e>lim)continue;res.push({a,b,c,d,r,e})}}
+ const seen=new Set();return res.filter(v=>{const k=gKey(v);if(seen.has(k))return false;seen.add(k);return true}).sort((p,q)=>p.e-q.e)}
+/* выбор наладчика «поставить этот вариант» — по виду гитары и передаточному */
+function gselKey(kind,t){return kind+"|"+(+t).toFixed(8)}
+function gselGet(kind,t){const s=(SET.gsel||{})[gselKey(kind,t)];return s?parseGears(s):null}
+function withRE(v,t){if(!v)return v;const r=v.two?v.a/v.d:v.a*v.c/(v.b*v.d);return{...v,r,e:Math.abs(r-t)/t}}
+/* порядок вариантов: выбор наладчика → по записям достаёт → не проверено → не достаёт; внутри — по точности */
+function orderVars(list,kind,t,cnt,sel){const out=[],seen=new Set(),add=v=>{const k=gKey(v);if(!v||seen.has(k))return;seen.add(k);out.push(v)};
+ if(sel&&fits(gUsed(sel),cnt))add(withRE(sel,t));
+ const rk=v=>{const r=reachOf(v,kind);return r>0?0:r===0?1:2};
+ list.slice().sort((p,q)=>rk(p)-rk(q)||p.e-q.e).forEach(add);
+ if(sel&&out[0]&&gKey(out[0])===gKey(sel))out[0].sel=1;
+ return out}
+function gselSet(kind,t,s){SET.gsel=SET.gsel||{};if(s)SET.gsel[gselKey(kind,t)]=s;else delete SET.gsel[gselKey(kind,t)];saveSet();gRefresh();
+ alertMsg(s?`Поставлен набор ${s.replace("·"," · ")} — все шаги и карты пересчитаны`:"Вернул подбор программы")}
+function gfitSave(kind,s,ok){const v=parseGears(s);if(!v||v.two)return;SET.fit=SET.fit||{del:[],obk:[]};
+ const R=SET.fit[kind]=(SET.fit[kind]||[]).filter(x=>!(x.a===v.a&&x.b===v.b&&x.c===v.c&&x.d===v.d));R.push({a:v.a,b:v.b,c:v.c,d:v.d,ok:ok?1:0});
+ saveSet();gRefresh();alertMsg(ok?`Запомнил: ${gKey(v)} встаёт (сумма ${gSum(v)})`:`Запомнил: ${gKey(v)} не достаёт — сумма ${gSum(v)} мала, программа возьмёт колёса крупнее`)}
+function gfitClear(kind){if(SET.fit)SET.fit[kind]=[];saveSet();gRefresh()}
+function gRefresh(){const keep=typeof GPASS!=="undefined"?GPASS:null,y=window.scrollY;calc();if(keep&&typeof GPASS!=="undefined"){GPASS=keep;try{buildGuide()}catch(e){}}
+ try{if($("mm").style.display==="flex")mmRender()}catch(e){}try{buildA4&&buildA4()}catch(e){}try{window.scrollTo(0,y)}catch(e){}}
+
+/* ---------- схема гитары: вид спереди (как на станке) и ряды колёс ----------
+   v — набор, opt: {p: паразитка, lab: подписи колёс, s1/s2: названия валов, small: без рядов} */
+function gearScheme(v,opt){if(!v)return"";opt=opt||{};
+ const lab=opt.lab||v.lab||(v.two?["a","d"]:["a","b","c","d"]),s1=opt.s1||"вал 1",s2=opt.s2||"вал 2";
+ const two=!!v.two,p=two?(opt.p||0):0,pz=p||Math.max(30,Math.round((v.a+v.d)/2));
+ const ra=v.a/2,rb=two?pz/2:v.b/2,rc=two?0:v.c/2,rd=v.d/2,rf=Math.max(rb,rc);
+ const ang=70*Math.PI/180,A={x:(ra+rb)*Math.cos(ang),y:-(ra+rb)*Math.sin(ang)},F={x:0,y:0},D={x:(two?rb:rc)+rd,y:0};
+ const x0=Math.min(A.x-ra,-rf,D.x-rd),x1=Math.max(A.x+ra,rf,D.x+rd),y0=Math.min(A.y-ra,-rf,-rd),y1=Math.max(rf,rd,A.y+ra);
+ const s=Math.min(300/(x1-x0),300/(y1-y0),2.6),ox=170+(300-(x1-x0)*s)/2-x0*s,oy=46+(300-(y1-y0)*s)/2-y0*s;
+ const X=q=>ox+q.x*s,Y=q=>oy+q.y*s,R=r=>Math.max(14,r*s);
+ const FR={f:"#EEEDFE",s:"#534AB7",t:"#3C3489"},BK={f:"#E1F5EE",s:"#0F6E56",t:"#085041"},PZ={f:"#FAEEDA",s:"#854F0B",t:"#633806"};
+ const circ=(q,r,c,txt,dash)=>dash?`<circle cx="${X(q).toFixed(1)}" cy="${Y(q).toFixed(1)}" r="${R(r).toFixed(1)}" fill="none" stroke="${c.s}" stroke-width="2.5" stroke-dasharray="8 6"/>`
+  :`<circle cx="${X(q).toFixed(1)}" cy="${Y(q).toFixed(1)}" r="${R(r).toFixed(1)}" fill="${c.f}" stroke="${c.s}" stroke-width="1.5"/>`+(txt?`<text x="${X(q).toFixed(1)}" y="${(Y(q)+7).toFixed(1)}" text-anchor="middle" font-size="20" font-weight="700" fill="${c.t}">${txt}</text>`:"");
+ const T=(x,y,t,o)=>`<text x="${x}" y="${y}" font-size="${o&&o.sm?15:18}" ${o&&o.b?'font-weight="700"':""} fill="${o&&o.c||"#222"}" ${o&&o.end?'text-anchor="end"':""}>${t}</text>`;
+ const ld=(x1,y1,x2,y2)=>`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#888" stroke-width="1" stroke-dasharray="4 3"/>`;
+ let g="";
+ // задний ряд — первым (его закрывает передний)
+ if(two){g+=circ(D,rd,FR,`${lab[1]} ${v.d}`)+circ(A,ra,FR,`${lab[0]} ${v.a}`)+circ(F,rb,PZ,p?`${p}`:"?")}
+ else{const dx=X(D)+R(rd)*0.45;g+=`<circle cx="${X(D).toFixed(1)}" cy="${Y(D).toFixed(1)}" r="${R(rd).toFixed(1)}" fill="${BK.f}" stroke="${BK.s}" stroke-width="1.5"/><text x="${dx.toFixed(1)}" y="${(Y(D)+7).toFixed(1)}" text-anchor="middle" font-size="20" font-weight="700" fill="${BK.t}">${lab[3]} ${v.d}</text>`;
+  g+=circ(A,ra,FR,`${lab[0]} ${v.a}`)+circ(F,rb,FR,`${lab[1]} ${v.b}`)+circ(F,rc,BK,"",true)}
+ if(opt.small){if(!two)g+=`<text x="${X(F).toFixed(1)}" y="${(Y(F)+R(rc)+22).toFixed(1)}" text-anchor="middle" font-size="20" font-weight="700" fill="${BK.t}">${lab[2]} ${v.c} — сзади</text>`;
+  return `<div class="gsch sm"><svg viewBox="150 30 340 ${two?330:350}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial">${g}</svg></div>`}
+ // подписи: справа — валы 1 и 2, слева — палец
+ const ay=Math.min(Y(A)-R(ra)*0.5,Y(D)-48),ax=X(A)+R(ra)*0.7;
+ g+=ld(ax,Y(A)-R(ra)*0.7,512,ay)+T(518,ay-4,`${lab[0]} ${v.a} · ${s1}`,{b:1})+T(518,ay+16,two?"":"спереди",{sm:1,c:"#555"});
+ g+=ld(X(D)+R(rd),Y(D),512,Y(D))+T(518,Y(D)-4,`${lab[two?1:3]} ${v.d} · ${s2}`,{b:1})+T(518,Y(D)+16,two?"":"сзади",{sm:1,c:"#555"});
+ if(two){g+=ld(150,Y(F)+40,X(F)-R(rb)*0.7,Y(F)+R(rb)*0.7)+T(150,Y(F)+36,`паразит ${p||"?"}`,{b:1,end:1})+T(150,Y(F)+56,"на пальце, между a и d",{sm:1,c:"#555",end:1})}
+ else{g+=ld(150,Y(F)-30,X(F)-R(rb)*0.94,Y(F)-R(rb)*0.34)+T(150,Y(F)-34,`${lab[1]} ${v.b} · палец`,{b:1,end:1})+T(150,Y(F)-14,"спереди",{sm:1,c:"#555",end:1});
+  const cy=Math.max(Y(F)+R(rc)*0.707,Y(F)+40);g+=ld(150,cy+4,X(F)-R(rc)*0.707,Y(F)+R(rc)*0.707)+T(150,cy,`${lab[2]} ${v.c} · палец`,{b:1,end:1})+T(150,cy+20,"сзади, за "+lab[1],{sm:1,c:"#555",end:1})}
+ let H=360;
+ if(!opt.small){const y=372;H=y+(two?150:220);
+  const box=(x,yy,c,t)=>c?`<rect x="${x}" y="${yy}" width="120" height="50" rx="6" fill="${c.f}" stroke="${c.s}" stroke-width="1.5"/><text x="${x+60}" y="${yy+32}" text-anchor="middle" font-size="20" font-weight="700" fill="${c.t}">${t}</text>`
+   :`<rect x="${x}" y="${yy}" width="120" height="50" rx="6" fill="none" stroke="#bbb" stroke-dasharray="5 4"/>`;
+  g+=`<line x1="20" y1="${y}" x2="660" y2="${y}" stroke="#ccc"/>`+T(160,y+26,s1,{sm:1,c:"#555"})+T(310,y+26,"палец",{sm:1,c:"#555"})+T(452,y+26,s2,{sm:1,c:"#555"});
+  if(two){const r=y+40;g+=T(20,r+31,"один ряд",{sm:1,c:"#555"})+box(140,r,FR,`${lab[0]} ${v.a}`)+box(290,r,PZ,`паразит ${p||"?"}`)+box(440,r,FR,`${lab[1]} ${v.d}`)
+    +`<line x1="260" y1="${r+25}" x2="290" y2="${r+25}" stroke="${PZ.s}" stroke-width="4"/><line x1="410" y1="${r+25}" x2="440" y2="${r+25}" stroke="${PZ.s}" stroke-width="4"/>`
+    +T(340,r+90,`${lab[0]} ↔ паразит ↔ ${lab[1]}. ${lab[0]} и ${lab[1]} между собой не касаются.`,{c:"#222"}).replace("<text ",'<text text-anchor="middle" ')}
+  else{const r1=y+40,r2=y+110;g+=T(20,r1+31,"сзади",{sm:1,c:"#555"})+T(20,r2+31,"спереди",{sm:1,c:"#555"})
+    +box(140,r1)+box(290,r1,BK,`${lab[2]} ${v.c}`)+box(440,r1,BK,`${lab[3]} ${v.d}`)+box(140,r2,FR,`${lab[0]} ${v.a}`)+box(290,r2,FR,`${lab[1]} ${v.b}`)+box(440,r2)
+    +`<line x1="410" y1="${r1+25}" x2="440" y2="${r1+25}" stroke="${BK.s}" stroke-width="4"/><line x1="260" y1="${r2+25}" x2="290" y2="${r2+25}" stroke="${FR.s}" stroke-width="4"/><line x1="350" y1="${r1+50}" x2="350" y2="${r2}" stroke="#777" stroke-width="7"/>`
+    +T(340,r2+90,`Спереди ${lab[0]} ↔ ${lab[1]}, сзади ${lab[2]} ↔ ${lab[3]}; ${lab[1]} и ${lab[2]} на одной втулке пальца.`,{c:"#222"}).replace("<text ",'<text text-anchor="middle" ')}}
+ return `<div class="gsch${opt.small?" sm":""}"><svg viewBox="0 0 680 ${H}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial">${g}</svg>${opt.cap?`<div class="gcap">${opt.cap}</div>`:""}</div>`}
+
+/* ---------- блок «Встало / не достало» и «Замена колёс» в шаге гитары ---------- */
+function gearSwapHTML(gv,kind,t,v,pid){if(!gv||!isFinite(t))return"";
+ const nm=kind==="del"?"деления":"обкатки",exact=kind==="del",MZ=SET.maxZ||{},maxZ=(kind==="del"?MZ.del:MZ.obk)||999;
+ // свободные колёса: весь набор минус другие гитары этого прохода
+ const cnt=setCount(gearSet());const take=z=>{if(cnt[z])cnt[z]--};
+ [kind==="del"?v.ov:v.dv].forEach(g=>gUsed(g).forEach(take));(Array.isArray(v.feedR)?v.feedR.slice(1,5):[]).forEach(z=>take(+z));
+ const sel=gselGet(kind,t),cur=gKey(gv);
+ let h="";
+ if(!gv.two){const b=kBounds(kind);
+  h+=`<div class="gfit"><b>Достанут ли колёса ${gKey(gv).replace("·"," · ")}:</b> сумма зубьев ${gSum(gv)} — ${reachTxt(gv,kind)}.
+  <div class="mut">a и b сходятся спереди, c и d сзади, только если сумма всех четырёх колёс не меньше расстояния между валами 1 и 2. Не достают a↔b или c↔d — нужен набор с большей суммой (ниже). Перестановка этих же колёс не поможет: сумма та же.</div>
+  <div class="row noprint"><button class="b" onclick="gfitSave('${kind}','${cur}',1)">Встало — запомнить</button><button class="b s" onclick="gfitSave('${kind}','${cur}',0)">Не достало</button>${b.n?`<span class="mut">записей по гитаре ${nm}: ${b.n}${((SET.fit||{})[kind]||[]).length?` · <a href="#" onclick="gfitClear('${kind}');return false">очистить наборы</a>`:""}</span>`:""}</div></div>`}
+ // варианты замены
+ const all=altGears(t,gearSet(),{exact,maxZ,cnt,tol:exact?0:Math.max(2e-5,(gv.e||0)*1.5)}).filter(x=>gKey(x)!==cur&&reachOf(x,kind)>=0);
+ const pick=[],sums=new Set();
+ const rk=x=>{const r=reachOf(x,kind);return r>0?0:1};
+ all.slice().sort((p,q)=>rk(p)-rk(q)||p.e-q.e).forEach(x=>{const s=x.two?"two":gSum(x);if(sums.has(s)||pick.length>=6)return;sums.add(s);pick.push(x)});
+ // от меньшей суммы к большей: сначала то, что ближе к нынешнему набору
+ pick.sort((p,q)=>(p.two?0:gSum(p))-(q.two?0:gSum(q)));
+ if(pick.length){h+=`<details class="gswap"${(reachOf(gv,kind)<0||sel)?" open":""}><summary>Замена колёс ${nm} — то же передаточное, другие колёса (${pick.length})</summary>
+  <p class="mut">Из вашего набора, без колёс, занятых в этом проходе другими гитарами. Сумма зубьев больше — палец дальше, колёса легче достают от вала 1 до вала 2. ${exact?"Деление — только точные наборы.":"Обкатка — погрешность как у подбора программы или меньше."}</p><div class="gsgrid">`;
+  pick.forEach(x=>{const k=gKey(x);h+=`<div class="gscard">${gearScheme(x,{small:1,p:x.two?idlPick(x,kind,v).best:0})}<div class="gsl"><b>${k.replace("·"," · ")}</b>${x.two?" через паразитку":` · сумма ${gSum(x)}${gSum(gv)?` (${gSum(x)-gSum(gv)>=0?"+":""}${gSum(x)-gSum(gv)})`:""}`}<br>${x.e<1e-12?"точно":"погрешность "+f(x.e*100,4)+" %"} · ${reachTxt(x,kind)}</div><button class="b noprint" onclick="gselSet('${kind}',${t},'${k}')">Поставить этот вариант</button></div>`});
+  h+=`</div>${sel?`<div class="row noprint"><span class="mut">Сейчас стоит ваш выбор ${gKey(sel).replace("·"," · ")}.</span><button class="b s" onclick="gselSet('${kind}',${t},null)">Вернуть подбор программы</button></div>`:""}</details>`}
+ else if(sel)h+=`<div class="row noprint"><span class="mut">Стоит ваш выбор ${gKey(sel)}.</span><button class="b s" onclick="gselSet('${kind}',${t},null)">Вернуть подбор программы</button></div>`;
+ return h}
 
 /* ---------- отсчёт по шкале станка: «шкала 74°, нониус 58′» ---------- */
 function scaleRead(a,key){const s=SET.scales[key];if(!isFinite(a)||!s)return{html:"—",txt:"—",min:NaN};
@@ -1468,7 +1594,7 @@ function photoHTML(pid,ctx,big){const marks=(SET.marks[pid]||[]);ctx=ctx||{};
    Размеров гитары в руководстве нет, поэтому программа учится на записях наладчика:
    «встала» даёт верхнюю границу K ≤ a+d+2p, «не достала» — нижнюю K > a+d+2p,
    где K = 2·L/m (L — расстояние между валами). Достаёт любая p ≥ (K − a − d)/2. */
-function idlBounds(kind){const R=(SET.idl&&SET.idl[kind])||[];let hi=Infinity,lo=-Infinity;R.forEach(x=>{const k=x.a+x.d+2*x.p;if(x.ok)hi=Math.min(hi,k);else lo=Math.max(lo,k)});return{hi,lo,R}}
+function idlBounds(kind){const R=(SET.idl&&SET.idl[kind])||[],b=kBounds(kind);return{hi:b.hi,lo:b.lo,R}}
 function idlFree(v){const cnt=setCount(gearSet()),take=z=>{if(cnt[z])cnt[z]--};
  [v.dv,v.ov].forEach(g=>{if(g)(g.two?[g.a,g.d]:[g.a,g.b,g.c,g.d]).forEach(take)});
  (Array.isArray(v.feedR)?v.feedR.slice(1,5):[]).forEach(z=>take(+z));
@@ -1523,14 +1649,14 @@ function passSteps(c,pid){const v=passVals(c,pid),wh=pid.endsWith("2"),S=[];
  S.push({t:"Люлька (угловая установка)",photo:"p03",more:["p22"],ctx:{lul:v.lul},rows:[["Угол люльки",v.lul+mark("lul")],["Как читать",q.html]],
   text:`${was("lul","lul")}<ol><li>Включите станок и остановите, когда риска на диске 1 (рис. 10) <b>«${plg?"КОНЕЦ ВРЕЗАНИЯ":"ЦЕНТР ОБКАТКИ"}»</b> встанет против указателя 2.</li><li>Расцепите гитару обкатки, снимите ведущую шестерню гитары модификации (под крышкой 6) и наденьте на её валик трубчатый ключ-рукоятку.</li><li>Вращайте ключ, пока нониус 8 не покажет ${q.html}.</li><li>Поставьте шестерню модификации на место, сцепите гитару обкатки и проверьте угол по нониусу ещё раз.</li></ol>${c.modOn?"<p class=\"mut\">При модификации обкатки угол люльки ставят при включённом модификаторе (§21).</p>":""}`,check:"Люлька выставлена и зажата"});
  S.push({t:"Гитара деления",photo:SET.gitPhoto.del,ctx:gctx(v.dv,"del"),rows:[["Колёса",v.del+mark("del")],["zi",String(v.zi)],["Передаточное",`${(v.dv?f(v.dv.r,6):"—")} = 2·${v.zi}/${v.z}${pid==="R2"&&c.plunge?" ·5 (врезание)":""}`]],
-  text:`${gearPic(v.dv,"Деление",v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:undefined)}<p>Деление — только точный набор. Колёса ставьте как на фото: a — на вал 1, ${v.dv&&v.dv.two?"паразитка — на палец":"b и c — на палец (b спереди)"}, d — на вал 2.</p>${idlHTML(v.dv,"del",v)}${gitFit(v.dv,SET.maxZ.del)}`,check:"Колёса деления стоят, гайки затянуты, зазор в зацеплении есть"});
+  text:`${gearPic(v.dv,"Деление",v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:undefined)}${gearScheme(v.dv,{p:v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:0,cap:"Схема: слева — как колёса видны спереди при открытой крышке, внизу — какое колесо в каком ряду"})}<p>Деление — только точный набор. Колёса ставьте как на фото и на схеме: a — на вал 1, ${v.dv&&v.dv.two?"паразитка — на палец (она цепляется и за a, и за d)":"на палец b спереди (в зацеплении с a) и c сзади (в зацеплении с d)"}, d — на вал 2.</p>${idlHTML(v.dv,"del",v)}${gitFit(v.dv,SET.maxZ.del)}${gearSwapHTML(v.dv,"del",c.PG[pid].dt,v,pid)}`,check:"Колёса деления стоят, гайки затянуты, зазор в зацеплении есть"});
  S.push({t:"Гитара обкатки",photo:SET.gitPhoto.obk,ctx:gctx(v.ov,"obk"),rows:[["Колёса",v.obk+mark("obk")],["Редукция",v.red],["Нужно / получится",v.ov?`${f(c.PG[pid].ot,6)} / ${f(v.ov.r,6)}`:"—"]],
-  text:`${gearPic(v.ov,"Обкатка",v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:undefined)}${idlHTML(v.ov,"obk",v)}<p>Гитара обкатки — за дверцей 27. Колёса ставьте с наименьшим боковым зазором, достаточным для свободного вращения. Редукция ${v.red}: обе рукоятки 1 и 2 за дверцей 26 — <b>в одинаковое положение</b>.</p>${gitFit(v.ov,SET.maxZ.obk)}${v.warn.length?`<div class="warn">${v.warn.join("<br>")}</div>`:""}`,check:"Колёса обкатки стоят, затянуты; редукция переключена"});
+  text:`${gearPic(v.ov,"Обкатка",v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:undefined)}${gearScheme(v.ov,{p:v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:0,cap:"Схема: слева — как колёса видны спереди за дверцей 27, внизу — какое колесо в каком ряду"})}${idlHTML(v.ov,"obk",v)}<p>Гитара обкатки — за дверцей 27. Колёса ставьте с наименьшим боковым зазором, достаточным для свободного вращения. Редукция ${v.red}: обе рукоятки 1 и 2 за дверцей 26 — <b>в одинаковое положение</b>.</p>${gitFit(v.ov,SET.maxZ.obk)}${gearSwapHTML(v.ov,"obk",c.PG[pid].ot,v,pid)}${v.warn.length?`<div class="warn">${v.warn.join("<br>")}</div>`:""}`,check:"Колёса обкатки стоят, затянуты; редукция переключена"});
  const cd=cutDir(wh?c.hand2:c.hand1);
  S.push({t:"Гитара скорости",photo:"p15",more:["p16"],ctx:{spA:v.spdR[1],spB:v.spdR[2],n:v.spdR[0]},rows:[["Колёса",`A <b>${v.spdR[1]}</b> / B <b>${v.spdR[2]}</b>`],["Ведущую ставить",`на валик <b>«${cd.t}»</b> (место ${cd.pos})`],["Обороты головки",`${v.spdR[0]} об/мин (строка ${M.speed.indexOf(v.spdR)+1} таблички)`],["Скорость резания",`≈ ${f(c.vReal,0)} м/мин`]],
   text:`${gearPic({two:true,a:v.spdR[1],d:v.spdR[2],lab:["A","B"]},"Скорость")}<p>Две шестерни: ведущая A и ведомая B (A + B = 101 — межосевое не меняется). Спираль ${v.part==="колесо"?"колеса":"шестерни"} — ${(wh?c.hand2:c.hand1)==="L"?"левая":"правая"}, её режут головкой ${cd.g}: ведущую ставьте на валик с надписью <b>«${cd.t}»</b> (§4 паспорта; при правом и левом резании шпиндель люльки вращается в разные стороны). Сверьте со стрелкой на корпусе головки.</p>`,check:"Колёса скорости стоят на своём месте (A или A₁), крышка закрыта"});
  S.push({t:"Гитара подачи",photo:"p17",more:["p18"],ctx:{fA:v.feedR[1],fB:v.feedR[2],fC:v.feedR[3],fD:v.feedR[4],S:f(v.feedR[0],1)},rows:[["Колёса A/B · C/Д",fdTxt(v.feedR)+mark("feed")],["Время на зуб S",`${f(v.feedR[0],1)} с/зуб`]],
-  text:`${gearPic({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4],lab:["A","B","C","Д"]},"Подача")}<p>A — ведущая, B и C — на пальце (B в зацеплении с A, C — с Д), Д — ведомая. Колёса из набора m 1,5.</p>`,check:"Колёса подачи стоят, гайки затянуты, крышка закрыта"});
+  text:`${gearPic({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4],lab:["A","B","C","Д"]},"Подача")}${gearScheme({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4]},{lab:["A","B","C","Д"],s1:"ведущий",s2:"ведомый",cap:"Схема гитары подачи: вид спереди и ряды колёс"})}<p>A — ведущая, B и C — на пальце (B в зацеплении с A, C — с Д), Д — ведомая. Колёса из набора m 1,5.</p>`,check:"Колёса подачи стоят, гайки затянуты, крышка закрыта"});
  S.push({t:"Проверка наладки поворотом люльки",photo:"p14",ctx:{limb:"проверка"},rows:[["Люлька повернуть на",dm(v.chkL)],["Изделие должно повернуться на",dm(v.chkI)]],
   text:`<ol><li>Включите станок и остановите, когда начнётся рабочий ход и нониус люльки 8 покажет целое значение.</li><li>Освободите зажим 7 (рис. 6), поставьте нониус изделия 6 на ноль и зажмите.</li><li>Включите и остановите, когда люлька повернётся на проверочный угол. Нониус 6 должен показать угол изделия из таблицы.</li></ol><p>Не совпало — проверьте колёса деления и обкатки. Если расхождение очень большое — неправильно включена редукция или ведущие колёса поставлены на место ведомых (§9).</p>`,check:"Проверочный угол совпал"});
  S.push({t:"Заготовка, зажим, счётчик",photo:"p19",more:["p07","p21","p22"],ctx:{pz:v.pz,otv:v.otv,z:v.z},rows:[["Давление зажима",v.pz],["Счётчик циклов",`z = ${v.z}`],["Отвод стола",v.otv+" мм"]],
@@ -1609,10 +1735,10 @@ function buildA4(){const c=LAST;if(!c)return;const date=new Date().toLocaleDateS
   ${c.hyp?R("Гипоидное смещение",v.hyp,v.part==="колесо"?"«+» вниз при левой спирали колеса":"«+» вниз при левой спирали шестерни")+R("Профильные углы резцов",v.blades,""):""}
   ${R("Деление",v.del,`z<sub>i</sub> = ${v.zi}`)}${R("Обкатка",v.obk,"редукция "+v.red)}${R("Скорость",v.spd,"")}${R("Подача",v.feed,"")}
   ${R("Проверка",v.chk,"люлька → изделие")}${c.hyp&&pid.startsWith("F1")?R("Модификатор",v.modi,"проверка — при выключенном"):""}${R("Отвод стола / зажим",v.otv+" мм / "+v.pz,"счётчик z = "+v.z)}</table>
-  <div class="a4g">${gearPic(v.dv,"Деление",v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:undefined)}${gearPic(v.ov,"Обкатка",v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:undefined)}</div>
+  <div class="a4s"><div><b>Деление — вид спереди</b>${gearScheme(v.dv,{small:1,p:v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:0})}</div><div><b>Обкатка — вид спереди</b>${gearScheme(v.ov,{small:1,p:v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:0})}</div><div class="a4h" style="flex:1.2;font-size:12px">Колёса a и b — в переднем ряду, c и d — в заднем (пунктир — колесо c за b), b и c на одной втулке пальца. Паразитка (жёлтая) — на пальце, a и d между собой не касаются.</div></div>
   <div class="a4ck"><b>Перед пуском:</b> ☐ всё зажато ☐ гитары затянуты, крышки закрыты ☐ проверочный угол совпал ☐ заготовка зажата ☐ счётчик ☐ охлаждение</div>
   <div class="a4ft">Фактически выставлено / примечания: ____________________________________________________________<br><br>_______________________________________________________________________________________</div>
-  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.8.2</div></div>`}
+  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.8.3</div></div>`}
  $("a4").innerHTML=h}
 
 /* ---------- мастер пятна контакта ---------- */

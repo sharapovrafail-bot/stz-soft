@@ -12,7 +12,7 @@ import (
 	"github.com/jchv/go-webview2"
 )
 
-const appVersion = "0.8.2"
+const appVersion = "0.8.3"
 
 func openWindow(url string) (ok bool) {
 	defer func() {
