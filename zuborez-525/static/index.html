@@ -113,12 +113,12 @@ td.v.big{font-size:17px;white-space:normal}
 </style></head><body>
 <div id="licOv" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,30,20,.92);align-items:center;justify-content:center;padding:16px"><div style="background:#fff;color:#111;max-width:520px;width:100%;border-radius:12px;padding:24px"><h2 id="licT" style="margin-top:0">Пробный период закончился</h2><p id="licM"></p><p>Код этого компьютера:<br><b id="licId" style="font-size:22px;letter-spacing:1px;user-select:all"></b></p><p>Сообщите этот код разработчику, он пришлёт ключ. Ключ общий для всех программ ООО «СпецТехЗаказ».</p><input id="licK" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%;font-size:18px;text-transform:uppercase"><div id="licE" style="color:#c0392b;min-height:20px"></div><button class="b" id="licGo">Активировать</button></div></div>
 <header><span id="bdg">525</span><h1>Наладка зуборезного полуавтомата для конических и гипоидных колёс с круговым зубом</h1><span id="licBadge" style="font-size:12px;opacity:.8"></span><span class="sp"></span>
-<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.8.3</span><button onclick="quit()">Закрыть</button></header>
+<button onclick="newJob()">Новый</button><button onclick="saveJob()">Сохранить</button><button onclick="printCard()">Печать карты</button><button onclick="printTab('a4')">Карты А4</button><button onclick="mmOpen()" style="background:var(--gold);color:#1b211d;font-weight:800;border:0">У СТАНКА</button><span style="font-size:12px;opacity:.8">версия 0.8.4</span><button onclick="quit()">Закрыть</button></header>
 <div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
 <main>
 <section class="tab" id="t-calc">
- <div class="warn noprint"><b>Версия 0.8.3.</b> Новое: у гитар деления, обкатки и подачи — схема «вид спереди + ряды колёс» рядом с фото; «Замена колёс» — другие наборы с тем же передаточным (с большей суммой зубьев, если колёса не достают) и кнопка «Поставить этот вариант»; кнопки «Встало / Не достало» — программа запоминает, какая сумма зубьев достаёт, и дальше сама берёт подходящие колёса. В 0.8.2: паразитное колесо показано на схеме гитары и подписано на фото; программа запоминает, какая паразитка встала, и дальше подсказывает сама. В 0.8.1: вкладка «Выставление резцов» — памятка с иллюстрациями по головке (развод, выверка индикатором, центр станка, пробная впадина) с печатью. Ранее: вкладка «С чего начать» и развёрнутые пояснения к каждому шагу (зачем, как проверить, частые ошибки, схема «где это на станке»). Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
+ <div class="warn noprint"><b>Версия 0.8.4.</b> Новое: гитара скорости — только из пар, которые есть у станка (вкладка «Мой станок», по умолчанию 28/73); если нужной пары нет, берётся ближайшая медленнее, а время на зуб в гитаре подачи увеличивается во столько же раз, чтобы резец снимал расчётную стружку. В 0.8.3: у гитар деления, обкатки и подачи — схема «вид спереди + ряды колёс» рядом с фото; «Замена колёс» — другие наборы с тем же передаточным (с большей суммой зубьев, если колёса не достают) и кнопка «Поставить этот вариант»; кнопки «Встало / Не достало» — программа запоминает, какая сумма зубьев достаёт, и дальше сама берёт подходящие колёса. В 0.8.2: паразитное колесо показано на схеме гитары и подписано на фото; программа запоминает, какая паразитка встала, и дальше подсказывает сама. В 0.8.1: вкладка «Выставление резцов» — памятка с иллюстрациями по головке (развод, выверка индикатором, центр станка, пробная впадина) с печатью. Ранее: вкладка «С чего начать» и развёрнутые пояснения к каждому шагу (зачем, как проверить, частые ошибки, схема «где это на станке»). Шаги наладки — по «Руководству к станку 525» (§3–§24); гитары скорости и подачи — по табличкам вашего станка. Расчёт по «Инструкции по расчёту наладочных установок станков 528 и 525» (ЭНИМС): лист БА — одномерный двусторонний метод (колесо — двусторонней головкой, шестерня — по сторонам односторонними головками), лист В — установки станка 525 (эксцентрик, люлька, гитары, проверочные углы), черновое и чистовое нарезание. Проверено на примере из инструкции (пара 13/39) — совпадение до сотых.</div>
  <div class="row noprint"><button class="b s" onclick="loadExample(1)">Пример инструкции ЭНИМС: пара 13 / 39</button><button class="b s" onclick="loadExample(2)">Пример карты станка: пара 8 / 41</button><button class="b s" onclick="loadExample(3)">Гипоидная пара (пример СЗТЗС 10 / 41, E 38,1)</button><button class="b s" onclick="loadExample(4)">Пара 23-340 8 / 48 (ГОСТ 19326, МНЛЗ-2)</button><span class="mut">Данные чертежа имеют приоритет: высоты и толщину зуба вводите с чертежа, если они там есть.</span></div>
  <fieldset><legend>Пара (по чертежу)</legend><div class="g">
   <label>Тип пары<select id="ptype"><option value="bev">Коническая с круговым зубом (оси пересекаются)</option><option value="g19">Коническая по ГОСТ 19326 с чертежа (xn, xτ, форма зуба; двусторонний развод)</option><option value="hyp">Гипоидная (оси скрещиваются, смещение E)</option></select></label>
@@ -361,10 +361,10 @@ function compute(corr){corr=corr||{dL:0,dr:0,dUe:0,dUi:0};
  const thLim1=0.00015*d1*cbe,thLim2=u*thLim1;
  // скорость
  const vf=num("vf")||45,nT=1000*vf/(Math.PI*2*ru);
- let sp=M.speed[0];M.speed.forEach(r=>{if(Math.abs(r[0]-nT)<Math.abs(sp[0]-nT))sp=r});
+ const SPA=spdAdjust(nT),sp=SPA.sp;
  const vReal=Math.PI*2*ru*sp[0]/1000;
- const Sf=parseFloat($("sf").value),fd=M.feed.find(r=>r[0]===Sf)||FEED_DEF(40);
- const Sr=parseFloat($("sr").value),fr=M.feed.find(r=>r[0]===Sr)||FEED_DEF(25);
+ const Sr=parseFloat($("sr").value),fr=spdFeed(M.feed.find(r=>r[0]===Sr)||FEED_DEF(25),SPA,"черновое");
+ const Sf=parseFloat($("sf").value),fd=spdFeed(M.feed.find(r=>r[0]===Sf)||FEED_DEF(40),SPA,"чистовое");spdNote(SPA);if(SPNOTE)note.push(SPNOTE);
  const Ct=z=>z<=15?5:2.5,tm=(S,z)=>(S+Ct(z))*z/60;
  const otv=num("otvod")>0?num("otvod"):Math.max(1.1*h,5);
  // проверки
@@ -933,8 +933,8 @@ function computeHyp(){
  pk("oR1",3.5*ZR1.zi/q[539],false,"шестерня, черновое");
  pk("oF1e",3.5*Z1.zi/zcs[0],false,"шестерня, вогнутая сторона");pk("oF1i",3.5*Z1.zi/zcs[1],false,"шестерня, выпуклая сторона");
  [["колеса",Z2,z2],["шестерни (чистовое)",Z1,z1],["шестерни (черновое)",ZR1,z1]].forEach(([n,Z,z])=>{if(!Z.ok)err.push(`z<sub>i</sub> ${n} = ${Z.zi} имеет общий множитель с z = ${z}: нарежутся не все зубья.`)});
- const r=q[7],vf=num("vf")||45,nT=1000*vf/(Math.PI*2*r);let sp=M.speed[0];M.speed.forEach(x=>{if(Math.abs(x[0]-nT)<Math.abs(sp[0]-nT))sp=x});
- const Sf=parseFloat($("sf").value),fd=M.feed.find(x=>x[0]===Sf)||FEED_DEF(40),Sr=parseFloat($("sr").value),fr=M.feed.find(x=>x[0]===Sr)||FEED_DEF(25);
+ const r=q[7],vf=num("vf")||45,nT=1000*vf/(Math.PI*2*r),SPA=spdAdjust(nT),sp=SPA.sp;
+ const Sr=parseFloat($("sr").value),fr=spdFeed(M.feed.find(x=>x[0]===Sr)||FEED_DEF(25),SPA,"черновое"),Sf=parseFloat($("sf").value),fd=spdFeed(M.feed.find(x=>x[0]===Sf)||FEED_DEF(40),SPA,"чистовое");spdNote(SPA);if(SPNOTE)note.push(SPNOTE);
  const Ct=z=>z<=15?5:2.5,tm=(S,z)=>(S+Ct(z))*z/60,otv=num("otvod")>0?num("otvod"):Math.max(1.1*q[96],5);
  const A1=num("A1"),A2=num("A2");
  if(!(A2>0))note.push("Монтажное расстояние колеса не задано — осевая установка показана как «монтажное + поправка».");
@@ -1198,8 +1198,8 @@ function computeG19(){
  pk("dR2",2*Z2.zi/z2,true,"колесо, черновое");pk("dF2",2*Z2.zi/z2,true,"колесо, чистовое");pk("dR1",2*ZR1.zi/z1,true,"шестерня, черновое");pk("dF1",2*Z1.zi/z1,true,"шестерня, чистовое");
  pk("oR2",3.5*Z2.zi/S.W.zc,false,"колесо, черновое");pk("oF2",3.5*Z2.zi/S.W.zc,false,"колесо, чистовое");pk("oR1",3.5*ZR1.zi/S.P.zc,false,"шестерня, черновое");pk("oF1",3.5*Z1.zi/zc1F,false,"шестерня, чистовое");
  [["колеса",Z2,z2],["шестерни (чистовое)",Z1,z1],["шестерни (черновое)",ZR1,z1]].forEach(([n,Z,z])=>{if(!Z.ok)err.push(`z<sub>i</sub> ${n} = ${Z.zi} имеет общий множитель с z = ${z}: нарежутся не все зубья.`)});
- const r=g.r0,vf=num("vf")||45,nT=1000*vf/(Math.PI*2*r);let sp=M.speed[0];M.speed.forEach(x=>{if(Math.abs(x[0]-nT)<Math.abs(sp[0]-nT))sp=x});
- const Sf=parseFloat($("sf").value),fd=M.feed.find(x=>x[0]===Sf)||FEED_DEF(40),Sr=parseFloat($("sr").value),fr=M.feed.find(x=>x[0]===Sr)||FEED_DEF(25);
+ const r=g.r0,vf=num("vf")||45,nT=1000*vf/(Math.PI*2*r),SPA=spdAdjust(nT),sp=SPA.sp;
+ const Sr=parseFloat($("sr").value),fr=spdFeed(M.feed.find(x=>x[0]===Sr)||FEED_DEF(25),SPA,"черновое"),Sf=parseFloat($("sf").value),fd=spdFeed(M.feed.find(x=>x[0]===Sf)||FEED_DEF(40),SPA,"чистовое");spdNote(SPA);if(SPNOTE)note.push(SPNOTE);
  const Ct=z=>z<=15?5:2.5,tm=(S0,z)=>(S0+Ct(z))*z/60,otv=num("otvod")>0?num("otvod"):Math.max(1.1*Math.max(g.P.he,g.W.he),5);
  if(z1<M.zmin||z2>M.zmax)err.push(`Число зубьев вне паспорта станка (${M.zmin}…${M.zmax}).`);if(g.u>10)err.push("Передаточное отношение больше 10:1.");if(beta>50)err.push("Угол спирали больше 50°.");if(b>M.bmax)err.push(`Ширина венца больше ${M.bmax} мм.`);
  note.push("Расчёт геометрии — ГОСТ 19326-73 (Σθf формы II — по ширине впадины, постоянной вдоль зуба; θf₁ = Σθf·(0,5 − 2xn₁·tgα/π)). Наладка — двусторонним способом: обе детали чистовой двусторонней головкой с разводом W, деталь на угол впадин, вершина делительного конуса в центре станка, образующая впадин выводится к резцам смещением стола ΔB. Установки радиальная/угловая — как в инструкции ЭНИМС (лист В). Пятно контакта при двустороннем способе — по всей длине зуба; локализуют приработкой/притиркой пары.");
@@ -1360,10 +1360,29 @@ const DEF_SET={
  gears:M.set15.join(" "),
  maxZ:{del:100,obk:100}, clr:15,
  gitPhoto:{del:"p13",obk:"p09"},
- idl:{del:[],obk:[]}, fit:{del:[],obk:[]}, gsel:{},
+ idl:{del:[],obk:[]}, fit:{del:[],obk:[]}, gsel:{}, spdPairs:"28/73",
  marks:DEF_MARKS, spotSign:{}
 };
 let SET=JSON.parse(JSON.stringify(DEF_SET));
+
+/* ---------- гитара скорости — только из пар, которые есть у станка (0.8.4) ----------
+   SET.spdPairs — пары A/B через запятую («28/73»); пустая строка — все пары таблички.
+   Пара колёс даёт два варианта: 28/73 (35 об/мин) и 73/28 (230 об/мин).
+   Если нужной пары нет — берётся ближайшая медленнее (не быстрее нужной больше чем на 10 %),
+   а время на зуб в гитаре подачи увеличивается во столько же раз: стружка на резец остаётся расчётной. */
+let SPNOTE="";
+function spdAvail(){const P=String(SET.spdPairs||"").split(/[,;\s]+/).map(t=>t.match(/(\d+)\D+(\d+)/)).filter(Boolean).map(m=>[+m[1],+m[2]]);
+ if(!P.length)return M.speed.slice();return M.speed.filter(r=>P.some(([x,y])=>(x===r[1]&&y===r[2])||(x===r[2]&&y===r[1])))}
+function spdAdjust(nT){let s0=M.speed[0];M.speed.forEach(r=>{if(Math.abs(r[0]-nT)<Math.abs(s0[0]-nT))s0=r});SPNOTE="";
+ const av=spdAvail();if(!av.length){SPNOTE=`Пар гитары скорости из вкладки «Мой станок» нет на табличке станка — показана пара ${s0[1]}/${s0[2]} по табличке.`;return{sp:s0,s0,k:1,ms:[]}}
+ if(av.includes(s0))return{sp:s0,s0,k:1,ms:[]};
+ const lo=av.filter(r=>r[0]<=s0[0]*1.1),sp=lo.length?lo.reduce((a,b)=>b[0]>a[0]?b:a):av.reduce((a,b)=>b[0]<a[0]?b:a);
+ return{sp,s0,k:s0[0]/sp[0],ms:[]}}
+function spdFeed(row,A,label){if(!A||A.k<=1.05)return row;const need=row[0]*A.k,r=M.feed.find(x=>x[0]>=need*0.97)||M.feed[M.feed.length-1];
+ A.ms.push(`${label}: ${f(row[0],1)} → <b>${f(r[0],1)} с/зуб</b>${r[0]<need*0.97?` (нужно бы ${f(need,0)} с/зуб, больше на табличке нет — стружка на резец толще расчётной в ${f(need/r[0],2)} раза, чистота может быть хуже)`:""}`);return r}
+function spdNote(A){if(!A||A.sp===A.s0)return;
+ SPNOTE=`Гитара скорости: пары ${A.s0[1]}/${A.s0[2]} (${A.s0[0]} об/мин) у станка нет — стоит <b>${A.sp[1]}/${A.sp[2]}, ${A.sp[0]} об/мин</b> (вкладка «Мой станок» → «Шестерни гитары скорости»).`+
+  (A.k>1.05?` Головка крутится медленнее в ${f(A.k,2)} раза, поэтому время на зуб в гитаре подачи увеличено во столько же раз — резец снимает ту же стружку, что по расчёту: ${A.ms.join("; ")}. Проход идёт дольше.`:A.k<0.95?" Головка крутится быстрее нужного — следите за резцами.":"")}
 function gearSet(){return String(SET.gears||"").split(/[\s,;]+/).map(Number).filter(x=>x>=15&&x<=200&&Number.isInteger(x)).sort((a,b)=>a-b)}
 async function loadSet(){try{const r=await api("/api/settings");if(r.ok){const j=await r.json();mergeSet(j)}}catch(e){}
  try{if(!location.protocol.startsWith("http")){const j=JSON.parse(localStorage.getItem("z525set")||"null");if(j)mergeSet(j)}}catch(e){}}
@@ -1654,9 +1673,9 @@ function passSteps(c,pid){const v=passVals(c,pid),wh=pid.endsWith("2"),S=[];
   text:`${gearPic(v.ov,"Обкатка",v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:undefined)}${gearScheme(v.ov,{p:v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:0,cap:"Схема: слева — как колёса видны спереди за дверцей 27, внизу — какое колесо в каком ряду"})}${idlHTML(v.ov,"obk",v)}<p>Гитара обкатки — за дверцей 27. Колёса ставьте с наименьшим боковым зазором, достаточным для свободного вращения. Редукция ${v.red}: обе рукоятки 1 и 2 за дверцей 26 — <b>в одинаковое положение</b>.</p>${gitFit(v.ov,SET.maxZ.obk)}${gearSwapHTML(v.ov,"obk",c.PG[pid].ot,v,pid)}${v.warn.length?`<div class="warn">${v.warn.join("<br>")}</div>`:""}`,check:"Колёса обкатки стоят, затянуты; редукция переключена"});
  const cd=cutDir(wh?c.hand2:c.hand1);
  S.push({t:"Гитара скорости",photo:"p15",more:["p16"],ctx:{spA:v.spdR[1],spB:v.spdR[2],n:v.spdR[0]},rows:[["Колёса",`A <b>${v.spdR[1]}</b> / B <b>${v.spdR[2]}</b>`],["Ведущую ставить",`на валик <b>«${cd.t}»</b> (место ${cd.pos})`],["Обороты головки",`${v.spdR[0]} об/мин (строка ${M.speed.indexOf(v.spdR)+1} таблички)`],["Скорость резания",`≈ ${f(c.vReal,0)} м/мин`]],
-  text:`${gearPic({two:true,a:v.spdR[1],d:v.spdR[2],lab:["A","B"]},"Скорость")}<p>Две шестерни: ведущая A и ведомая B (A + B = 101 — межосевое не меняется). Спираль ${v.part==="колесо"?"колеса":"шестерни"} — ${(wh?c.hand2:c.hand1)==="L"?"левая":"правая"}, её режут головкой ${cd.g}: ведущую ставьте на валик с надписью <b>«${cd.t}»</b> (§4 паспорта; при правом и левом резании шпиндель люльки вращается в разные стороны). Сверьте со стрелкой на корпусе головки.</p>`,check:"Колёса скорости стоят на своём месте (A или A₁), крышка закрыта"});
+  text:`${gearPic({two:true,a:v.spdR[1],d:v.spdR[2],lab:["A","B"]},"Скорость")}<p>Две шестерни: ведущая A и ведомая B (A + B = 101 — межосевое не меняется). Спираль ${v.part==="колесо"?"колеса":"шестерни"} — ${(wh?c.hand2:c.hand1)==="L"?"левая":"правая"}, её режут головкой ${cd.g}: ведущую ставьте на валик с надписью <b>«${cd.t}»</b> (§4 паспорта; при правом и левом резании шпиндель люльки вращается в разные стороны). Сверьте со стрелкой на корпусе головки.</p>${SPNOTE?`<div class="warn">${SPNOTE}</div>`:""}`,check:"Колёса скорости стоят на своём месте (A или A₁), крышка закрыта"});
  S.push({t:"Гитара подачи",photo:"p17",more:["p18"],ctx:{fA:v.feedR[1],fB:v.feedR[2],fC:v.feedR[3],fD:v.feedR[4],S:f(v.feedR[0],1)},rows:[["Колёса A/B · C/Д",fdTxt(v.feedR)+mark("feed")],["Время на зуб S",`${f(v.feedR[0],1)} с/зуб`]],
-  text:`${gearPic({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4],lab:["A","B","C","Д"]},"Подача")}${gearScheme({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4]},{lab:["A","B","C","Д"],s1:"ведущий",s2:"ведомый",cap:"Схема гитары подачи: вид спереди и ряды колёс"})}<p>A — ведущая, B и C — на пальце (B в зацеплении с A, C — с Д), Д — ведомая. Колёса из набора m 1,5.</p>`,check:"Колёса подачи стоят, гайки затянуты, крышка закрыта"});
+  text:`${gearPic({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4],lab:["A","B","C","Д"]},"Подача")}${gearScheme({a:v.feedR[1],b:v.feedR[2],c:v.feedR[3],d:v.feedR[4]},{lab:["A","B","C","Д"],s1:"ведущий",s2:"ведомый",cap:"Схема гитары подачи: вид спереди и ряды колёс"})}<p>A — ведущая, B и C — на пальце (B в зацеплении с A, C — с Д), Д — ведомая. Колёса из набора m 1,5.</p>${SPNOTE?`<div class="warn">${SPNOTE}</div>`:""}`,check:"Колёса подачи стоят, гайки затянуты, крышка закрыта"});
  S.push({t:"Проверка наладки поворотом люльки",photo:"p14",ctx:{limb:"проверка"},rows:[["Люлька повернуть на",dm(v.chkL)],["Изделие должно повернуться на",dm(v.chkI)]],
   text:`<ol><li>Включите станок и остановите, когда начнётся рабочий ход и нониус люльки 8 покажет целое значение.</li><li>Освободите зажим 7 (рис. 6), поставьте нониус изделия 6 на ноль и зажмите.</li><li>Включите и остановите, когда люлька повернётся на проверочный угол. Нониус 6 должен показать угол изделия из таблицы.</li></ol><p>Не совпало — проверьте колёса деления и обкатки. Если расхождение очень большое — неправильно включена редукция или ведущие колёса поставлены на место ведомых (§9).</p>`,check:"Проверочный угол совпал"});
  S.push({t:"Заготовка, зажим, счётчик",photo:"p19",more:["p07","p21","p22"],ctx:{pz:v.pz,otv:v.otv,z:v.z},rows:[["Давление зажима",v.pz],["Счётчик циклов",`z = ${v.z}`],["Отвод стола",v.otv+" мм"]],
@@ -1738,7 +1757,7 @@ function buildA4(){const c=LAST;if(!c)return;const date=new Date().toLocaleDateS
   <div class="a4s"><div><b>Деление — вид спереди</b>${gearScheme(v.dv,{small:1,p:v.dv&&v.dv.two?idlPick(v.dv,"del",v).best:0})}</div><div><b>Обкатка — вид спереди</b>${gearScheme(v.ov,{small:1,p:v.ov&&v.ov.two?idlPick(v.ov,"obk",v).best:0})}</div><div class="a4h" style="flex:1.2;font-size:12px">Колёса a и b — в переднем ряду, c и d — в заднем (пунктир — колесо c за b), b и c на одной втулке пальца. Паразитка (жёлтая) — на пальце, a и d между собой не касаются.</div></div>
   <div class="a4ck"><b>Перед пуском:</b> ☐ всё зажато ☐ гитары затянуты, крышки закрыты ☐ проверочный угол совпал ☐ заготовка зажата ☐ счётчик ☐ охлаждение</div>
   <div class="a4ft">Фактически выставлено / примечания: ____________________________________________________________<br><br>_______________________________________________________________________________________</div>
-  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.8.3</div></div>`}
+  <div class="a4br">Сделано специально по заказу ООО «СпецТехЗаказ» · Рафаил Шарапов · rafail@sharapov-cnc.ru · Зуборез 525 v0.8.4</div></div>`}
  $("a4").innerHTML=h}
 
 /* ---------- мастер пятна контакта ---------- */
@@ -1846,6 +1865,7 @@ function buildSet(){const sc=SET.scales,GS=gearSet(),cnt=setCount(GS);
  <textarea id="gearsT" style="width:100%;height:80px;font:15px Consolas,monospace">${esc(SET.gears)}</textarea>
  <div class="mut">Сейчас: ${GS.length} колёс, от ${GS[0]} до ${GS[GS.length-1]}. Двойные: ${Object.entries(cnt).filter(x=>x[1]>1).map(x=>x[0]+"×"+x[1]).join(", ")||"нет"}.</div>
  <div class="g" style="margin-top:8px"><label>Наибольшее колесо в гитаре деления (дальше упирается в стенку)<input id="mz_d" type="number" value="${SET.maxZ.del}"></label><label>Наибольшее колесо в гитаре обкатки<input id="mz_o" type="number" value="${SET.maxZ.obk}"></label><label>Зазор от колеса до чужого вала, зубьев (a+b−c, c+d−b)<input id="clr" type="number" value="${SET.clr}"></label>
+ <label>Шестерни гитары скорости — пары A/B, которые есть у станка (через запятую; пусто — все пары таблички)<input id="spd_p" value="${esc(SET.spdPairs||"")}" placeholder="например 28/73, 41/60"></label>
  <label>Фото гитары деления<select id="gp_d">${["p13","p09"].map(p=>`<option ${SET.gitPhoto.del===p?"selected":""}>${p}</option>`).join("")}</select></label><label>Фото гитары обкатки<select id="gp_o">${["p09","p13"].map(p=>`<option ${SET.gitPhoto.obk===p?"selected":""}>${p}</option>`).join("")}</select></label></div></fieldset>
  <div class="row"><button class="b" onclick="setSave()">Сохранить настройки</button><button class="b s" onclick="SET=JSON.parse(JSON.stringify(DEF_SET));buildSet()">Вернуть по умолчанию</button></div>
  <fieldset><legend>Подписи на фото (поправить, если стрелка не туда)</legend>
@@ -1857,7 +1877,7 @@ function buildSet(){const sc=SET.scales,GS=gearSet(),cnt=setCount(GS);
  const ph=$("setph");ph.onclick=e=>{const r=ph.querySelector("img").getBoundingClientRect(),m=(SET.marks[SETPH]||[])[SETMK];if(!m)return;m.x=Math.round((e.clientX-r.left)/r.width*1000)/10;m.y=Math.round((e.clientY-r.top)/r.height*1000)/10;buildSet()}}
 function setSave(){for(const k of ["bab","ecc","lul"]){const m=+$("sc_"+k+"_m").value,v=+$("sc_"+k+"_v").value;if(m>0)SET.scales[k].main=m;if(v>0)SET.scales[k].ver=Math.min(v,SET.scales[k].main)}
  SET.md={div:+$("md_d").value||0.01,rev:+$("md_r").value||1};SET.stolV=+$("st_v").value||0.02;SET.heads={6:$("hd_6").checked,9:$("hd_9").checked,12:$("hd_12").checked};
- SET.gears=$("gearsT").value.trim();SET.maxZ={del:+$("mz_d").value||100,obk:+$("mz_o").value||100};SET.clr=Math.max(0,+$("clr").value||0);SET.gitPhoto={del:$("gp_d").value,obk:$("gp_o").value};
+ SET.gears=$("gearsT").value.trim();SET.maxZ={del:+$("mz_d").value||100,obk:+$("mz_o").value||100};SET.clr=Math.max(0,+$("clr").value||0);SET.gitPhoto={del:$("gp_d").value,obk:$("gp_o").value};SET.spdPairs=$("spd_p").value.trim();
  saveSet(true);calc();buildSet()}
 
 
