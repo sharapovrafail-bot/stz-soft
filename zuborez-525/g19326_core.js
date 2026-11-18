@@ -18,8 +18,15 @@ var G19326 = (function () {
     let mte = +inp.mte, Re, Rm, mn;
     if (mte > 0) { Re = 0.5 * mte * zc; if (inp.mn > 0) { mn = +inp.mn; Rm = Re * mn / (mte * Math.cos(be)); } else { Rm = inp.Rm > 0 ? +inp.Rm : Re - 0.5 * inp.b; mn = mte * Rm / Re * Math.cos(be) } }
     else { mn = +inp.mn; Rm = inp.Rm > 0 ? +inp.Rm : 0; mte = mn / Math.cos(be) * (Rm + 0.5 * inp.b) / Rm; Re = 0.5 * mte * zc }
-    const b = +inp.b, bCalc = 2 * (Re - Rm), le = Re - Rm, mm = mn / Math.cos(be);
-    if (Math.abs(bCalc - b) > 0.05) note.push(`Расчётная ширина венца 2·(Re − R) = ${bCalc.toFixed(2)} мм не равна фактической b = ${b} мм. Расчётное сечение (где mn и β заданы) — R = ${Rm.toFixed(3)} мм; высоты и углы на внешнем торце считаются от него, ширина венца — фактическая.`);
+    let b = +inp.b, bCalc = 2 * (Re - Rm);
+    // Среднее сечение — по ширине венца (Re − 0,5b), как в проверенной на станке карте наладки пары 23-340 (МШВ, 2020).
+    // Если mn/R с чертежа дают другую ширину венца — они не согласованы с b: считаем по b, а mn с чертежа только сообщаем.
+    if (b > 0 && Math.abs(bCalc - b) > 0.05 * b && !inp.useDrawingSection) {
+      note.push(`Средний нормальный модуль и среднее конусное расстояние с чертежа (mn ${mn.toFixed(4)}, R ${Rm.toFixed(3)}) дают ширину венца 2·(Re − R) = ${bCalc.toFixed(2)} мм, а фактическая b = ${b} мм. Расчёт ведётся по среднему сечению R = Re − 0,5b = ${(Re - 0.5 * b).toFixed(3)} мм (mn ${(mte * (Re - 0.5 * b) / Re * Math.cos(be)).toFixed(4)}) — так считается проверенная на станке карта наладки.`);
+      Rm = Re - 0.5 * b; mn = mte * Rm / Re * Math.cos(be); bCalc = b;
+    }
+    const le = Re - Rm, mm = mn / Math.cos(be);
+    if (Math.abs(bCalc - b) > 0.05 && inp.useDrawingSection) note.push(`Расчётная ширина венца 2·(Re − R) = ${bCalc.toFixed(2)} мм не равна фактической b = ${b} мм. Расчётное сечение (где mn и β заданы) — R = ${Rm.toFixed(3)} мм; высоты и углы на внешнем торце считаются от него, ширина венца — фактическая.`);
     const r0 = (+inp.d0 > 0 ? +inp.d0 : 2 * HEADS.reduce((a, h) => Math.abs(h - 1.1 * Rm) < Math.abs(a - 1.1 * Rm) ? h : a, HEADS[0])) / 2;
     // средние высоты и толщины
     const ham1 = (ha + xn1) * mn, ham2 = (ha - xn1) * mn, hfm1 = (ha + cs - xn1) * mn, hfm2 = (ha + cs + xn1) * mn;
@@ -74,7 +81,7 @@ var G19326 = (function () {
       // как в инструкции ЭНИМС: для обычной пары (вершины совпадают) H = R − r₀·sinβ; для формы II добавляется сдвиг средней точки впадины
       const H = g.Rm - r0 * Math.sin(be) + (Lq - g.Rm / Math.cos(tf)), U = Math.hypot(H, V), q = D(Math.atan2(V, H));
       const ecc = U <= E2 ? 2 * D(Math.asin(U / E2)) : NaN;
-      const zc = G0.z * Math.cos(tf) / Math.sin(dl);            // число зубьев производящего колеса
+      const zc = G0.z / Math.sin(dl);                           // число зубьев плоского производящего колеса zc = z/sinδ = √(z1²+z2²) (сверено с проверенной картой: 48,662)
       const Q = ((ecc / 2 + (G0.hand === 'L' ? q : -q)) % 360 + 360) % 360;
       out[k] = { bab: D(df), dB: -dist, rootApex: x0, Lq, H, V, U, q, ecc, Q, zc, hand: G0.hand };
       if (!(U <= E2)) out.err = `Радиальная установка ${U.toFixed(1)} мм больше наибольшей для станка — возьмите головку меньшего диаметра.`;
