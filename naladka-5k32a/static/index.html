@@ -94,7 +94,7 @@ table.mt{border-collapse:collapse;margin:8px 0}table.mt td,table.mt th{border:1p
 <div id="licOv" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,20,35,.92);align-items:center;justify-content:center;padding:16px"><div style="background:var(--card,#fff);color:var(--tx,#111);max-width:520px;width:100%;border-radius:12px;padding:24px;font-family:system-ui"><h2 id="licT" style="margin-top:0">Пробный период закончился</h2><p id="licM"></p><p>Код этого компьютера:<br><b id="licId" style="font-size:22px;letter-spacing:1px;user-select:all"></b></p><p>Сообщите этот код разработчику, он пришлёт ключ. Ключ работает только на этом компьютере и открывает обе программы (наладку и STZ).</p><input id="licK" placeholder="XXXX-XXXX-XXXX-XXXX" style="width:100%;box-sizing:border-box;font-size:18px;padding:8px;margin:6px 0;text-transform:uppercase"><div id="licE" style="color:#c0392b;min-height:20px"></div><button class="b" id="licGo" style="font-size:16px;padding:8px 18px">Активировать</button></div></div>
 <header><span id="bdg">5К32А</span><span id="licBadge" class="mut" style="font-size:12px;margin-right:8px"></span><img src="logo.png" alt=""><h1>Наладка зубофрезерного полуавтомата</h1><span class="mut">завод «Комсомолец», №7256, 1974 г.</span>
 <div id="tbtn"><button onclick="showTab('calc')">Новый</button><button onclick="document.getElementById('jfile').click()">Открыть…</button><button onclick="saveJob()">Сохранить</button><button onclick="window.print()">Печать</button></div>
-<span class="sp"></span><span class="pill on">ГОСТ</span><span class="pill">версия 1.3.22</span><button class="b s" onclick="quit()">Закрыть</button></header>
+<span class="sp"></span><span class="pill on">ГОСТ</span><span class="pill">версия 1.3.23</span><button class="b s" onclick="quit()">Закрыть</button></header>
 <div id="newjob" style="display:none;background:#1e8e3e;color:#fff;font:700 20px Arial;padding:12px;text-align:center;cursor:pointer"></div>
 <div id="brand">Сделано специально по заказу ООО «СпецТехЗаказ» <span style="font-size:.55em;font-weight:600;opacity:.9;white-space:nowrap">· Рафаил Шарапов · rafail@sharapov-cnc.ru</span></div>
 <nav id="nav"></nav>
@@ -148,6 +148,7 @@ table.mt{border-collapse:collapse;margin:8px 0}table.mt td,table.mt th{border:1p
 <label>Угол наклона β, °<input id="beta" type="number" step="0.001" value="0"></label>
 <label>Направление зуба<select id="ghand"><option value="R">правое</option><option value="L">левое</option></select></label>
 <label>Ширина венца b, мм<input id="b" type="number" step="0.1" value="30"></label>
+<label title="Из чертежа (ГОСТ 1643). Если указан — допуск дифференциала считается от него, а не от общей настройки">Допуск направления зуба F<sub>β</sub>, мкм (необяз.)<input id="fb" type="number" step="1" min="0" placeholder="по чертежу"></label>
 <label>Коэфф. смещения x<input id="xs" type="number" step="0.01" value="0"></label>
 <label>Коэф. высоты головки h*a (чертёж; обычно 1)<input id="ha" type="number" step="0.01" value="1"></label>
 <label>Коэф. радиального зазора c* (обычно 0,25)<input id="cs" type="number" step="0.01" value="0.25"></label>
@@ -440,7 +441,7 @@ function applyRec(){const r=recommend();if(!r.hob)return r;
  el.innerHTML="<b>Программа подобрала сама:</b><ul style='margin:6px 0 6px 18px'>"+r.notes.map(n=>"<li>"+n+"</li>").join("")+"</ul>";
  r.btns.forEach(([t,fn])=>{const b=document.createElement("button");b.className="b";b.textContent=t;b.onclick=fn;el.appendChild(b)});
  return r}
-["hobMode","modeMode","acc","ghand","mn","z","beta","gvar","cAD","meth","tdir"].forEach(id=>$(id).addEventListener("change",()=>calc()));
+["hobMode","modeMode","acc","ghand","mn","z","beta","fb","b","gvar","cAD","meth","tdir"].forEach(id=>$(id).addEventListener("change",()=>calc()));
 $("D0").addEventListener("input",()=>{$("D0").dataset.user="1"});
 $("hhand").addEventListener("change",()=>{$("hhand").dataset.user="1";calc()});
 
@@ -467,6 +468,9 @@ function applySel(arr,key,target){if(!arr||!key)return arr;const i=arr.findIndex
  const p=key.split("-").map(Number);if(p.some(x=>!(x>0)))return arr;
  if(p.length===2)return [{a:p[0],d:p[1],two:true,e:Math.abs(p[0]/p[1]-target)/target}].concat(arr);
  if(p.length===4)return [{a:p[0],b:p[1],c:p[2],d:p[3],e:Math.abs(p[0]/p[1]*p[2]/p[3]-target)/target}].concat(arr);return arr}
+/* Петрик–Шишков (1973): для дифференциала δ = Δβ/(3440·tgβ) → Δβ = δ·tgβ рад; отклонение по ширине b ≈ b·Δβ. Допуск от F_β: δдоп = F_β/(b·tgβ) */
+function difTol(){const fb=parseFloat($("fb")&&$("fb").value),b=parseFloat($("b").value),be=Math.abs(parseFloat($("beta").value)||0);if(fb>0&&b>0&&be>0.01)return{p:fb/1000/(b*Math.tan(be*Math.PI/180))*100,src:"от F<sub>β</sub>="+fb+" мкм"};return{p:+$("tol").value||0.05,src:"общий допуск"}}
+function difErrTxt(e,b,beta){const tb=Math.abs(Math.tan(beta*Math.PI/180)),db=e*tb,mk=b*db*1000;return `Δβ ≈ ${f(db*206265,1)}″ · отклонение на ширине b=${b} мм ≈ ${f(mk,1)} мкм`}
 function calc(){
  applyRec();
  const g=id=>parseFloat($(id).value);
@@ -554,14 +558,14 @@ function calc(){
  const Ts=modes.reduce((a,m)=>a+m.T,0);
  if(mw>0&&(!rDiv.length||(rDif&&!rDif.length)))err.push("При ограничении «наибольшее колесо — "+mw+" зубьев» подходящих колёс не нашлось. Увеличьте число на вкладке «Константы».");
  if(rDiv[0]&&rDiv[0].e>1e-9)err.push("Гитара деления: точного подбора из набора колёс нет (погрешность "+f(rDiv[0].e*100,5)+" %). Деление должно быть точным — проверьте набор колёс, не режьте без консультации.");
- if(rDif&&rDif[0]&&rDif[0].e*100>+$("tol").value)err.push("Гитара дифференциала: лучшая погрешность "+f(rDif[0].e*100,4)+" % выше допуска "+$("tol").value+" % — направление зуба будет с ошибкой.");
+ const DT=difTol();if(rDif&&rDif[0]&&rDif[0].e*100>DT.p)err.push("Гитара дифференциала: лучшая погрешность "+f(rDif[0].e*100,4)+" % выше допуска "+f(DT.p,4)+" % ("+DT.src.replace(/<\/?sub>/g,"")+") — направление зуба будет с ошибкой.");
  LAST={selKey,difKey,gvar,LAD,rDif2pp,rDif4,rDif2p,rDif2d,S,clr,alpha:(al||20),mn,z,beta,b,x,Dz,da,df,d,h,D0,d0,K,lam,gam,rule,tDiv,rDiv,divMode,ef,tDif,rDif,modes,L,Ts,hhand:$("hhand").value,meth:$("meth").value,tdir:$("tdir").value,ghand:$("ghand").value,pname:$("pname").value,mat:$("mat").value,acc:$("acc").value,hcls:$("hcls").value,Cd,Cdf,clr,verified:$("verified").checked,err,hL,passes,stock,m0};
  const gearTbl=(t,r,lab)=>`<table><tr><th>#</th><th>Колёса</th><th>Схема</th><th>Передаточное</th><th>Погрешность</th></tr>`+r.map((q,i)=>`<tr><td>${i+1}</td><td class="gt">${q.two?`a=${q.a}, d=${q.d}`:`a=${q.a}, b=${q.b}, c=${q.c}, d=${q.d}`}</td><td>${q.two?'2 колеса (a/d)':'4 колеса a·c/(b·d)'}</td><td>${f(q.two?q.a/q.d:q.a/q.b*q.c/q.d,7)}</td><td class="${q.e<1e-9?'ok':(lab==='div'?'bad':'')}">${q.e<1e-9?'точно':f(q.e*100,5)+" %"}</td></tr>`).join("")+`</table><div class="mut">Требуется: ${f(t,7)} (дробь ≈ ${frac(t).join("/")})</div>`;
  let h2=`${wList(err)}
  <h2>Геометрия колеса</h2><table><tr><th>Делительный d</th><th>Вершин da</th><th>Впадин df</th><th>Высота зуба h</th><th>Принятый диаметр заготовки</th></tr><tr><td>${f(d,3)}</td><td>${f(da,3)}</td><td>${f(df,3)}</td><td>${f(h,3)}</td><td>${f(Dz,3)}</td></tr></table>
  <h2>Установка головки</h2><p>λ (подъём витка фрезы) = <b>${f(lam,3)}°</b> (приближённо, d0 = ${f(d0,2)} мм по делительному диаметру фрезы; сверить с паспортом фрезы). Угол установки головки γ = <b>${f(gam,3)}°</b>. ${rule}</p>
  <h2>Гитара деления</h2><p>x = a·c/(b·d) = ${divMode===1?"24":"48"}·K/z. <b>${ef}</b></p>${gearTbl(tDiv,rDiv,'div')}${rDiv[0]&&rDiv[0].e>1e-9?'<div class="warn">Точного подбора из набора нет. Деление должно быть точным: допускается только для дифференциала. Проверьте набор колёс и число заходов, возможно нужна другая ступень гитары по паспорту.</div>':''}
- ${rDif?`<h2>Гитара дифференциала</h2>${gearTbl(tDif,rDif,'dif')}${rDif[0].e*100>+$("tol").value?`<div class="warn">Лучшая погрешность ${f(rDif[0].e*100,4)} % выше допуска ${$("tol").value} %. На длине зуба b=${b} мм это даёт ошибку направления зуба около ${f(b*Math.abs(Math.tan(rad(beta)))*rDif[0].e*1000,1)} мкм.</div>`:''}<div class="mut">Формула дифференциала: a·c/(b·d) = 7,95775·sinβ/(mn·K). Схему установки колёс и фрезы смотрите в таблице руководства (вкладка «Станок и наладка», разд. 7).</div>`:'<h2>Дифференциал</h2><p>Для прямого зуба не требуется.</p>'}
+ ${rDif?`<h2>Гитара дифференциала</h2>${gearTbl(tDif,rDif,'dif')}${(()=>{const DT=difTol(),e=rDif[0].e,ok=e*100<=DT.p;return `<div class="${ok?"mut":"warn"}">Погрешность дифференциала ${e<1e-12?"0":f(e*100,4)+" %"} → ${difErrTxt(e,b,beta)}. Допуск ${f(DT.p,4)} % (${DT.src})${ok?" — проходит.":" — <b>не проходит</b>, подберите другие колёса или расширьте набор."}</div>`})()}<div class="mut">Формула дифференциала: a·c/(b·d) = 7,95775·sinβ/(mn·K). Схему установки колёс и фрезы смотрите в таблице руководства (вкладка «Станок и наладка», разд. 7).</div>`:'<h2>Дифференциал</h2><p>Для прямого зуба не требуется.</p>'}
  <h2>Режимы и время</h2><table><tr><th>Проход</th><th>Глубина, мм</th><th>V, м/мин</th><th>n расч., об/мин</th><th>n ступень</th><th>V факт., м/мин</th><th>Подача желаемая → ступень, мм/об</th><th>Колёса коробки подач a/b</th><th>Время, мин</th></tr>
  ${modes.map(m=>`<tr><td>${m.nm}</td><td>${f(m.dp,2)}</td><td>${f(m.v,1)}</td><td>${f(m.n,1)}</td><td>${f(m.used,0)}</td><td>${f(m.vReal,1)}</td><td>${f(m.s0,2)} → <b>${f(m.s,2)}</b></td><td>${m.fd?m.fd.ab:'—'}</td><td>${f(m.T,2)}</td></tr>`).join("")}</table>
  <p>Путь резания L = b + врезание + перебег = ${f(L,1)} мм. Время на деталь ≈ <b>${f(Ts,1)} мин</b> (без установки). Колёса гитары скоростей — по табличке на станке или номограмме (рис. 28 руководства); набор: 20, 23, 27, 31, 36, 41, 46, 51, 56, 60, 64, 67 (модуль 3,5).</p>
@@ -578,7 +582,7 @@ function buildCard(){
  <tr><th>Параметры зубьев</th><td>mn=${c.mn}, z=${c.z}, β=${c.beta}° (${c.beta?hand(c.ghand):'прямой'}), x=${c.x}, b=${c.b} мм</td><th>Заготовка</th><td>Ø${f(c.Dz,2)} мм</td></tr>
  <tr><th>Фреза</th><td>m=${c.m0}, D0=${c.D0} мм, K=${c.K}, ${hand(c.hhand)}, класс ${c.hcls}, L=${c.hL} мм</td><th>Угол головки γ</th><td><b>${f(c.gam,3)}°</b> (λ=${f(c.lam,3)}°)</td></tr></table>
  <table><tr><th>Гитара деления</th><td class="gt">${q(c.rDiv)} &nbsp; <span style="font-family:system-ui;font-size:13px">${c.ef}; e:f ${idl(c).ef?'<b>С ПАРАЗИТОМ</b>':'без паразита'}</span></td></tr>
- <tr><th>Гитара дифференциала</th><td class="gt">${c.rDif?q(c.rDif)+` &nbsp; <span style="font-family:system-ui;font-size:13px"><b>${GVNAME[c.gvar]}</b></span>`:'не требуется (прямой зуб), винт 42 затянуть'}</td></tr></table>
+ <tr><th>Гитара дифференциала</th><td class="gt">${c.rDif?q(c.rDif)+` &nbsp; <span style="font-family:system-ui;font-size:13px"><b>${GVNAME[c.gvar]}</b></span>`:'не требуется (прямой зуб), винт 42 затянуть'}</td></tr>${c.rDif&&c.rDif[0]?`<tr><th>Точность дифф.</th><td style="font-size:13px">погрешность ${c.rDif[0].e<1e-12?'0':f(c.rDif[0].e*100,4)+' %'} → ${difErrTxt(c.rDif[0].e,c.b,c.beta)}; допуск ${f(difTol().p,4)} % (${difTol().src})</td></tr>`:''}</table>
  <table><tr><th>Проход</th><th>Глубина, мм</th><th>n фрезы, об/мин</th><th>V, м/мин</th><th>Подача, мм/об</th><th>Колёса подач a/b</th><th>Время, мин</th></tr>
  ${c.modes.map(m=>`<tr><td>${m.nm}</td><td>${f(m.dp,2)}</td><td>${f(m.used,0)}</td><td>${f(m.vReal,1)}</td><td>${f(m.s,2)}</td><td>${m.fd?m.fd.ab:'—'}</td><td>${f(m.T,2)}</td></tr>`).join("")}</table>
  <table><tr><th>Порядок</th><td>1) фреза: оправка ≤ 0,01 мм, буртики фрезы ≤ 0,02–0,03 мм · 2) угол головки γ · 3) колёса гитар · 4) заготовка, торцовое биение ≤ ${f(ftBlank(c.acc,c.b,c.d),0)} мкм · 5) упоры хода (L = ${f(c.L,1)} мм) · 6) холостой ход · 7) пробная деталь и замер · 8) чистовой проход</td></tr>
@@ -903,7 +907,7 @@ function buildGuide(){
  $("guideBody").innerHTML=h}
 
 
-const JOBKEYS=["pname","mat","mn","z","beta","ghand","b","xs","alpha","acc","m0","D0","K","hhand","meth","tdir","gvar","hcls","hL","passes","stock","vr","sr","vf","sf","over","Dz","ha","cs","note"];
+const JOBKEYS=["pname","mat","mn","z","beta","ghand","b","fb","xs","alpha","acc","m0","D0","K","hhand","meth","tdir","gvar","hcls","hL","passes","stock","vr","sr","vf","sf","over","Dz","ha","cs","note"];
 function collectJob(){const j={};JOBKEYS.forEach(k=>{j[k]=$(k).value});return j}
 function applyJob(j){$("ha").value=1;$("cs").value=0.25;$("Dz").value="";if(j.auto){$("hobMode").value="auto";$("modeMode").value="auto";delete $("D0").dataset.user}else{$("hobMode").value="manual";$("modeMode").value="manual";$("D0").dataset.user="1"}JOBKEYS.forEach(k=>{if(k in j&&$(k))$(k).value=j[k]});if(j.hhand)$("hhand").dataset.user="1";else delete $("hhand").dataset.user}
 function openJob(j){applyJob(j);calc();showTab("easy");window.scrollTo(0,0)}
@@ -937,7 +941,7 @@ function whMenu(kind,l){GPO[kind]=true;WSEL={kind,l};buildEasy();const d=documen
 function pickKey(kind,key){const c=LAST;if(!c)return;let o={};try{o=JSON.parse(localStorage.getItem(c.selKey)||"{}")}catch(e){}o[kind==="dif"?c.difKey:kind]=key;try{localStorage.setItem(c.selKey,JSON.stringify(o))}catch(e){}WSEL=null;recalcKeep(kind)}
 function customPanel(kind,arr){
  if(!WSEL||WSEL.kind!==kind)return"";const c=LAST,cur=arr[0],l=WSEL.l;if(!(l in cur))return"";
- const target=kind==="div"?c.tDiv:c.tDif,clr=c.clr;const tol=kind==="dif"?(+$("tol").value||0.05)/100:1e-9;
+ const target=kind==="div"?c.tDiv:c.tDif,clr=c.clr;const tol=kind==="dif"?difTol().p/100:1e-9;
  const ok=v=>v.two?true:(v.a+v.b>=v.c+clr&&v.c+v.d>=v.b+clr);
  const rt=v=>v.two?v.a/v.d:v.a/v.b*v.c/v.d;
  const keys=cur.two?["a","d"]:["a","b","c","d"],S=c.S,best=[];
